@@ -5,20 +5,20 @@
 	
 <mapper namespace="com.jewelry.mapper.CustomerMapper">
 	
-	<insert id="insertCustomer" parameterType="com.jewelry.vo.Customer" useGeneratedKeys="true" keyColumn="customerNo" keyProperty="customerNo">
-		INSERT INTO CUSTOMER (CUSTOMERNO,CUSTOMERNAME,CUSTOMERPHONE,CUSTOMEREMAIL,CUSTOMERSEX,CUSTOMERAGE)
-		VALUES (CUSTOMER_SEQUENCE.NEXTVAL,#{customerName},#{customerPhone},#{customerEmail},#{customerSex},#{customerAge})
+	<insert id="insertCustomer" parameterType="com.jewelry.vo.Customer" useGeneratedKeys="true" keyColumn="cuNo" keyProperty="cuNo">
+		INSERT INTO CUSTOMER (CUNO,CUNAME,CUPHONE,CUEMAIL,CUSEX,CUBIRTH)
+		VALUES (CUSTOMER_SEQUENCE.NEXTVAL,#{cuName},#{cuPhone},#{cuEmail},#{cuSex},#{cuAge})
 	</insert>
 
 		<select id="selectCustomers" parameterType="hashmap" resultType="com.jewelry.vo.Customer">
-		SELECT * FROM (SELECT rowNUM NUM , M.* FROM(SELECT * FROM CUSTOMER WHERE DELETED <![CDATA[!=]]> #{del} ORDER BY CUSTOMERNO DESC)M)WHERE NUM <![CDATA[>=]]> #{from} AND NUM <![CDATA[<]]> #{to}
+		SELECT * FROM (SELECT rowNUM NUM , M.* FROM(SELECT * FROM CUSTOMER WHERE DELETED <![CDATA[!=]]> #{del} ORDER BY CUNO DESC)M)WHERE NUM <![CDATA[>=]]> #{from} AND NUM <![CDATA[<]]> #{to}
 	</select>
 	<update id="updateCustomer" parameterType="com.jewelry.vo.Customer">
-		UPDATE CUSTOMER SET CUSTOMERNAME = #{customerName},CUSTOMERPHONE = #{customerPhone},CUSTOMEREMAIL = #{customerEmail},CUSTOMERSEX = #{customerSex},CUSTOMERAGE = #{customerAge} WHERE CUSTOMERNO = #{customerNo}
+		UPDATE CUSTOMER SET CUNAME = #{cuName},CUPHONE = #{cuPhone},CUMAIL = #{cuEmail},CUSEX = #{cuSex},CUAGE = #{cuAge} WHERE CUNO = #{cuNo}
 	</update>
 	
 	<update id="deleteCustomer" parameterType="hashmap">
-		UPDATE CUSTOMER SET DELETED = #{delete} WHERE CUSTOMERNO =#{customerNo}
+		UPDATE CUSTOMER SET DELETED = #{deleted} WHERE CUNO =#{cuNo}
 	</update>
 	
 	<select id="selectNewCustomer" parameterType="String" resultType="com.jewelry.vo.Customer">
@@ -29,9 +29,9 @@ SELECT MAL.*
 	select ROWNUM no,m3p.*
 	from
 	(
-	select customerNo,customerName,customerPhone,customerSex,'3' mn
+	select cuNo,cuName,cuPhone,cuSex,'3' mn
 	from customer
-	order by customerNo desc
+	order by cuNo desc
 	) m3p
 	)
 	union
@@ -39,9 +39,9 @@ SELECT MAL.*
 	select ROWNUM no,m2p.*
 	from
 	(
-	select customerNo,customerName,customerPhone,customerSex,'2' mn
+	select cuNo,cuName,cuPhone,cuSex,'2' mn
 	from customer
-	order by customerNo desc
+	order by cuNo desc
 	) m2p
 	)
 	UNION
@@ -49,9 +49,9 @@ SELECT MAL.*
 	select ROWNUM no,m1p.*
 	from
 	(
-	select customerNo,customerName,customerPhone,customerSex,'1' mn
+	select cuNo,cuName,cuPhone,cuSex,'1' mn
 	from customer
-	order by customerNo desc
+	order by cuNo desc
 	) m1p
 	)
 	) MAL

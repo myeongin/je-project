@@ -98,7 +98,7 @@ public class CustomerController {
 		int pagersize = 5;
 		String linkUrl = "customer.action";
 		List<Customer> customers=customerService.takeList(from,to);
-		System.out.println(customers.get(0).getCustomerAge());
+		
 		model.addAttribute("customers", customers);
 /*		model.addAttribute("newlist2", newcusotmer2);
 		model.addAttribute("newlist3", newcusotmer3);

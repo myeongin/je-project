@@ -1013,23 +1013,23 @@
                             <div class="row">
                                 <div class="form-group col-lg-12">
                                     <label>고객 이름</label>
-                                    <input class="form-control" name="customerName" >
+                                    <input class="form-control" name="cuName" >
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label>고객 연락처</label>
-                                    <input name="customerPhone" class="form-control">
+                                    <input name="cuPhone" class="form-control">
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label>고객 나이</label>
-                                    <input name="customerAge"class="form-control">
+                                    <input name="cuAge"class="form-control">
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label>고객 이메일</label>
-                                    <input class="form-control" name="customerEmail">
+                                    <input class="form-control" name="cuEmail">
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label>고객 성별</label>
-                                    <input class="form-control" name="customerSex">
+                                    <input class="form-control" name="cuSex">
                                 </div>
                             </div>
                             <div class="text-center">
@@ -1067,13 +1067,13 @@
                                             <tr>
                                                 
                                                 <th data-field="id">고객번호</th>
-                                                <th data-field="name" data-editable="true">고객 이름</th>
-                                                <th data-field="company" data-editable="true">고객 번호</th>
-                                                <th data-field="price" data-editable="true">고객 나이</th>
-												<th data-field="date" data-editable="true">고객 이메일</th>
-												<th data-field="task" data-editable="true">고객 성별</th>
-												<th data-field="email" data-editable="true">멤버쉽 가입일</th>
-                                                <th data-field="action" data-editable="true">담당자</th>
+                                                <th data-field="name">고객 이름</th>
+                                                <th data-field="company">고객 번호</th>
+                                                <th data-field="price">고객 나이</th>
+												<th data-field="date">고객 이메일</th>
+												<th data-field="task">고객 성별</th>
+												<th data-field="email">멤버쉽 가입일</th>
+                                                <th data-field="action">담당자</th>
                                             </tr>
                                         </thead>
                                       
@@ -1106,13 +1106,13 @@
                                         	<c:forEach var="customer"  items="${customers}">
 									<tr>
                                     		    
-                                                <td>${customer.customerNo}</td>
-                                                <td>${customer.customerName}</td>
-                                                <td>${customer.customerPhone}</td>
-												<td>${customer.customerAge}</td>
-												<td>${customer.customerEmail}</td>
-                                                <td>${customer.customerSex}</td>
-												<td>${customer.customerDate}</td>
+                                                <td>${customer.cuNo}</td>
+                                                <td>${customer.cuName}</td>
+                                                <td>${customer.cuPhone}</td>
+												<td>${customer.cuAge}</td>
+												<td>${customer.cuEmail}</td>
+                                                <td>${customer.cuSex}</td>
+												<td>${customer.cuDate}</td>
                                                 
                                                 <td >
                                                 <%-- <button  type="button" ><a href="/jewelry/customer/customerUpdate.action?movieno=${movie.movieno}">수정</a></button> --%>
@@ -1134,27 +1134,27 @@
                 </div>
                     
                         <form action="/jewelry/customer/customerUpdate.action" id="loginForm" method="POST">
-                        <input type="hidden" name="customerNo" value="${customer.customerNo}">
+                        <input type="hidden" name="customerNo" value="${customer.cuNo}">
                             <div class="row">
                                 <div class="form-group col-lg-12">
                                     <label>고객 이름</label>
-                                    <input class="form-control" name="customerName" >
+                                    <input class="form-control" name="cuName" >
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label>고객 연락처</label>
-                                    <input name="customerPhone" class="form-control">
+                                    <input name="cuPhone" class="form-control">
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label>고객 나이</label>
-                                    <input name="customerAge"class="form-control">
+                                    <input name="cuAge"class="form-control">
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label>고객 이메일</label>
-                                    <input class="form-control" name="customerEmail">
+                                    <input class="form-control" name="cuEmail">
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label>고객 성별</label>
-                                    <input class="form-control" name="customerSex">
+                                    <input class="form-control" name="cuSex">
                                 </div>
                             </div>
                             <div class="text-center">
@@ -1170,7 +1170,7 @@
                                                 
                                                 
                                                 <span> / </span>
-                                                <button type="button"><a href="/jewelry/customer/customerDelete.action?customerNo=${customer.customerNo}">삭제</a></button>
+                                                <button type="button"><a href="/jewelry/customer/customerDelete.action?customerNo=${customer.cuNo}">삭제</a></button>
                                                 </td>
                                        </tr>
 									</c:forEach> 

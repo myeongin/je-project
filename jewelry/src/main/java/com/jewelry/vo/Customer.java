@@ -8,81 +8,103 @@ import javax.validation.constraints.NotEmpty;
 
 public class Customer {
 	
-	private int customerNo;
+	private int cuNo;
 	
 	@NotEmpty(message="고객의 이름은 반드시 입력해야합니다.")
-	private String customerName;
+	private String cuName;
 	
 	@NotEmpty(message="하나의 번호는 반드시 입력해야합니다.")
-	private String customerPhone;
+	private String cuPhone;
 	
 	@NotEmpty(message="이메일은 반드시 입력해야합니다.")
-	private String customerEmail;
+	private String cuEmail;
 	
-	private String customerAge;
+	private String cuBirth;
+	
+	private String cuAge;
 	
 	@NotEmpty(message="고객의 성별은 반드시 입력해야합니다.")
-	private String customerSex;
+	private String cuSex;
 
-	private Date customerDate;
+	private Date cuDate;
+	
+	private char deleted;
 
-	public int getCustomerNo() {
-		return customerNo;
+	public int getCuNo() {
+		return cuNo;
 	}
 
-	public void setCustomerNo(int customerNo) {
-		this.customerNo = customerNo;
+	public void setCuNo(int cuNo) {
+		this.cuNo = cuNo;
 	}
 
-	public String getCustomerName() {
-		return customerName;
+	public String getCuName() {
+		return cuName;
 	}
 
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
+	public void setCuName(String cuName) {
+		this.cuName = cuName;
 	}
 
-
-
-	public String getCustomerPhone() {
-		return customerPhone;
+	public String getCuPhone() {
+		return cuPhone;
 	}
 
-	public void setCustomerPhone(String customerPhone) {
-		this.customerPhone = customerPhone;
+	public void setCuPhone(String cuPhone) {
+		this.cuPhone = cuPhone;
 	}
 
-	public String getCustomerEmail() {
-		return customerEmail;
+	public String getCuEmail() {
+		return cuEmail;
 	}
 
-	public void setCustomerEmail(String customerEmail) {
-		this.customerEmail = customerEmail;
+	public void setCuEmail(String cuEmail) {
+		this.cuEmail = cuEmail;
 	}
 
-	public String getCustomerAge() {
-		return customerAge;
+	public String getCuBirth() {
+		return cuBirth;
 	}
 
-	public void setCustomerAge(String customerAge) {
-		this.customerAge = customerAge;
+	public void setCuBirth(String cuBirth) {
+		this.cuBirth = cuBirth;
 	}
 
-	public String getCustomerSex() {
-		return customerSex;
+	public String getCuAge() {
+		return cuAge;
 	}
 
-	public void setCustomerSex(String customerSex) {
-		this.customerSex = customerSex;
+	public void setCuAge(String cuAge) {
+		this.cuAge = cuAge;
 	}
 
-	public Date getCustomerDate() {
-		return customerDate;
+	public String getCuSex() {
+		return cuSex;
 	}
 
-	public void setCustomerDate(Date customerDate) {
-		this.customerDate = customerDate;
+	public void setCuSex(String cuSex) {
+		this.cuSex = cuSex;
 	}
+
+	public Date getCuDate() {
+		return cuDate;
+	}
+
+	public void setCuDate(Date cuDate) {
+		this.cuDate = cuDate;
+	}
+
+	public char getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(char deleted) {
+		this.deleted = deleted;
+	}
+	
+	
+
+	
 	
 	
 }

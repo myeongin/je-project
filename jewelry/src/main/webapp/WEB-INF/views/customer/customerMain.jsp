@@ -968,10 +968,10 @@
                                             <%-- <c:forEach var="customer"  items="${customers}"> --%>
                                             <c:forEach var="customer" begin="0" end="5" step="1" items="${customers}">  
                                             <tr>
-                                                <td>${customer.customerNo}</td>
-                                                <td>${customer.customerName}</td>
-                                                <td>${customer.customerPhone}</td>
-                                                <td>${customer.customerSex}</td>
+                                                <td>${customer.cuNo}</td>
+                                                <td>${customer.cuName}</td>
+                                                <td>${customer.cuPhone}</td>
+                                                <td>${customer.cuSex}</td>
                                             </tr>
                                             </c:forEach>
                                             
@@ -1006,7 +1006,7 @@
                                               
                                            
                                                 <jsp:useBean id="now"  class="java.util.Date" />
-                                                <fmt:parseDate var="age" value="${   customer.customerAge  }"  pattern="yyyyMMdd"/>
+                                                <fmt:parseDate var="age" value="${   customer.Age  }"  pattern="yyyyMMdd"/>
                                                 <c:set var="target_date" value="${ now.time }"  />
                                                 <c:set var="target_age"  value="${ age.time  }" />
                                                 <%-- <fmt:parseDate var="target_date2" value="${ target_date }"  pattern="yyyy"></fmt:parseDate> --%>
@@ -1016,10 +1016,10 @@
                                                 <c:if test="${(target_date - target_age) / (1000 * 60 * 60 * 24) le 7 }">
                                             	<c:forEach var="customer" begin="0" end="5" step="1" items="${customers}">	
                                                  <tr>
-                                                <td>${customer.customerNo}</td>
-                                                <td>${customer.customerName}</td>
-                                                <td>${customer.customerPhone}</td>
-                                                <td>${customer.customerAge}</td>
+                                                <td>${customer.cuNo}</td>
+                                                <td>${customer.cuName}</td>
+                                                <td>${customer.cuPhone}</td>
+                                                <td>${customer.cuAge}</td>
                                             </tr>
                                             </c:forEach>
                                             </c:if>

@@ -17,7 +17,7 @@ public class CustomerDao implements CustomerDaoInterface{
 	
 	@Override  //고객등록
 	public void insertCustomer(Customer customer) {
-		System.out.println(customer.getCustomerName());
+		System.out.println(customer.getCuName());
 		customerMapper.insertCustomer(customer);
 	}
 

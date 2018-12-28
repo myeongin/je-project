@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.jewelry.mapper.accountMapper">
+	
+	<resultMap type="com.jewelry.vo.account" id="accountMap">
+		<id column="acno" property="acno" />
+		<result column="acstore" property="acstore" />
+		<result column="acadd" property="acadd" />
+		<result column="achonumber" property="achonumber" />
+		<result column="acname" property="acname" />
+		<result column="acphone" property="acphone" />
+		<result column="acmaname" property="acmaname" />
+		<result column="acmaphone" property="acmaphone" />
+		<result column="acheherry" property="acheherry" />
+		<result column="acdel" property="acdel" />
+		<result column="usno" property="usno" />
+		
+	</resultMap>
+	
+	<resultMap type="com.jewelry.vo.receivables" id="receivablesMap">
+		<id column="reno" property="reno" />
+		<result column="recarat" property="recarat" />
+		<result column="remoney" property="remoney" />
+		<result column="redate" property="redate" />
+		<result column="repaydate" property="repaydate" />
+		<result column="usno" property="usno" />
+		<result column="acno" property="acno" />
+	</resultMap>
+
+
+	<select id="selectAccountCount" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+			FROM
+				account
+			WHERE acdel ! = #{ acdel }
+	</select>
+	
+	<select id="selectAllAccountByPage" parameterType="hashmap" resultType="account">
+		SELECT * 
+			FROM 
+			( 
+				SELECT 
+					rownum idx, s.* 
+			   FROM 
+			   ( 
+			   		SELECT 
+			   		acno, acstore, 
+			   		acadd, achonumber, 
+			   		acname, acphone, 
+			   		acmaname, acmaphone, 
+			   		acheherry, acdel
+				FROM 
+					account 
+				WHERE 
+				   	acdel = '0'
+				ORDER BY acno DESC 
+				) s 
+			) 
+		WHERE idx <![CDATA[>=]]> #{ first } AND idx <![CDATA[<]]> #{ last }
+	</select> 
+	
+	<sql id="account_columns">
+		acno,
+		acstore,
+		acadd,
+		achonumber,
+		acname,
+		acphone,
+		acmaname,
+		acmaphone,
+		acheherry,
+		acdel
+	</sql>
+	
+	<insert id="insertAccount" parameterType="account">
+		INSERT INTO account
+		(
+			<include refid="account_columns" />
+		)
+		VALUES
+		(
+			account_sequence.NEXTVAL,
+			#{ acstore },
+			#{ acadd },
+			#{ achonumber },
+			#{ acname },
+			#{ acphone },
+			#{ acmaname },
+			#{ acmaphone },
+			#{ acheherry },
+			0
+		)
+	</insert>
+	
+	<update id="uploadAccount" parameterType="account">
+		UPDATE 
+			account
+		SET
+			acstore = #{ acstore },
+			acadd = #{ acadd },
+			achonumber = #{ achonumber },
+			acname = #{ acname },
+			acphone = #{ acphone },
+			acmaname = #{ acmaname },
+			acmaphone = #{ acmaphone },
+			acheherry = #{ acheherry }
+		WHERE 
+			acno = #{ acno }
+	</update>
+	
+	<update id="deleteAccount" parameterType="account">
+		UPDATE
+			account
+		SET
+			acdel = #{ acdelete }
+		WHERE
+			acno = #{ acno }
+	</update>
+	
+	<select id="selectAccountByAccountNo" parameterType="int" resultType="account">
+		SELECT 
+			*
+		FROM 
+			account
+		WHERE
+			acno = #{ acno }
+	
+	</select>
+	
+	
+	
+	
+</mapper>

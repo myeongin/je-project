@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<typeAliases>
+		<typeAlias type="com.jewelry.vo.FcVo" alias="Fc"/>
+		<typeAlias type="com.jewelry.vo.EmployeeVo" alias="Employee"/>
+		<typeAlias type="com.jewelry.vo.PriceVo" alias="Price"/>
+		<typeAlias type="com.jewelry.vo.ProductVo" alias="Product"/>
+		<typeAlias type="com.jewelry.vo.ProductImgVo" alias="ProductImg"/>
+		<typeAlias type="com.jewelry.vo.DetailVo" alias="Detail"/>
+		<typeAlias type="com.jewelry.vo.OrderVo" alias="Order"/>
+		<typeAlias type="com.jewelry.vo.account" alias="account" />
+		<typeAlias type="com.jewelry.vo.receivables" alias="misu" />
+	</typeAliases>
+
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="oracle.jdbc.OracleDriver" />
+				<property name="url" value="jdbc:oracle:thin:@211.197.18.246:1551:xe" />
+				<property name="username" value="je" />
+				<property name="password" value="9922" />
+			</dataSource>
+		</environment>
+		<environment id="production">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="oracle.jdbc.OracleDriver" />
+				<property name="url" value="jdbc:oracle:thin:@211.197.18.246:1551:xe" />
+				<property name="username" value="je" />
+				<property name="password" value="9922" />
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<mappers>
+		<mapper resource="com/jewelry/mapper/fc-mapper.xml" />
+		<mapper resource="com/jewelry/mapper/product-mapper.xml" />
+		<mapper resource="com/jewelry/mapper/price-mapper.xml" />
+		<mapper resource="com/jewelry/mapper/account-mapper.xml" />
+		<mapper resource="com/jewelry/mapper/misu-mapper.xml" />
+		<mapper resource="com/jewelry/mapper/Customer-mapper.xml" />
+	</mappers>
+	
+</configuration>

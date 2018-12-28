@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.jewelry.mapper.CustomerMapper">
+	
+	<insert id="insertCustomer" parameterType="com.jewelry.vo.Customer" useGeneratedKeys="true" keyColumn="customerNo" keyProperty="customerNo">
+		INSERT INTO CUSTOMER (CUSTOMERNO,CUSTOMERNAME,CUSTOMERPHONE,CUSTOMEREMAIL,CUSTOMERSEX,CUSTOMERAGE)
+		VALUES (CUSTOMER_SEQUENCE.NEXTVAL,#{customerName},#{customerPhone},#{customerEmail},#{customerSex},#{customerAge})
+	</insert>
+
+		<select id="selectCustomers" parameterType="hashmap" resultType="com.jewelry.vo.Customer">
+		SELECT * FROM (SELECT rowNUM NUM , M.* FROM(SELECT * FROM CUSTOMER WHERE DELETED <![CDATA[!=]]> #{del} ORDER BY CUSTOMERNO DESC)M)WHERE NUM <![CDATA[>=]]> #{from} AND NUM <![CDATA[<]]> #{to}
+	</select>
+	<update id="updateCustomer" parameterType="com.jewelry.vo.Customer">
+		UPDATE CUSTOMER SET CUSTOMERNAME = #{customerName},CUSTOMERPHONE = #{customerPhone},CUSTOMEREMAIL = #{customerEmail},CUSTOMERSEX = #{customerSex},CUSTOMERAGE = #{customerAge} WHERE CUSTOMERNO = #{customerNo}
+	</update>
+	
+	<update id="deleteCustomer" parameterType="hashmap">
+		UPDATE CUSTOMER SET DELETED = #{delete} WHERE CUSTOMERNO =#{customerNo}
+	</update>
+	
+	<select id="selectNewCustomer" parameterType="String" resultType="com.jewelry.vo.Customer">
+SELECT MAL.*
+	FROM 
+	(
+	(
+	select ROWNUM no,m3p.*
+	from
+	(
+	select customerNo,customerName,customerPhone,customerSex,'3' mn
+	from customer
+	order by customerNo desc
+	) m3p
+	)
+	union
+	(
+	select ROWNUM no,m2p.*
+	from
+	(
+	select customerNo,customerName,customerPhone,customerSex,'2' mn
+	from customer
+	order by customerNo desc
+	) m2p
+	)
+	UNION
+	(
+	select ROWNUM no,m1p.*
+	from
+	(
+	select customerNo,customerName,customerPhone,customerSex,'1' mn
+	from customer
+	order by customerNo desc
+	) m1p
+	)
+	) MAL
+    where mal.mn=#{mn}
+</select>
+	
+	<!--
+	<select id="selectmoviecount" parameterType="string" resultType="int">
+		SELECT COUNT(*) FROM CUSTOMER WHERE DELETED != #{delete}
+	</select> -->
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

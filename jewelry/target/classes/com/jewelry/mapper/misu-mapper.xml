@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.jewelry.mapper.misuMapper">
+	
+	<resultMap type="com.jewelry.vo.receivables" id="receivablesMap">
+		<id column="reno" property="reno" />
+		<result column="recarat" property="recarat" />
+		<result column="remoney" property="remoney" />
+		<result column="redate" property="redate" />
+		<result column="repaydate" property="repaydate" />
+		<result column="usno" property="usno" />
+		<result column="acno" property="acno" />
+	</resultMap>
+
+
+	<select id="selectMisuCount" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+			FROM
+				receivables
+			WHERE 
+				remoney ! = #{ remoneys }
+			AND
+				recarat ! = #{ recarats }
+	</select>
+	
+	<select id="selectAllMisuByPage" parameterType="hashmap" resultType="misu">
+		SELECT * 
+			FROM 
+			( 
+				SELECT 
+					rownum idx, s.* 
+			   FROM 
+			   ( 
+			   	SELECT 
+			   		reno, recarat, 
+			   		remoney, retrdate, 
+			   		repaydate, userno, 
+			   		acno
+				FROM 
+					receivables
+					
+				ORDER BY reno DESC 
+				) s 
+			) 
+			WHERE idx <![CDATA[>=]]> #{ first } AND idx <![CDATA[<]]> #{ last }
+	</select>
+	
+	<insert id="insertMisu" parameterType="misu">
+		INSERT INTO receivables
+		(
+			reno,
+			nuserno,
+			recarat,
+			remoney,
+			redate,
+			repaydate,
+		)
+		VALUES
+		(
+			receivables_sequence.NEXTVAL,
+			#{ userno },
+			#{ recarat },
+			#{ remoney },
+			#{ redate },
+			#{ repaydate }
+		)
+	</insert>
+	
+	<update id="uploadMisu" parameterType="misu">
+		UPDATE 
+			receivables
+		SET
+			recarat = #{ recarat },
+			remoney = #{ remoney }
+		WHERE 
+			reno = { reno }
+	</update>
+	
+	<select id="selectAccountList" resultType="account">
+	
+		SELECT *
+		FROM
+			account
+		WHERE
+			acno = #{ acno }
+	
+	</select>
+	
+	
+	
+</mapper>

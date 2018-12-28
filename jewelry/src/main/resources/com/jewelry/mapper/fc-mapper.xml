@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.jewelry.mapper.FcMapper">
+	
+	<insert id="insertAccount" parameterType="Fc">
+		INSERT INTO FC (userNo, userId, userPswd, userName, userEmail, userPhone, userStore) VALUES (fc_userno_sequence.nextval , #{userId}, #{userPswd}, #{userName},#{userEmail},#{userPhone}, #{userStore})
+	</insert>
+	
+	<insert id="insterEmployee" parameterType="Employee">
+		INSERT INTO EMPLOYEE (emNo, userId, userPswd, userName, userEmail, userPhone, userNo, userStore) VALUES (employee_emno_sequence.nextval ,#{userId},#{userPswd},#{userName},#{userEmail},#{userPhone},#{userNo},#{userStore})
+	</insert>
+	
+	<select id="selectAccountByIdAndPswd" parameterType="Fc" resultType="Fc">
+		SELECT * FROM FC WHERE userId = #{userId} and userPswd = #{userPswd}
+	</select>
+	
+	<select id="selectEmployeeByStoreNo" parameterType="int" resultType="Employee">
+		SELECT * FROM EMPLOYEE WHERE userNO = #{userNo}
+	</select>
+	
+	<select id="selectEmployeeByIdAndPswd" parameterType="Employee" resultType="Employee">
+		SELECT * FROM EMPLOYEE WHERE userId = #{userId} and userPswd = #{userPswd}
+	</select>
+	
+	<select id="selectAccountAll" parameterType="string" resultType="Fc">
+		SELECT * FROM FC WHERE userType = #{user}
+	</select>
+	
+	<update id="updateAccountByuserNo" parameterType="Fc">
+		UPDATE FC 
+		SET 
+			userName = #{userName},
+			userPhone = #{userPhone},
+			userStore = #{userStore}
+		WHERE
+			userNo = #{userNo}	
+	</update>
+	
+	<update id="updateAccountTypeByuserNo1" parameterType="int">
+		UPDATE FC
+		SET userDel = '0'
+		WHERE userNo = #{userNo}
+	</update>
+	
+	<update id="updateAccountTypeByuserNo2" parameterType="int">
+		UPDATE FC
+		SET userDel = '1'
+		WHERE userNo = #{userNo}
+	</update>
+	
+	<update id="updateEmployeeByEmpNo" parameterType="Employee">
+		UPDATE EMPLOYEE 
+		SET 
+			userName = #{userName},
+			userPhone = #{userPhone},
+			userEmail = #{userEmail},
+			userType = #{userType}
+		WHERE emNo = #{emNo}	
+	</update>
+	
+	<update id="updateEmployeeTypeByEmpNo1" parameterType="int">
+	
+	</update>
+	
+	<update id="updateEmployeeTypeByEmpNo2" parameterType="int">
+	
+	</update>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

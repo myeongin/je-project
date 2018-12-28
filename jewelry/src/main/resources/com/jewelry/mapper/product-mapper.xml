@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.jewelry.mapper.ProductMapper">
+	
+	<insert id="insertProduct" parameterType="Product" useGeneratedKeys="true" keyProperty="productNo" keyColumn="productNo">
+		INSERT INTO PRODUCT (productNo,productName,productCost,userNo) VALUES (product_productno_sequence.nextval,#{productName},#{productCost},#{userNo})
+	</insert>
+	
+	<insert id="insetProductImg" parameterType="ProductImg">
+		INSERT INTO PRODUCT_IMG (imgNo,productNo,imgSavedName,imgFileName) VALUES (productimg_imgno_sequence.nextval,#{productNo},#{imgSavedName},#{imgFileName})
+	</insert>
+	
+	<update id="updateProduct" parameterType="Product">
+
+	</update>
+	
+	<update id="updateProductImg" parameterType="ProductImg">
+
+	</update>
+	
+	<update id="deleteProduct" parameterType="int">
+
+	</update>
+	
+	<select id="selectAllProduct" parameterType="int" resultType="Product">
+		SELECT * FROM PRODUCT WHERE UserNO = #{userNo}
+	</select>
+	
+	<select id="selectAllImg" parameterType="int" resultType="ProductImg">
+		SELECT * FROM PRODUCT_IMG WHERE PRODUCTNO = #{productNo}
+	</select>
+	
+	<select id="selectProductByProductNo" parameterType="int" resultType="Product">
+		Select * FROM PRODUCT WHERE PRODUCTNO =#{productNo}
+	</select>
+	
+	<insert id="insertDetail" parameterType="Detail" useGeneratedKeys="true" keyColumn="detailNo" keyProperty="detailNo">
+		INSERT INTO DETAIL (DETAILNO,DETAILGOLD,DETAILColor,DETAILCARAT,DETAILSIZE,MOUNT,PRICE,DETAILDIV,PRODUCTNO) 
+		VALUES (detail_detailno_sequence.nextval,#{detailGold},#{detailColor},#{detailCarat},#{detailSize},#{mount},#{price},#{detailDiv},#{productNo})
+	</insert>
+	
+	<insert id="insertOrder" parameterType="Order">
+		INSERT INTO PRORDER (ORDERNO,DETAILNO,EMNO) 
+		VALUES (order_orderno_sequence.nextval,#{detailNo},#{emNo})
+	</insert>
+	
+	<update id="updateDetail" parameterType="Detail">
+	
+	</update>
+	
+	<update id="updateOrder" parameterType="Order">
+	
+	</update>
+	
+	<update id="orderDel" parameterType="int">
+	
+	</update>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

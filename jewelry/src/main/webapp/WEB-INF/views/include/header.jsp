@@ -38,7 +38,7 @@
 														</a>
                                                    
                                                 </li>
-                                                <li class="nav-item"><a href="/jewelry/account/logout.action"><i class="fa fa-lock author-log-ic"></i><span class="admin-name">logout</span></a>
+                                                <li class="nav-item"><a href="/jewelry/fc/logout.action"><i class="fa fa-lock author-log-ic"></i><span class="admin-name">logout</span></a>
                                                 </li>
                                             </ul>
                                         </div>

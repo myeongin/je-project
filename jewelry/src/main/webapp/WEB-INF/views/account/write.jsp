@@ -39,6 +39,28 @@
     <link rel="stylesheet" href="/jewelry/resources/style.css">
     <link rel="stylesheet" href="/jewelry/resources/css/responsive.css">
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	
+	<script type="text/javascript">
+	$(function(event) {
+		var store = $("#acstore");
+		var herry = $("#acheherry");
+		
+		$("#submit").click(function(event) {
+			if(store.val()=="") {
+				alert("상호명을 입력 해 주세요");
+				return;
+			}
+			if(herry.val()==""){
+				alert("해리는 숫자로만 입력이 가능합니다");
+				return;
+			}
+		});
+	});
+	
+	
+	
+	</script>
 </head>
 
 
@@ -51,9 +73,6 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="back-link back-backend">
-                    <a href="/jewelry/account/list.action" class="btn btn-primary">거래처 목록</a>
-                </div>
             </div>
         </div>
     </div>
@@ -71,7 +90,7 @@
 					method="post" enctype="multipart/form-data">
                             
                             <div class="form-group">
-                                <label class="control-label">상호명</label>
+                                <label class="control-label">* 상호명</label>
                                 <input type="text" class="form-control" name="acstore">
                             </div>
                             <div class="form-group">
@@ -99,11 +118,12 @@
                                 <input type="text" class="form-control" name="acmaphone">
                             </div>
                             <div class="form-group">
-                                <label class="control-label">거래처 해리</label>
-                                <input type="text" class="form-control" name="acheherry">
+                                <label class="control-label">* 거래처 해리</label>
+                                <input type="number" class="form-control" name="acheherry">
                             </div>
                             
-                            <input class="btn btn-success btn-block loginbtn" type="submit" id="submit" value="등록">
+                            <button class="btn btn-success btn-block loginbtn" id="submit">등록</button>
+                            <a href="/jewelry/account/list.action" class="btn btn-default btn-block">취소</a>
                         </form>
                         
                         

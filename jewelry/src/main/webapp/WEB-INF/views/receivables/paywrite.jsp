@@ -43,32 +43,8 @@
     
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 	<script type="text/javascript">
-	$(function() {
-		$('#storeCk').on('click', function(event) {
-			
-			var acstore = $("#acstore").val();
-			
-			$.ajax({
-				"url": "storeCk.action",
-				"method" : "POST",
-				"data" : data,
-				"success" : function(data, status, xhr) {
-					if ( data === "success") {
-						alert('거래처가 존재합니다');
-					} else {
-						alert('거래처가 없습니다');
-					}
-					
-					
- 				}
-				
-				
-			})
-			
-		});
+	$(function(event) {
 		
-		
-				
 		
 		
 	});
@@ -86,12 +62,11 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-    <div class="color-line"></div>
+	<div class="color-line"></div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="back-link back-backend">
-                    <a href="/jewelry/receivables/list.action" class="btn btn-primary">미수 목록</a>
                 </div>
             </div>
         </div>
@@ -112,22 +87,23 @@
                                 <input type="text" class="form-control" name="acstore">
                                 
                                 <div id="storeCk" class="buttonS">검사</div> <a href="/jewelry/account/write.action"><div class="buttonS">거래처 등록</div></a> 
-                                <p>거래처에 등록되어 있어야만 가능합니다</p>
+                                <p>거래처에 등록되어 있어야만 결제가 가능합니다</p>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">금 중량  ( 단위 : g )</label>
-                                <input type="text" class="form-control" name="recarat">
+                                <input type="number" class="form-control" name="recarat">
                             </div>
                             <div class="form-group">
                                 <label class="control-label">현금</label>
-                                <input type="text" class="form-control" name="remoney">
+                                <input type="number" class="form-control" name="remoney">
                             </div>
                             <div class="form-group">
                                 <label class="control-label">거래 해리</label>
-                                <input type="text" class="form-control" name="acheherry">
+                                <input type="number" class="form-control" name="acheherry">
                             </div>
                             
-                            <input class="btn btn-success btn-block loginbtn" type="submit" id="submit" value="등록">
+                            <button class="btn btn-success btn-block loginbtn" id="submit">등록</button>
+                            <a href="/jewelry/receivables/list.action" class="btn btn-default btn-block">취소</a>
                         </form>
                         
                         

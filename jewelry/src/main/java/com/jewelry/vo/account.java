@@ -1,10 +1,11 @@
 package com.jewelry.vo;
 
-import java.util.List;
+import javax.validation.constraints.NotEmpty;
 
 public class account {
 	
 	private int acno;
+	@NotEmpty
 	private String acstore;
 	private String acadd;
 	private String achonumber;
@@ -12,6 +13,7 @@ public class account {
 	private String acphone;
 	private String acmaname;
 	private String acmaphone;
+	@NotEmpty
 	private String acheherry;
 	private Boolean acdel;
 	private int usno;

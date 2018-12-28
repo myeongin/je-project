@@ -129,14 +129,7 @@
 					</div>
 					<form action="detail.action" method="post">
 						<input type="hidden" name="productNo" value="${product.productNo}">
-						<c:choose>
-						<c:when test="${user.userType eq 'admin'}">
-							<input type="hidden" name="" value="${user.userNo}">
-						</c:when>
-						<c:otherwise>
-							<input type="hidden" name="" value="${user.emNo}">
-						</c:otherwise>
-						</c:choose>
+	
 						<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
 							<div class="single-product-details res-pro-tb">
 								<h1>${product.productName}</h1>

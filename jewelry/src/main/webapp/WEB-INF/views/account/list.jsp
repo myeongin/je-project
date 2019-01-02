@@ -128,8 +128,8 @@
 	                                                <td>${ account.acmaname }</td>
 	                                                <td>${ account.acmaphone }</td>
 	                                                <td>${ account.acheherry }</td>
-	                                                <td><a href="/jewelry/account/rewrite.action?acno=${ account.acno }"><div class="buttonS">수정</div></a>
-	                                        			<a id="acdel" href="/jewelry/account/delete.action?acno=${ account.acno }"><div class="buttonS">삭제</div></a></td>
+	                                                <td><a href="/jewelry/account/rewrite.action?acno=${ account.acno }"><div class="buttonA">수정</div></a>
+	                                        			<a id="acdel" href="/jewelry/account/delete.action?acno=${ account.acno }"><div class="buttonA">삭제</div></a></td>
 	                                            </tr>
                                             </c:forEach>
                                             

@@ -15,6 +15,9 @@
                             <a href="/jewelry/fc/regmanagement.action" aria-expanded="false"><i class="fa big-icon fa-envelope icon-wrap"></i> <span class="mini-click-non">계정관리</span></a>
                         </li>
                         <li>
+                            <a href="/jewelry/price/list.action?storeNo=${user.storeNo}" aria-expanded="false"><i class="fa fa-line-chart sub-icon-mg"></i> <span class="mini-click-non">금 시세</span></a>
+                        </li>
+                        <li>
                             <a href="/jewelry/product/product.action?storeNo=${user.storeNo}" aria-expanded="false"><i class="fa big-icon fa-flask icon-wrap"></i> <span class="mini-click-non">제품</span></a>
                         </li>
                         <li>

@@ -46,7 +46,7 @@
 			   	SELECT 
 			   		reno, recarat, 
 			   		remoney, retrdate, 
-			   		repaydate, userno, 
+			   		repaydate, 
 			   		acno
 				FROM 
 					receivables

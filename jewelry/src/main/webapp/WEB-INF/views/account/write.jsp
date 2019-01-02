@@ -151,7 +151,7 @@
                                 <input type="text" class="form-control" name="acstore">
                             </div>
                             <div class="form-group">
-                                <label class="control-label">주소</label><button id="add" class="buttonS">주소검색</button>
+                                <label class="control-label">주소</label>
                                 <input type="text" class="form-control" name="acadd">
                             </div>
                             <div class="form-group">

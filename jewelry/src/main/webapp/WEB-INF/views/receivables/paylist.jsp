@@ -92,12 +92,13 @@
                                         <a href="/jewelry/receivables/paywrite.action"><div class="buttonS">결제</div></a>
                                         
                                             <tr>
-                                                <th data-field="reno" data-checkbox="true">No</th>
-                                                <th data-field="acstore" data-checkbox="true">상호명</th>
+                                                <th data-field="reno" data-editable="true">No</th>
+                                                <th data-field="acstore" data-editable="true">상호명</th>
                                                 <th data-field="recarat" data-editable="true">중량</th>
                                                 <th data-field="remoney" data-editable="true">현금</th>
                                                 <th data-field="redate" data-editable="true">최근거래일</th>
 												<th data-field="repaydate" data-editable="true">최근결재일</th>
+												<th data-field="repaydate" data-editable="true">작성자</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -111,6 +112,8 @@
 	                                                <td>${ remoney }</td>
 	                                                <td>${ retrdate }</td>
 	                                                <td>${ repaydate }</td>
+	                                                <td>${ usno }</td>
+	                                                
 	                                            </tr>
                                             
                                             </c:forEach>

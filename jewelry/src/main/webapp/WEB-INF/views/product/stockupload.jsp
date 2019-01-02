@@ -86,7 +86,8 @@
             <!-- Single pro tab review Start-->
             <div class="single-pro-review-area">
                 <div class="container-fluid">
-                <form action="/jewelry/product/productupload.action" method="Post" enctype="multipart/form-data">
+                <form action="/jewelry/product/stockupload.action" method="Post">
+                	<input type="hidden" name="storeNo" value=${ user.storeNo }> 
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="review-tab-pro-inner">
@@ -99,46 +100,60 @@
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 <div class="review-content-section">
                                                     <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
-                                                        <input type="text" class="form-control" name="productName" placeholder="Name">
+                                                        <span class="input-group-addon">제품명</span>                                                        
+                                                        <select class="form-control" name="productNo">
+                                                        	<option>----</option>
+                                                        	<c:forEach var="product" items="${products}">
+                                                        		<option value="${product.productNo}">${product.productName}</option>
+                                                        	</c:forEach>
+                                                        </select>
                                                     </div>
                                                     <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-                                                        <input type="text" class="form-control" name="productCost" placeholder="Cost">
+                                                        <span class="input-group-addon">원가</span>
+                                                        <input type="text" class="form-control" name="price" placeholder="price">
                                                     </div>
                                                     <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
-                                                        <input type="text" class="form-control" name="productShape" placeholder="Regular Price">
+                                                        <span class="input-group-addon">형태</span>                                                       
+                                                         <select class="form-control" name="shape">
+                                                         	<option value="반지">반지</option>
+                                                         	<option value="팔찌">팔찌</option>
+                                                         	<option value="목걸이">목걸이</option>
+                                                         	<option value="귀걸이">귀걸이</option>
+                                                         </select>
                                                     </div>
                                                     <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"><i class="fa fa-sticky-note-o" aria-hidden="true"></i></span>
-                                                        <input type="text" class="form-control" name="userNo" value="${user.storeNo}" placeholder="Tax">
+                                                        <span class="input-group-addon">색깔</span>                                                                                                                                   
+                                                         <select class="form-control" name="detailColor">
+                                                         	<option value="화이트">화이트</option>
+                                                         	<option value="루비">루비</option>
+                                                         	<option value="블랙">블랙</option>                                                         	
+                                                         </select>
                                                     </div>
                                                     <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"><i class="fa fa-qrcode" aria-hidden="true"></i></span>
-                                                        
+                                                        <span class="input-group-addon">골드</span>
+                                                        <select class="form-control" name="detailGold">
+                                                         	<option value="14k">14k</option>
+                                                         	<option value="18k">18k</option>
+                                                         	<option value="24k">24k</option>
+                                                         	<option value="순금">순금</option>                                                         	
+                                                         </select>                                                        
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 <div class="review-content-section">
                                                     <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
-                                                        <input type="file" name="img" class="form-control" placeholder="Last Name">
+                                                        <span class="input-group-addon">중량</span>
+                                                        <input type="text" name="detailCarat" class="form-control" placeholder="Carat">
                                                     </div>
                                                     <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"><i class="fa fa-ticket" aria-hidden="true"></i></span>
-                                                       
+                                                        <span class="input-group-addon">사이즈</span>
+                                                       <input type="text" name="detailSize" class="form-control" placeholder="Size">
                                                     </div>
                                                     <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
-                                                        
-                                                    </div>
-                                                    <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"><i class="fa fa-tag" aria-hidden="true"></i></span>
-                                                        
-                                                    </div>
-
+                                                        <span class="input-group-addon">수량</span>
+                                                        <input type="text" name="mount" class="form-control" placeholder="Mount">
+                                                    </div>                                                    
                                                 </div>
                                             </div>
                                         </div>

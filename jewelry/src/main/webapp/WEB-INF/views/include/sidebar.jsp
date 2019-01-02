@@ -15,21 +15,21 @@
                             <a href="/jewelry/fc/regmanagement.action" aria-expanded="false"><i class="fa big-icon fa-envelope icon-wrap"></i> <span class="mini-click-non">계정관리</span></a>
                         </li>
                         <li>
-                            <a href="/jewelry/product/product.action?userNo=${user.userNo}" aria-expanded="false"><i class="fa big-icon fa-flask icon-wrap"></i> <span class="mini-click-non">제품</span></a>
+                            <a href="/jewelry/product/product.action?storeNo=${user.storeNo}" aria-expanded="false"><i class="fa big-icon fa-flask icon-wrap"></i> <span class="mini-click-non">제품</span></a>
                         </li>
                         <li>
-                            <a href="/jewelry/product/order.action?userNo=${user.userNo}" aria-expanded="false"><i class="fa big-icon fa-pie-chart icon-wrap"></i> <span class="mini-click-non">주문</span></a>
+                            <a href="/jewelry/product/order.action?storeNo=${user.storeNo}" aria-expanded="false"><i class="fa big-icon fa-pie-chart icon-wrap"></i> <span class="mini-click-non">주문</span></a>
                         </li>
                         <li>
-                            <a href="/jewelry/product/stock.action?userNo=${user.userNo}" aria-expanded="false"><i class="fa big-icon fa-bar-chart-o icon-wrap"></i> <span class="mini-click-non">재고</span></a>
+                            <a href="/jewelry/product/stock.action?storeNo=${user.storeNo}" aria-expanded="false"><i class="fa big-icon fa-bar-chart-o icon-wrap"></i> <span class="mini-click-non">재고</span></a>
                         </li>
                         <li>
-                            <a href="/jewelry/account/list.action" aria-expanded="false"><i class="fa big-icon fa-table icon-wrap"></i> <span class="mini-click-non">거래처</span></a>
+                            <a href="/jewelry/product/sales.action?userNo=${user.storeNo}" aria-expanded="false"><i class="fa big-icon fa-table icon-wrap"></i> <span class="mini-click-non">판매</span></a>
                         </li>                 
                         <li id="removable">
-                            <a  href="/jewelry/customer/customer2.action" aria-expanded="false"><i class="fa big-icon fa-files-o icon-wrap"></i> <span class="mini-click-non">고객관리</span></a>
+                            <a  href="#" aria-expanded="false"><i class="fa big-icon fa-files-o icon-wrap"></i> <span class="mini-click-non">Pages</span></a>
                         </li>
-                        <li><a href="/jewelry/receivables/list.action" aria-expanded="false"><i class="fa fa-bookmark icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">미수관리</span></a></li>
+                        <li><a href="#" aria-expanded="false"><i class="fa fa-bookmark icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Landing Page</span></a></li>
                     </ul>
                 </nav>
             </div>

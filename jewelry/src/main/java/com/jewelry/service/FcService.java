@@ -3,7 +3,6 @@ package com.jewelry.service;
 import java.util.List;
 
 import com.jewelry.vo.FcVo;
-import com.jewelry.vo.EmployeeVo;
 
 public interface FcService {
 
@@ -11,22 +10,14 @@ public interface FcService {
 
 	FcVo findAccountByIdAndPswd(FcVo accountVo);
 
-	void registerEmployee(EmployeeVo employeeVo);
-
-	EmployeeVo findEmployeeByIdAndPswd(EmployeeVo employeeVo);
+	void registerEmployee(FcVo fc);
 
 	List<FcVo> findAccountAll();
 
-	void updateAccountByuserNo(FcVo accountVo);
-
 	void updateAccountTypeByuserNo(FcVo accountVo);
 
-	void updateEmployeeByEmpNo(EmployeeVo employeeVo);
+	void updateEmployeeByEmpNo(FcVo fc);
 
-	void updateEmployeeTypeByEmpNo(EmployeeVo employeeVo);
-
-	List<EmployeeVo> findEmployeeAll(int storeNo);
-	
-	
+	List<FcVo> findEmployeeAll(int storeNo);	
 	
 }

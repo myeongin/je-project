@@ -12,6 +12,8 @@ public class OrderVo {
 	private int detailNo;
 	private int cuno;
 	private int orderCount;
+	private int userNo;
+	private String orderType;
 	
 	public int getOrderNo() {
 		return orderNo;
@@ -60,6 +62,18 @@ public class OrderVo {
 	}
 	public void setOrderCount(int orderCount) {
 		this.orderCount = orderCount;
+	}
+	public String getOrderType() {
+		return orderType;
+	}
+	public void setOrderType(String orderType) {
+		this.orderType = orderType;
+	}
+	public int getUserNo() {
+		return userNo;
+	}
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
 	}	
 	
 }

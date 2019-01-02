@@ -82,7 +82,9 @@
         </div>
       <jsp:include page="/WEB-INF/views/include/header.jsp" />
         <div class="blog-area mg-tb-15">
-        <button><a href="/jewelry/product/productupload.action">asdsad</a></button>
+        <div class="modal-bootstrap modal-login-form">
+        	<a class="zoomInDown mg-t" href="/jewelry/product/productupload.action" data-target="#zoomInDown1">제품추가</a>
+        </div>      
             <div class="container-fluid">               
                 <div class="row">     
         		<c:forEach var="product" items="${products}">

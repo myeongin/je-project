@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -19,6 +20,8 @@ import com.jewelry.vo.DetailVo;
 import com.jewelry.vo.OrderVo;
 import com.jewelry.vo.ProductImgVo;
 import com.jewelry.vo.ProductVo;
+import com.jewelry.vo.SalesVo;
+import com.jewelry.vo.orderViewVo;
 
 @Controller
 @RequestMapping("/product/")
@@ -35,9 +38,9 @@ public class ProductController {
 	
 	//제품
 	@RequestMapping(value="product.action",method=RequestMethod.GET)
-	public String productView(int userNo,Model model) {
+	public String productView(int storeNo,Model model) {
 		
-		List<ProductVo> products = productService.takeAllProduct(userNo);
+		List<ProductVo> products = productService.takeAllProduct(storeNo);
 		
 		model.addAttribute("products",products);
 			
@@ -75,7 +78,7 @@ public class ProductController {
 			
 			productVo.setImgs(imgs);
 			productService.insertProduct(productVo);		
-			model.addAttribute("userNo", productVo.getUserNo());
+			model.addAttribute("storeNo", productVo.getUserNo());
 				
 			return "redirect:/product/product.action";
 		}
@@ -122,8 +125,10 @@ public class ProductController {
 	
 	//주문
 	@RequestMapping(value="order.action",method=RequestMethod.GET)
-	public String OrderView(int userNo,Model model) {
+	public String OrderView(int storeNo,Model model) {
 		
+		List<orderViewVo> views=productService.selectAllOrderList(storeNo);
+		model.addAttribute("views",views);
 		
 		return "product/order";
 	}
@@ -149,6 +154,31 @@ public class ProductController {
 			
 		return "redirect:/product/product.action";
 	}
+	
+	//주문상태변경
+	@RequestMapping(value="ordertype.action",method=RequestMethod.POST)
+	@ResponseBody
+	public String ordertype(int orderNo,String type,String div,SalesVo sales) {
+		
+		if(div.equals("주문판매")) {
+			productService.insertSales(sales);
+		}else {
+			productService.updateStockMount(sales.getDetailNo(),sales.getSalesCount());
+		}
+		productService.changeOrderViewType(orderNo,type);
+			
+		return "success";
+	}
+	
+	//주문리스트
+	@RequestMapping(value="orderVIewList.action",method=RequestMethod.POST)
+	public String orderViewList(int storeNo,Model model) {
+			
+		List<orderViewVo> views=productService.selectAllOrderList(storeNo);
+		model.addAttribute("views",views);
+			
+		return "product/orderviewlist";
+	}
 		
 	/************************************************************************/
 	
@@ -164,14 +194,14 @@ public class ProductController {
 	
 	//주문등록
 	@RequestMapping(value="detail.action",method=RequestMethod.POST)
-	public String productOrder(DetailVo detailVo,OrderVo orderVo,Model model) {
+	public String productOrder(DetailVo detailVo,OrderVo orderVo,int storeNo,Model model) {
 
 		ArrayList<OrderVo> orders = new ArrayList<>();
 		orders.add(orderVo);
 		detailVo.setOrders(orders);
 		
 		productService.insertOrder(detailVo);
-		//model.addAttribute();
+		model.addAttribute("storeNo",storeNo);
 		
 		return "redirect:/product/product.action";
 	}		
@@ -180,11 +210,32 @@ public class ProductController {
 	
 	//재고
 	@RequestMapping(value="stock.action",method=RequestMethod.GET)
-	public String stockView() {
+	public String stockView(int storeNo,Model model) {
 		
-		//조회
+		List<ProductVo> products = productService.takeAllStockList(storeNo);
+		model.addAttribute("products", products);
 		
 		return "/product/stock";
+	}
+	
+	//재고추가
+	@RequestMapping(value="stockupload.action",method=RequestMethod.GET)
+	public String stockUploadView(int storeNo,Model model) {
+		
+		List<ProductVo> products = productService.takeAllProduct(storeNo);
+		
+		model.addAttribute("products",products);
+		
+		return "/product/stockupload";
+	}
+	
+	@RequestMapping(value="stockupload.action",method=RequestMethod.POST)
+	public String stockUpload(DetailVo detailVo,int storeNo,Model model) {
+		
+		productService.insertStock(detailVo);
+		model.addAttribute("storeNo", storeNo);
+		
+		return "redirect:/product/stock.action";
 	}
 	
 	

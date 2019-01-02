@@ -7,12 +7,13 @@
 
 	<typeAliases>
 		<typeAlias type="com.jewelry.vo.FcVo" alias="Fc"/>
-		<typeAlias type="com.jewelry.vo.EmployeeVo" alias="Employee"/>
 		<typeAlias type="com.jewelry.vo.PriceVo" alias="Price"/>
 		<typeAlias type="com.jewelry.vo.ProductVo" alias="Product"/>
 		<typeAlias type="com.jewelry.vo.ProductImgVo" alias="ProductImg"/>
 		<typeAlias type="com.jewelry.vo.DetailVo" alias="Detail"/>
 		<typeAlias type="com.jewelry.vo.OrderVo" alias="Order"/>
+		<typeAlias type="com.jewelry.vo.orderViewVo" alias="OrderViews"/>
+		<typeAlias type="com.jewelry.vo.SalesVo" alias="Sales"/>												
 		<typeAlias type="com.jewelry.vo.account" alias="account" />
 		<typeAlias type="com.jewelry.vo.receivables" alias="misu" />
 	</typeAliases>

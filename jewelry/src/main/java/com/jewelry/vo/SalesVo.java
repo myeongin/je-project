@@ -1,17 +1,18 @@
 package com.jewelry.vo;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class SalesVo {
 	
 	private int salesNo;
 	private int productPrice;
 	private int salesPrice;
-	private String salesDiv;
 	private Date salesDate;
-	private int cuNo;
-	private int salesUser;
-	private int DetailNo;
+	private String salesDiv;
+	private int salesCount;
+	private int cuno;
+	private int userNo;
+	private int detailNo;
 	
 	public int getSalesNo() {
 		return salesNo;
@@ -31,36 +32,43 @@ public class SalesVo {
 	public void setSalesPrice(int salesPrice) {
 		this.salesPrice = salesPrice;
 	}
-	public String getSalesDiv() {
-		return salesDiv;
-	}
-	public void setSalesDiv(String salesDiv) {
-		this.salesDiv = salesDiv;
-	}
 	public Date getSalesDate() {
 		return salesDate;
 	}
 	public void setSalesDate(Date salesDate) {
 		this.salesDate = salesDate;
 	}
-	public int getCuNo() {
-		return cuNo;
+	public String getSalesDiv() {
+		return salesDiv;
 	}
-	public void setCuNo(int cuNo) {
-		this.cuNo = cuNo;
+	public void setSalesDiv(String salesDiv) {
+		this.salesDiv = salesDiv;
 	}
-	public int getSalesUser() {
-		return salesUser;
+	public int getSalesCount() {
+		return salesCount;
 	}
-	public void setSalesUser(int salesUser) {
-		this.salesUser = salesUser;
+	public void setSalesCount(int salesCount) {
+		this.salesCount = salesCount;
+	}
+	public int getCuno() {
+		return cuno;
+	}
+	public void setCuno(int cuno) {
+		this.cuno = cuno;
+	}
+	public int getUserNo() {
+		return userNo;
+	}
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
 	}
 	public int getDetailNo() {
-		return DetailNo;
+		return detailNo;
 	}
 	public void setDetailNo(int detailNo) {
-		DetailNo = detailNo;
+		this.detailNo = detailNo;
 	}
+	
 	
 	
 }

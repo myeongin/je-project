@@ -2,10 +2,14 @@ package com.jewelry.dao;
 
 import java.util.List;
 
+import javax.xml.soap.Detail;
+
 import com.jewelry.vo.DetailVo;
 import com.jewelry.vo.OrderVo;
 import com.jewelry.vo.ProductImgVo;
 import com.jewelry.vo.ProductVo;
+import com.jewelry.vo.SalesVo;
+import com.jewelry.vo.orderViewVo;
 
 public interface ProductDao {
 
@@ -34,4 +38,20 @@ public interface ProductDao {
 	List<ProductImgVo> selectAllImg(int productNo);
 
 	ProductVo selectProductByProductNo(int productNo);
+
+	List<DetailVo> findDetail(int productNo);
+
+	List<orderViewVo> selectAllOrderList(int storeNo);
+
+	void updateDetailType(int detailNo);
+
+	void updateMount(int detailNo, int mount);
+
+	List<DetailVo> selectProductDetail(int productNo);
+
+	void updateOrderViewType(int orderNo, String type);
+
+	void insertSales(SalesVo sales);
+
+	DetailVo findDetailBydetailNo(int detailNo);
 }

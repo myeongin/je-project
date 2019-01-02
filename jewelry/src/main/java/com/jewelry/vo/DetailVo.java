@@ -9,7 +9,7 @@ public class DetailVo {
 	private String detailColor;
 	private Double detailCarat;
 	private String detailSize;
-	private String detailDiv;
+	private Boolean detailDiv;
 	private int mount;
 	private int price;
 	private String shape;
@@ -47,12 +47,6 @@ public class DetailVo {
 	public void setDetailSize(String detailSize) {
 		this.detailSize = detailSize;
 	}
-	public String getDetailDiv() {
-		return detailDiv;
-	}
-	public void setDetailDiv(String detailDiv) {
-		this.detailDiv = detailDiv;
-	}
 	public int getMount() {
 		return mount;
 	}
@@ -82,6 +76,12 @@ public class DetailVo {
 	}
 	public void setOrders(List<OrderVo> orders) {
 		this.orders = orders;
+	}
+	public Boolean getDetailDiv() {
+		return detailDiv;
+	}
+	public void setDetailDiv(Boolean detailDiv) {
+		this.detailDiv = detailDiv;
 	}
 	
 	

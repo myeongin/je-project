@@ -1,10 +1,10 @@
 package com.jewelry.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.jewelry.mapper.FcMapper;
 import com.jewelry.vo.FcVo;
-import com.jewelry.vo.EmployeeVo;
 
 public class FcDaoImpl implements FcDao{
 	
@@ -28,68 +28,58 @@ public class FcDaoImpl implements FcDao{
 	
 	//직원정보
 	@Override
-	public List<EmployeeVo> selectEmployeeByStoreNo(int userNo) {
-		List<EmployeeVo> employees = fcMapper.selectEmployeeByStoreNo(userNo);
+	public List<FcVo> selectEmployeeByStoreNo(int userNo) {
+		
+		HashMap<String, Object> user = new HashMap<>();
+		user.put("userNo", userNo);
+		user.put("fc","fc");
+		user.put("admin", "admin");
+		
+		List<FcVo> employees = fcMapper.selectEmployeeByStoreNo(user);
 		return employees;
 	}
 	
 	//직원
 	@Override
-	public void insterEmployee(EmployeeVo employeeVo) {
-		fcMapper.insterEmployee(employeeVo);
+	public void insterEmployee(FcVo fc) {
+		fcMapper.insterEmployee(fc);
 	}
 	
-	//직원로그인
-	@Override
-	public EmployeeVo selectEmployeeByIdAndPswd(EmployeeVo employeeVo) {
-		EmployeeVo employeeVo2=fcMapper.selectEmployeeByIdAndPswd(employeeVo);
-		return employeeVo2;
-	}
-	
-	//계정관리
+	//계정정보
 	@Override
 	public List<FcVo> selectAccountAll() {
-		String user = "user";
+		String user = "fc";
 		List<FcVo> accounts=fcMapper.selectAccountAll(user);
 		return accounts;
-	}
-	
-	//계정수정
-	@Override
-	public void updateAccountByuserNo(FcVo accoutVo) {
-		fcMapper.updateAccountByuserNo(accoutVo);		
 	}
 	
 	//계정상태
 	@Override
 	public void updateAccountTypeByuserNo1(int userNo) {
-		fcMapper.updateAccountTypeByuserNo1(userNo);		
+		
+		HashMap<String, Object> type = new HashMap<>();
+		type.put("type", "1");
+		type.put("userNo",userNo);
+		
+		fcMapper.updateAccountTypeByuserNo(type);		
 	}
 	
 	@Override
 	public void updateAccountTypeByuserNo2(int userNo) {
-		fcMapper.updateAccountTypeByuserNo2(userNo);		
+		
+		HashMap<String, Object> type = new HashMap<>();
+		type.put("type", "0");
+		type.put("userNo",userNo);
+		
+		fcMapper.updateAccountTypeByuserNo(type);		
 	}
 	
 	//직원정보수정
 	@Override
-	public void updateEmployeeByEmpNo(EmployeeVo employeeVo) {
-		fcMapper.updateEmployeeByEmpNo(employeeVo);
-		
-	}
-	
-	//직원상태
-	@Override
-	public void updateEmployeeTypeByEmpNo1(int emNo) {
-		fcMapper.updateEmployeeTypeByEmpNo1(emNo);
-		
-	}
+	public void updateEmployeeByEmpNo(FcVo fc) {
 
-	@Override
-	public void updateEmployeeTypeByEmpNo2(int emNo) {
-		fcMapper.updateEmployeeTypeByEmpNo2(emNo);
-		
+		fcMapper.updateEmployeeByEmpNo(fc);
+
 	}
-	
 	
 }

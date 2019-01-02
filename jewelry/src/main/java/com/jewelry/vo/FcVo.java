@@ -22,6 +22,9 @@ public class FcVo {
 	private String userType;
 	private Boolean userDel;
 	private Date regdate;
+	private int storeNo;
+	private String firstDate;
+	private String lastDate;
 	
 	public int getUserNo() {
 		return userNo;
@@ -82,6 +85,25 @@ public class FcVo {
 	}
 	public void setUserType(String userType) {
 		this.userType = userType;
-	}	
+	}
+	public int getStoreNo() {
+		return storeNo;
+	}
+	public void setStoreNo(int storeNo) {
+		this.storeNo = storeNo;
+	}
+	public String getFirstDate() {
+		return firstDate;
+	}
+	public void setFirstDate(String firstDate) {
+		this.firstDate = firstDate;
+	}
+	public String getLastDate() {
+		return lastDate;
+	}
+	public void setLastDate(String lastDate) {
+		this.lastDate = lastDate;
+	}
+
 	
 }

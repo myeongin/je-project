@@ -91,25 +91,18 @@ public class receivablesController {
 	}
 	
 	// 상호 검색
-	@RequestMapping(value = "/storeCk.action", method = RequestMethod.POST)
-	public String storeCk(account account, receivables misu) {
+	@RequestMapping(value = "/storeck.action", method = RequestMethod.POST)
+	public String storeCk(account account, receivables misu, String storename) {
 		
-		int bestore = account.getAcno();
-		int afstore = misu.getAcno();
+		String storenamed = storename;
 		
-		if (bestore == afstore) {
-			return "success";
-		} else {
-			
-			return "false";
-		}
+		
+		return "";
 		
 		
 		
 	}
 	
-
-		
 
 	
 

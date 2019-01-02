@@ -34,10 +34,6 @@ public class misuServiceImpl implements misuService {
 	public List<receivables> findAllMisuByPage(int from, int to) {
 		
 		List<receivables> misus = misudao.selectMisuByPage(from, to);
-		
-		for (receivables misu:misus) {
-			misu.setAccountlist(misudao.selectAccountList(misu.getReno()));
-		}
 		return misus;
 	}
 	

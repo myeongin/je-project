@@ -21,7 +21,6 @@
 		remoney,
 		retrdate,
 		repaydate,
-		usno,
 		acno
 	</sql>
 
@@ -69,7 +68,6 @@
 			#{ remoney },
 			#{ retrdate },
 			#{ repaydate },
-			#{ usno },
 			#{ acno }
 		)
 	</insert>

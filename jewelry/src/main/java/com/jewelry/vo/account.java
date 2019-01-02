@@ -1,5 +1,7 @@
 package com.jewelry.vo;
 
+import java.util.List;
+
 import javax.validation.constraints.NotEmpty;
 
 public class account {
@@ -14,9 +16,12 @@ public class account {
 	private String acmaname;
 	private String acmaphone;
 	@NotEmpty
-	private String acheherry;
+	private double acheherry;
 	private Boolean acdel;
 	private int usno;
+	private int storeno;
+	
+	private List<receivables> misus;
 	
 	
 	public int getAcno() {
@@ -67,10 +72,10 @@ public class account {
 	public void setAcmaphone(String acmaphone) {
 		this.acmaphone = acmaphone;
 	}
-	public String getAcheherry() {
+	public double getAcheherry() {
 		return acheherry;
 	}
-	public void setAcheherry(String acheherry) {
+	public void setAcheherry(double acheherry) {
 		this.acheherry = acheherry;
 	}
 	public Boolean getAcdel() {
@@ -84,6 +89,18 @@ public class account {
 	}
 	public void setUsno(int usno) {
 		this.usno = usno;
+	}
+	public List<receivables> getMisus() {
+		return misus;
+	}
+	public void setMisus(List<receivables> misus) {
+		this.misus = misus;
+	}
+	public int getStoreno() {
+		return storeno;
+	}
+	public void setStoreno(int storeno) {
+		this.storeno = storeno;
 	}
 	
 

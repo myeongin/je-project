@@ -176,9 +176,13 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">* 거래처 해리</label>
-                                <input type="number" class="form-control" name="acheherry">
+                                <input type="text" class="form-control" name="acheherry">
                             </div>
-                            
+                           <!--  <div class="form-group">
+                                <label class="control-label">* 거래처 해리</label>
+                                <input type="number" class="form-control" name="acheherry">
+                            </div> -->
+                           	<input type="hidden" name="storeno" value="${ user.storeNo }">
                             <button class="btn btn-success btn-block loginbtn" id="submit">등록</button>
                             <a href="/jewelry/account/list.action" class="btn btn-default btn-block">취소</a>
                         </form>

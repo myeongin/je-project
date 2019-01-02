@@ -92,8 +92,8 @@
                                     <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
                                         data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                         <thead>
-                                        <a href="/jewelry/receivables/paylist.action"><div class="buttonS">결제List</div></a>
-                                        <a href="/jewelry/receivables/paywrite.action"><div class="buttonS">결제</div></a>
+                                        <a href="/jewelry/receivables/paylist.action?storeNo=${user.storeNo}"><div class="buttonS">결제 List</div></a>
+                                        <a href="/jewelry/receivables/paywrite.action?storeNo=${user.storeNo}"><div class="buttonS">결제</div></a>
                                         
                                             <tr>
                                                 <th data-field="reno" data-checkbox="true">No</th>

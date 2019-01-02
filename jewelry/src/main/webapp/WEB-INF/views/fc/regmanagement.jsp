@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!Doctype html>
 <html class="no-js" lang="en">
 
@@ -102,38 +103,35 @@
                                 </div>
                             </div>
                             <div class="sparkline13-graph">
-                                <div class="datatable-dashv1-list custom-datatable-overright">
-                                    <div id="toolbar">
-                                        <select class="form-control">
-												<option value="">Export Basic</option>
-												<option value="all">Export All</option>
-												<option value="selected">Export Selected</option>
-											</select>
-                                    </div>
-                                    <a href="/jewelry/fc/employee.action">employee</a>
-                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
-                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                <div class="datatable-dashv1-list custom-datatable-overright">                                                        
+                                    <table id="table" data-toggle="table" data-pagination="false"
+										data-search="true" data-show-columns="true"
+										data-show-pagination-switch="false" data-show-refresh="false"
+										data-key-events="true" data-show-toggle="false"
+										data-resizable="false" data-cookie="true"
+										data-cookie-id-table="saveId" data-show-export="false"
+										data-click-to-select="true" data-toolbar="#toolbar">
                                         <thead>
-                                            <tr>
-                                                <th data-field="state" data-checkbox="true"></th>
+                                            <tr>                                               
                                                 <th data-field="id">회원아이디</th>
                                                 <th data-field="name">회원이름</th>
                                                 <th data-field="company">회원전화번호</th>
                                                 <th data-field="price">회원이메일</th>
 												<th data-field="date">가입날짜</th>
-												<th data-field="task">상호명</th>											
+												<th data-field="task">상호명</th>
+												<th data-field="action">수정</th>												
                                             </tr>
                                         </thead>
                                         <tbody>
                                         	<c:forEach var="account" items="${accounts}">
-                                            <tr>
-                                                <td></td>
+                                            <tr>                                               
                                                 <td>${account.userId}</td>
                                                 <td>${account.userName}</td>
                                                 <td>${account.userPhone}</td>
 												<td>${account.userEmail}</td>
-												<td>${account.regdate}</td>
-                                                <td>${account.userStore}</td>												                                                
+												<td><fmt:formatDate value="${account.regdate}" pattern="yyyy/MM/dd"/></td>
+                                                <td>${account.userStore}</td>
+                                                <td><button class="sub" data-emno="${employee.userNo}">수정</button></td>												                                                
                                             </tr>
                                             </c:forEach>                                          
                                         </tbody>

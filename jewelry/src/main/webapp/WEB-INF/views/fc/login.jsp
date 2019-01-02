@@ -97,9 +97,7 @@
                                 <input type="password" title="Please enter your password" placeholder="******" required="" value="" name="userPswd" id="password" class="form-control">
                                 <span class="help-block small">Yur strong password</span>
                             </div>
-                            <div class="checkbox login-checkbox">
-                                <label>
-										<input type="checkbox" class="i-checks" name="employee" value="employee"> 직원 </label>
+                            <div class="checkbox login-checkbox">                       
                                 <p class="help-block small">(if this is a private computer)</p>
                             </div>
                             <button class="btn btn-success btn-block loginbtn">Login</button>

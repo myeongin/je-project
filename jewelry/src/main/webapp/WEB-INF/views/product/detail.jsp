@@ -60,6 +60,12 @@
 	href="../resources/css/calendar/fullcalendar.min.css">
 <link rel="stylesheet"
 	href="../resources/css/calendar/fullcalendar.print.min.css">
+<!-- modals CSS
+		============================================ -->
+    <link rel="stylesheet" href="../resources/css/modals.css">
+ <!-- forms CSS
+		============================================ -->
+   <link rel="stylesheet" href="../resources/css/form/all-type-forms.css">
 <!-- style CSS
 		============================================ -->
 <link rel="stylesheet" href="../resources/style.css">
@@ -69,6 +75,25 @@
 <!-- modernizr JS
 		============================================ -->
 <script src="../resources/js/vendor/modernizr-2.8.3.min.js"></script>
+<!-- touchspin CSS
+		============================================ -->
+    <link rel="stylesheet" href="../resources/css/touchspin/jquery.bootstrap-touchspin.min.css">
+    <!-- datapicker CSS
+		============================================ -->
+    <link rel="stylesheet" href="../resources/css/datapicker/datepicker3.css">
+    <!-- colorpicker CSS
+		============================================ -->
+    <link rel="stylesheet" href="../resources/css/colorpicker/colorpicker.css">
+    <!-- select2 CSS
+		============================================ -->
+    <link rel="stylesheet" href="../resources/css/select2/select2.min.css">
+    <!-- chosen CSS
+		============================================ -->
+    <link rel="stylesheet" href="../resources/css/chosen/bootstrap-chosen.css">
+    <!-- ionRangeSlider CSS
+		============================================ -->
+    <link rel="stylesheet" href="../resources/css/ionRangeSlider/ion.rangeSlider.css">
+    <link rel="stylesheet" href="../resources/css/ionRangeSlider/ion.rangeSlider.skinFlat.css">    
 </head>
 
 <body>
@@ -104,103 +129,162 @@
 								</div>
 							</c:forEach>
 							<div class="product-tab-list tab-pane fade" id="single-tab2">
-								<img src="img/product/bg-2.jpg" alt="" />
+								<img src="/jewelry/resources/img/product/bg-2.jpg" alt="" />
 							</div>
 							<div class="product-tab-list tab-pane fade" id="single-tab3">
-								<img src="img/product/bg-3.jpg" alt="" />
+								<img src="/jewelry/resources/img/product/bg-3.jpg" alt="" />
 							</div>
 							<div class="product-tab-list tab-pane fade" id="single-tab4">
-								<img src="img/product/bg-1.jpg" alt="" />
+								<img src="/jewelry/resources/img/product/bg-1.jpg" alt="" />
 							</div>
 							<div class="product-tab-list tab-pane fade" id="single-tab5">
-								<img src="img/product/bg-2.jpg" alt="" />
+								<img src="/jewelry/resources/img/product/bg-2.jpg" alt="" />
 							</div>
 						</div>
 						<ul id="single-product-tab">
 							<li class="active"><a href="#single-tab1"><img
-									src="img/product/1.jpg" alt="" /></a></li>
-							<li><a href="#single-tab2"><img src="img/product/2.jpg"
+									src="/jewelry/resources/img/product/1.jpg" alt="" /></a></li>
+							<li><a href="#single-tab2"><img src="/jewelry/resources/img/product/2.jpg"
 									alt="" /></a></li>
-							<li><a href="#single-tab3"><img src="img/product/3.jpg"
+							<li><a href="#single-tab3"><img src="/jewelry/resources/img/product/3.jpg"
 									alt="" /></a></li>
-							<li><a href="#single-tab4"><img src="img/product/1.jpg"
+							<li><a href="#single-tab4"><img src="/jewelry/resources/img/product/1.jpg"
 									alt="" /></a></li>
 						</ul>
 					</div>
 					<form action="detail.action" method="post">
-						<input type="hidden" name="productNo" value="${product.productNo}">
-	
+						
+						<input type="hidden" name="storeNo" value="${user.storeNo}">	
+						
+						<input type="hidden" name="productNo" value="${product.productNo}">	
+											
+						<input type="hidden" name="userNo" value="${user.userNo}">
+										
 						<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
 							<div class="single-product-details res-pro-tb">
-								<h1>${product.productName}</h1>
-								<div class="single-pro-price">
-									<span class="single-regular">$150.00</span><span
-										class="single-old"><del>$20.00</del></span>
-								</div>
-
+							<span class="single-regular">제품명:${product.productName}</span>
+							<br>
+							<div class="single-pro-price">
+								<h4>주문가격:원가</h4>
+							</div>
+							
+								<br>
+								
 								<div class="single-pro-size">
-									<h6>Size</h6>
-									<input type="text" name="detailSize">
+									<h4>형태</h4>
+									<div class="i-checks pull-left">
+										<label> <input type="radio" value="반지" name="shape">
+											<i></i> 반지
+										</label>
+									</div>
+									<div class="i-checks pull-left">
+										<label> <input type="radio" value="팔찌" name="shape">
+											<i></i> 팔찌
+										</label>
+									</div>
+									<div class="i-checks pull-left">
+										<label> <input type="radio" value="목걸이" name="shape">
+											<i></i> 목걸이
+										</label>
+									</div>
+									<div class="i-checks pull-left">
+										<label> <input type="radio" value="귀걸이" name="shape">
+											<i></i> 귀걸이
+										</label>
+									</div>
 								</div>
-								<div class="color-quality-pro">
-									<div class="color-quality-details">
-										<h5>Color</h5>
-										화이트&nbsp;<input type="radio" name="detailColor" value="화이트">&nbsp;&nbsp;
-										골드&nbsp;<input type="radio" name="detailColor" value="골드">&nbsp;&nbsp;
-										로즈골드&nbsp;<input type="radio" name="detailColor" value="로즈고륻">&nbsp;&nbsp;
-									</div>
-									<div class="color-quality-details">
-										<h5>Shape</h5>
-										귀걸이&nbsp;<input type="radio" name="shape" value="귀걸이">&nbsp;&nbsp;
-										목걸이&nbsp;<input type="radio" name="shape" value="목걸이">&nbsp;&nbsp;
-										반지&nbsp;<input type="radio" name="shape" value="반지">&nbsp;&nbsp;
-										팔찌&nbsp;<input type="radio" name="shape" value="팔찌">&nbsp;&nbsp;
-									</div>
-									<div class="color-quality">
-										<h4>수량</h4>
-										<div class="quantity">
-											<div class="pro-quantity-changer">
-												<input type="text" name="orderCount" value="1" />
-											</div>
+								
+								<br>
+								
+								<div class="single-pro-size">									
+										<h4>색깔</h4>
+										<div class="i-checks pull-left">
+											<label> <input type="radio" value="화이트" name="detailColor">
+												<i></i> 화이트
+											</label>
+										</div>
+										<div class="i-checks pull-left">
+											<label> <input type="radio" value="루비" name="detailColor">
+												<i></i> 루비
+											</label>
+										</div>
+										<div class="i-checks pull-left">
+											<label> <input type="radio" value="black" name="detailColor">
+												<i></i> 블랙
+											</label>
+										</div>
+								</div>
+									
+									<br>
+									
+									<div class="single-pro-size">
+										<h4>골드</h4>
+											<div class="i-checks pull-left">
+											<label> <input type="radio" value="14k" name="detailGold">
+												<i></i> 14k
+											</label>
+										</div>
+										<div class="i-checks pull-left">
+											<label> <input type="radio" value="18k" name="detailGold">
+												<i></i> 18k
+											</label>
+										</div>
+										<div class="i-checks pull-left">
+											<label> <input type="radio" value="24k" name="detailGold">
+												<i></i> 24k
+											</label>
+										</div>
+										<div class="i-checks pull-left">
+											<label> <input type="radio" value="순금" name="detailGold">
+												<i></i> 순금
+											</label>
 										</div>
 									</div>
+									
+									<br>
+																		
 									<div class="single-pro-size">
-										<h6>중량</h6>
+										<h4>중량</h4>
 										<input type="text" name="detailCarat">
 									</div>
+									
 									<div class="single-pro-size">
-										<h6>가격</h6>
-										<input type="text" name="price">
+										<h4>사이즈</h4>
+										<input type="text" name="detailSize">
 									</div>
+									
 									<div class="single-pro-size">
-										<h6>골드</h6>
-										14k&nbsp;<input type="radio" name="detailGold" value="14K">&nbsp;&nbsp;
-										18k&nbsp;<input type="radio" name="detailGold" value="18k">&nbsp;&nbsp;
-										24k&nbsp;<input type="radio" name="detailGold" value="24k">&nbsp;&nbsp;
-										순금&nbsp;<input type="radio" name="detailGold" value="순금">&nbsp;&nbsp;
-									</div>
+										<h4>수량</h4>
+										<input type="text" name="orderCount">
+									</div>									
+									
 									<div class="single-pro-size">
-										<h6>구분</h6>
-										재고&nbsp;<input type="radio" name="detailDiv" value="stock">&nbsp;&nbsp;
-										주문판매&nbsp;<input type="radio" name="detailDiv" value="sale">&nbsp;&nbsp;
-									</div>
+										<h4>구분</h4>
+										<div class="i-checks pull-left">
+											<label> <input type="radio" value="재고" name="orderType">
+												<i></i> 재고
+											</label>
+										</div>
+										<div class="i-checks pull-left">
+											<label> <input type="radio" value="주문판매" name="orderType">
+												<i></i> 주문판매
+											</label> 
+										</div>
+									</div>	
+									
+									<br>
+									
+									<div class="single-pro-size">고객정보</div>
+									
 									<div class="clear"></div>
+									
 									<div class="single-pro-button">
 										<div>
 											<input type="submit" value="ADD">
 										</div>
 									</div>
-									<div class="clear"></div>
-								</div>
-								<div class="single-pro-cn">
-									<h3>OVERVIEW</h3>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-										elit, sed do eiusmod tempor incididunt ut labore et dolore
-										magna aliqua. Ut enim ad minim veniam, quis nostrud
-										exercitation ullamco laboris nisi ut aliquip ex ea commodo
-										consequat. Duis aute irure dolor in reprehenderit in voluptate
-									</p>
-								</div>
+									
+									<div class="clear"></div>						
 							</div>
 						</div>
 					</form>
@@ -213,45 +297,32 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<ul id="myTab" class="tab-review-design">
-							<li class="active"><a href="#description">description</a></li>
-						</ul>
-						<div
-							class="product-tab-list product-details-ect tab-pane fade active in"
-							id="description">
-							<div class="row">
-								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-									<div class="review-content-section">
-										<div class="review-content-section">
-											<div class="card-block">
-												<div class="input-group mg-b-15 mg-t-15">
-													<span class="input-group-addon"><i
-														class="fa fa-user" aria-hidden="true"></i></span> <input
-														type="text" class="form-control" placeholder="User Name">
-												</div>
-												<div class="input-group mg-b-15">
-													<span class="input-group-addon"><i
-														class="fa fa-user" aria-hidden="true"></i></span> <input
-														type="text" class="form-control" placeholder="Last Name">
-												</div>
-												<div class="input-group mg-b-15">
-													<span class="input-group-addon"><i
-														class="fa fa-envelope-o" aria-hidden="true"></i></span> <input
-														type="text" class="form-control" placeholder="Email">
-												</div>
-												<div class="form-group review-pro-edt">
-													<button type="submit"
-														class="btn btn-primary waves-effect waves-light">Submit
-													</button>
-												</div>
+						<div class="alert-wrap1 shadow-reset wrap-alert-b">
+                            <div class="alert-title">
+                                <h2>재고목록</h2>                                
+                            </div>
+                            <c:forEach var="stock" items="${product.details}">
+                            <div class="alert alert-success" role="alert">
+                               <table style=" width: 100%;">
+                               	<tr>
+                               		<td><strong>형태:</strong>${stock.shape}</td>
+                               		<td><strong>색깔:</strong>${stock.detailColor}</td>
+                               		<td><strong>골드:</strong>${stock.detailGold}</td>
+                               		<td><strong>중량:</strong>${stock.detailCarat}</td>
+                               		<td><strong>사이즈:</strong>${stock.detailSize}</td>
+                               		<td><strong>수량:</strong>${stock.mount}</td>                               		                               
+                               		<td>
+                               			<div class="single-pro-button">
+											<div>
+												<input type="submit" value="ADD">
 											</div>
 										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-
+                               		</td>
+                               	</tr>
+                               </table>
+                            </div> 
+                            </c:forEach>                         
+                        </div>
 					</div>
 				</div>
 			</div>
@@ -304,12 +375,20 @@
 	<!-- tab JS
 		============================================ -->
 	<script src="../resources/js/tab.js"></script>
+	 <!-- icheck JS
+		============================================ -->
+    <script src="../resources/js/icheck/icheck.min.js"></script>
+    <script src="../resources/js/icheck/icheck-active.js"></script>
 	<!-- plugins JS
 		============================================ -->
 	<script src="../resources/js/plugins.js"></script>
 	<!-- main JS
 		============================================ -->
 	<script src="../resources/js/main.js"></script>
+	 <!-- touchspin JS
+		============================================ -->
+    <script src="../resources/js/touchspin/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="../resources/js/touchspin/touchspin-active.js"></script>
 </body>
 
 </html>

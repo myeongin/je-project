@@ -112,7 +112,7 @@
                                                     </div>
                                                     <div class="input-group mg-b-pro-edt">
                                                         <span class="input-group-addon"><i class="fa fa-sticky-note-o" aria-hidden="true"></i></span>
-                                                        <input type="text" class="form-control" name="userNo" value="${user.userNo}" placeholder="Tax">
+                                                        <input type="text" class="form-control" name="userNo" value="${user.storeNo}" placeholder="Tax">
                                                     </div>
                                                     <div class="input-group mg-b-pro-edt">
                                                         <span class="input-group-addon"><i class="fa fa-qrcode" aria-hidden="true"></i></span>

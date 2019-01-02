@@ -22,6 +22,7 @@ public class misuServiceImpl implements misuService {
 		
 		misudao.insertMisu(misu);
 		
+		
 	}
 	@Override
 	public void misuRewrite(receivables misu) {

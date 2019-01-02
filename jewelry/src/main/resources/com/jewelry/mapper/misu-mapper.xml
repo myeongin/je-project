@@ -15,6 +15,15 @@
 		<result column="acno" property="acno" />
 	</resultMap>
 
+	<sql id="misu_columns">
+		reno,
+		recarat,
+		remoney,
+		retrdate,
+		repaydate,
+		usno,
+		acno
+	</sql>
 
 	<select id="selectMisuCount" parameterType="String" resultType="int">
 		SELECT COUNT(*)
@@ -51,21 +60,17 @@
 	<insert id="insertMisu" parameterType="misu">
 		INSERT INTO receivables
 		(
-			reno,
-			nuserno,
-			recarat,
-			remoney,
-			redate,
-			repaydate,
+			<include refid ="misu_columns" />
 		)
 		VALUES
 		(
 			receivables_sequence.NEXTVAL,
-			#{ userno },
 			#{ recarat },
 			#{ remoney },
-			#{ redate },
-			#{ repaydate }
+			#{ retrdate },
+			#{ repaydate },
+			#{ usno },
+			#{ acno }
 		)
 	</insert>
 	

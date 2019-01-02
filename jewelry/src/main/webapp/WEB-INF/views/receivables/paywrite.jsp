@@ -80,13 +80,13 @@
                 </div>
                 <div class="hpanel">
                     <div class="panel-body">
-                        <form id="paywrite" action="/jewelry/receivables/write.action" method="post">
+                        <form id="paywrite" action="/jewelry/receivables/paywrite.action" method="post">
                             
                             <div class="form-group">
                                 <label class="control-label">상호명</label>
                                 <input type="text" class="form-control" name="acstore">
                                 
-                                <div id="storeCk" class="buttonS">검사</div> <a href="/jewelry/account/write.action"><div class="buttonS">거래처 등록</div></a> 
+                                <div id="storeCk" class="buttonS">검색</div> <a href="/jewelry/account/write.action"><div class="buttonS">거래처 등록</div></a> 
                                 <p>거래처에 등록되어 있어야만 결제가 가능합니다</p>
                             </div>
                             <div class="form-group">

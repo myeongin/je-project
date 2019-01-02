@@ -30,6 +30,18 @@
 		<result column="acno" property="acno" />
 	</resultMap>
 
+	<sql id="account_columns">
+		acno,
+		acstore,
+		acadd,
+		achonumber,
+		acname,
+		acphone,
+		acmaname,
+		acmaphone,
+		acheherry,
+		acdel
+	</sql>
 
 	<select id="selectAccountCount" parameterType="String" resultType="int">
 		SELECT COUNT(*)
@@ -61,19 +73,6 @@
 			) 
 		WHERE idx <![CDATA[>=]]> #{ first } AND idx <![CDATA[<]]> #{ last }
 	</select> 
-	
-	<sql id="account_columns">
-		acno,
-		acstore,
-		acadd,
-		achonumber,
-		acname,
-		acphone,
-		acmaname,
-		acmaphone,
-		acheherry,
-		acdel
-	</sql>
 	
 	<insert id="insertAccount" parameterType="account">
 		INSERT INTO account

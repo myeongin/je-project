@@ -42,9 +42,9 @@ public class CustomerService implements CustomerServiceInterface{
 	}
 
 	@Override
-	public void deleteCustomer(int customerNo) {
+	public void deleteCustomer(int cuNo) {
 		
-		customerDao.deleteCustomer(customerNo);
+		customerDao.deleteCustomer(cuNo);
 		
 	}
 
@@ -55,6 +55,12 @@ public class CustomerService implements CustomerServiceInterface{
 		List<Customer> newcustomers = customerDao.selectNewCustomer(string);
 		return null;
 	}
+
+
+/*	public int countMM() {
+		int countMM = customerDao.countMM();
+		return countMM;
+	}*/
 
 
 /*	public int findmoviecount() {

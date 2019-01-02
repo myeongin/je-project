@@ -13,7 +13,7 @@ public interface CustomerServiceInterface {
 	List<Customer> takeNewCustomers(String string);
 
 
-	void deleteCustomer(int customerNo);
+	void deleteCustomer(int cuNo);
 
 	void updateCustomer(Customer customer);
 

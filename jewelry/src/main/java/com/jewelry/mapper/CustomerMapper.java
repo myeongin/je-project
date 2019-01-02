@@ -15,7 +15,7 @@ public interface CustomerMapper {
 
 	void updateCustomer(Customer customer);
 	void deleteCustomer(HashMap<String, Object> params);
-	int selectCustomerCount(String delete);
+/*	int selectCustomerCount(e);*/
 	List<Customer> selectNewCustomer(String string);
 
 }

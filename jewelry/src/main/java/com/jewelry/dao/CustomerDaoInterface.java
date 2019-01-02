@@ -9,13 +9,15 @@ public interface CustomerDaoInterface {
 
 	List<Customer> selectCustomer(int from, int to);
 
-	void deleteCustomer(int customerNo);
+	void deleteCustomer(int cuNo);
 
 	void updateCustomer(Customer customer);
 
 	void insertCustomer(Customer customer);
 
 	List<Customer> selectNewCustomer(String string);
+
+/*	int countMM();*/
 	
 
 /*	int selectCustomerCount();*/

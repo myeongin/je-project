@@ -68,15 +68,15 @@ public class CustomerController {
 
 
 	@RequestMapping(value="customerDelete.action",method=RequestMethod.GET)
-	public String customerDelete(int customerNo) {
+	public String customerDelete(int cuNo) {
 		
-		customerService.deleteCustomer(customerNo);
+		customerService.deleteCustomer(cuNo);
 		
 		return "redirect:/customer/customer.action";
 	}
 	
 	@RequestMapping(value="customerUpdate.action",method=RequestMethod.POST)
-	public String customerUpdate(int customerNo,Customer customer,Model model) {
+	public String customerUpdate(int cuNo,Customer customer,Model model) {
 		
 		customerService.updateCustomer(customer);
 		//System.out.println(customer.getCustomerName());
@@ -99,6 +99,7 @@ public class CustomerController {
 		String linkUrl = "customer.action";
 		List<Customer> customers=customerService.takeList(from,to);
 		
+/*		int countMM = customerService.countMM();*/
 		model.addAttribute("customers", customers);
 /*		model.addAttribute("newlist2", newcusotmer2);
 		model.addAttribute("newlist3", newcusotmer3);

@@ -7,14 +7,14 @@
 	
 	<insert id="insertCustomer" parameterType="com.jewelry.vo.Customer" useGeneratedKeys="true" keyColumn="cuNo" keyProperty="cuNo">
 		INSERT INTO CUSTOMER (CUNO,CUNAME,CUPHONE,CUEMAIL,CUSEX,CUBIRTH)
-		VALUES (CUSTOMER_SEQUENCE.NEXTVAL,#{cuName},#{cuPhone},#{cuEmail},#{cuSex},#{cuAge})
+		VALUES (CUSTOMER_SEQUENCE.NEXTVAL,#{cuName},#{cuPhone},#{cuEmail},#{cuSex},#{cuBirth})
 	</insert>
 
 		<select id="selectCustomers" parameterType="hashmap" resultType="com.jewelry.vo.Customer">
 		SELECT * FROM (SELECT rowNUM NUM , M.* FROM(SELECT * FROM CUSTOMER WHERE DELETED <![CDATA[!=]]> #{del} ORDER BY CUNO DESC)M)WHERE NUM <![CDATA[>=]]> #{from} AND NUM <![CDATA[<]]> #{to}
 	</select>
 	<update id="updateCustomer" parameterType="com.jewelry.vo.Customer">
-		UPDATE CUSTOMER SET CUNAME = #{cuName},CUPHONE = #{cuPhone},CUMAIL = #{cuEmail},CUSEX = #{cuSex},CUAGE = #{cuAge} WHERE CUNO = #{cuNo}
+		UPDATE CUSTOMER SET CUNAME = #{cuName},CUPHONE = #{cuPhone},CUEMAIL = #{cuEmail},CUSEX = #{cuSex},CUBIRTH = #{cuBirth} WHERE CUNO = #{cuNo}
 	</update>
 	
 	<update id="deleteCustomer" parameterType="hashmap">
@@ -58,8 +58,8 @@ SELECT MAL.*
     where mal.mn=#{mn}
 </select>
 	
-	<!--
-	<select id="selectmoviecount" parameterType="string" resultType="int">
+
+<!-- 	<select id="selectmoviecount" parameterType="string" resultType="int">
 		SELECT COUNT(*) FROM CUSTOMER WHERE DELETED != #{delete}
 	</select> -->
 </mapper>

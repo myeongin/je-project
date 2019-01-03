@@ -11,10 +11,16 @@ public interface misuDao {
 
 	void uploadMisu(receivables misu);
 
-	List<receivables> selectMisuByPage(int first, int last);
+	List<account> selectMisuByPage(int first, int last);
 
 	int selectMisuCount();
 
-	List<account> selectAccountList(int reno);
+	List<account> selectAccountList();
+
+	account selectAccountStoreName(int accountNo);
+
+	account selectStoreName(int storeNo);
+
+	List<receivables> selectAllMisu(int acno);
 
 }

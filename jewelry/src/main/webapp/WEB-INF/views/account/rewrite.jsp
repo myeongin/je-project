@@ -83,39 +83,40 @@
 							  method="post" enctype="multipart/form-data">
                             
                             <div class="form-group">
-                                <label class="control-label">상호명</label>
-                                <input type="text" class="form-control" name="acstore" >
+                                <label class="control-label">*상호명</label>
+                                <input type="text" class="form-control" name="acstore" value=${ accounts.acstore }>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">주소</label>
-                                <input type="text" class="form-control" name="acadd">
+                                <input type="text" class="form-control" name="acadd" value=${ accounts.acadd }>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">전화번호</label>
-                                <input type="text" class="form-control" name="achonumber">
+                                <input type="text" class="form-control" name="achonumber" value=${ accounts.achonumber }>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">대표자 이름</label>
-                                <input type="text" class="form-control" name="acname">
+                                <input type="text" class="form-control" name="acname" value=${ accounts.acname }>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">대표 번호</label>
-                                <input type="text" class="form-control" name="acphone">
+                                <input type="text" class="form-control" name="acphone" value=${ accounts.acphone }>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">담당자</label>
-                                <input type="text" class="form-control" name="acmaname">
+                                <input type="text" class="form-control" name="acmaname" value=${ accounts.acmaname }>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">담당자 번호</label>
-                                <input type="text" class="form-control" name="acmaphone">
+                                <input type="text" class="form-control" name="acmaphone" value=${ accounts.acmaphone }>
                             </div>
                             <div class="form-group">
-                                <label class="control-label">거래처 해리</label>
-                                <input type="text" class="form-control" name="acheherry">
+                                <label class="control-label">*거래처 해리</label>
+                                <input type="text" class="form-control" name="acheherry" value=${ accounts.acheherry }>
                             </div>
-                            <input type="hidden" name="acno" value="${ acno }">
+                            <input type="hidden" name="acno" value="${ accounts.acno }">
                             <input class="btn btn-success btn-block loginbtn" type="submit" id="rewrite" value="수정">
+                            <a href="/jewelry/account/list.action" class="btn btn-default btn-block">취소</a>
                         </form>
                         
                         

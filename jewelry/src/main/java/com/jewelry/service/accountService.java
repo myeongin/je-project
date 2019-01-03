@@ -18,6 +18,8 @@ public interface accountService {
 
 	account findAccountByAccountNo(int acno);
 
+	account accountAll(int accountNo);
+
 	
 
 }

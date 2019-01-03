@@ -34,12 +34,12 @@ public class receivablesController {
 			int pagerSize = 5;
 			String linkUrl = "paylist.action";
 				
-			List<receivables> misus = misuservice.findAllMisuByPage(from, to);		
+			List<account> accounts = misuservice.findAllMisuByPage(from, to);		
 			int misuCount = misuservice.findMisuCount();
 			
 			ThePager pager = new ThePager(misuCount, pageno, pageSize, pagerSize, linkUrl);
-				
-			model.addAttribute("misus", misus);
+			
+			model.addAttribute("misus", accounts);
 			model.addAttribute("pager", pager);
 			model.addAttribute("pageno", pageno);
 			
@@ -48,8 +48,12 @@ public class receivablesController {
 	
 	// 결제 등록
 	@RequestMapping(value = "/paywrite.action", method = RequestMethod.GET)
-	public String misuWrite() {
-			
+	public String misuWrite(int accountNo, Model model) {
+		
+		account accounts = misuservice.accountStoreName(accountNo);
+		
+		model.addAttribute("accounts", accounts);
+		
 		return "receivables/paywrite";
 	}
 		
@@ -58,7 +62,7 @@ public class receivablesController {
 			
 		misuservice.misuWrite(misu);
 			
-		return "redirect:/receivables/list.action";
+		return "redirect:/receivables/paylist.action";
 	}
 	
 	// 결제 수정
@@ -78,30 +82,18 @@ public class receivablesController {
 		int pagerSize = 5;
 		String linkUrl = "list.action";
 			
-		List<receivables> misus = misuservice.findAllMisuByPage(from, to);		
+		List<account> accounts = misuservice.findAllMisuByPage(from, to);		
 		int misuCount = misuservice.findMisuCount();
 		
 		ThePager pager = new ThePager(misuCount, pageno, pageSize, pagerSize, linkUrl);
 			
-		model.addAttribute("misus", misus);
+		model.addAttribute("misus", accounts);
 		model.addAttribute("pager", pager);
 		model.addAttribute("pageno", pageno);
 		
 		return "receivables/list";
 	}
 	
-	// 상호 검색
-	@RequestMapping(value = "/storeck.action", method = RequestMethod.POST)
-	public String storeCk(account account, receivables misu, String storename) {
-		
-		String storenamed = storename;
-		
-		
-		return "";
-		
-		
-		
-	}
 	
 
 	

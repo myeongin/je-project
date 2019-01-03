@@ -13,6 +13,8 @@ public class receivables {
 	private int acno;
 	private int storeno;
 	
+	private List<account> accounts;
+	
 	public int getReno() {
 		return reno;
 	}
@@ -54,6 +56,12 @@ public class receivables {
 	}
 	public void setStoreno(int storeno) {
 		this.storeno = storeno;
+	}
+	public List<account> getAccounts() {
+		return accounts;
+	}
+	public void setAccounts(List<account> accounts) {
+		this.accounts = accounts;
 	}
 	
 	

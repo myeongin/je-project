@@ -65,7 +65,7 @@ public class accountController {
 		model.addAttribute("pager", pager);
 		model.addAttribute("pageno", pageno);
 		
-		return "account/list";
+		return "account/storesearch";
 			
 	}
 	
@@ -88,10 +88,11 @@ public class accountController {
 	// 거래처 수정
 	@RequestMapping(value = "/rewrite.action", method = RequestMethod.GET)
 	public String accountRewrite(
-			int acno, 
+			int accountNo,
 			Model model) {
 		
-		model.addAttribute("acno", acno);
+		account accounts = accountservice.accountAll(accountNo);
+		model.addAttribute("accounts", accounts);
 		
 		return "account/rewrite";
 	}
@@ -102,7 +103,7 @@ public class accountController {
 			Model model) {
 		
 		accountservice.accountRewrite(account);
-		model.addAttribute("acno", account.getAcno());
+		model.addAttribute("accountNo", account.getAcno());
 		
 		return "redirect:/account/list.action";
 	}
@@ -110,10 +111,10 @@ public class accountController {
 	// 거래처 삭제
 	@RequestMapping(value = "/delete.action", method = RequestMethod.GET)
 	public String accountDelete(
-			int acno, 
+			int accountNo, 
 			Model model) {
 		
-		accountservice.accountDelete(acno);
+		accountservice.accountDelete(accountNo);
 		
 		return "redirect:/account/list.action";
 	}

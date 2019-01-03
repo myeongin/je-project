@@ -104,14 +104,14 @@
                                         </a>
                                             <tr>
                                                 <th data-field="no">No</th>
-                                                <th data-field="store" data-editable="true">상호명</th>
-                                                <th data-field="add" data-editable="true">주소</th>
-                                                <th data-field="number" data-editable="true">전화번호</th>
-                                                <th data-field="name" data-editable="true">대표명</th>
-												<th data-field="namephone" data-editable="true">대표번호</th>
-												<th data-field="manager" data-editable="true">담당자</th>
-												<th data-field="managerphone" data-editable="true">담장자번호</th>
-                                                <th data-field="herry" data-editable="true">해리</th>
+                                                <th data-field="store" data-editable="false">상호명</th>
+                                                <th data-field="add" data-editable="false">주소</th>
+                                                <th data-field="number" data-editable="false">전화번호</th>
+                                                <th data-field="name" data-editable="false">대표명</th>
+												<th data-field="namephone" data-editable="false">대표번호</th>
+												<th data-field="manager" data-editable="false">담당자</th>
+												<th data-field="managerphone" data-editable="false">담장자번호</th>
+                                                <th data-field="herry" data-editable="false">해리</th>
                                                 <th>비고</th>
                                             </tr>
                                         </thead>
@@ -128,8 +128,8 @@
 		                                            <td>${ account.acmaname }</td>
 		                                           	<td>${ account.acmaphone }</td>
 		                                            <td>${ account.acheherry }</td>
-		                                            <td><a href="/jewelry/account/rewrite.action?acno=${ account.acno }"><div class="buttonA">수정</div></a>
-		                                       		<a id="acdel" href="/jewelry/account/delete.action?acno=${ account.acno }"><div class="buttonA">삭제</div></a></td>
+		                                            <td><a href="/jewelry/account/rewrite.action?accountNo=${ account.acno }"><div class="buttonA">수정</div></a>
+		                                       		<a id="acdel" href="/jewelry/account/delete.action?accountNo=${ account.acno }"><div class="buttonA">삭제</div></a></td>
 		                                    	</tr>
 	                                    	</c:forEach>
                                         </tbody>

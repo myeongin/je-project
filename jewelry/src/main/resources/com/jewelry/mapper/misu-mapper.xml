@@ -34,7 +34,7 @@
 				recarat ! = #{ recarats }
 	</select>
 	
-	<select id="selectAllMisuByPage" parameterType="hashmap" resultType="misu">
+	<select id="selectAllMisuByPage" parameterType="hashmap" resultType="account">
 		SELECT * 
 			FROM 
 			( 
@@ -43,14 +43,11 @@
 			   FROM 
 			   ( 
 			   	SELECT 
-			   		reno, recarat, 
-			   		remoney, retrdate, 
-			   		repaydate, 
-			   		acno
+			   		*
 				FROM 
-					receivables
+					account
 					
-				ORDER BY reno DESC 
+				ORDER BY acno DESC 
 				) s 
 			) 
 			WHERE idx <![CDATA[>=]]> #{ first } AND idx <![CDATA[<]]> #{ last }
@@ -60,6 +57,7 @@
 		INSERT INTO receivables
 		(
 			<include refid ="misu_columns" />
+			, storeno
 		)
 		VALUES
 		(
@@ -68,7 +66,8 @@
 			#{ remoney },
 			#{ retrdate },
 			#{ repaydate },
-			#{ acno }
+			#{ acno },
+			#{ storeno }
 		)
 	</insert>
 	
@@ -79,10 +78,10 @@
 			recarat = #{ recarat },
 			remoney = #{ remoney }
 		WHERE 
-			reno = { reno }
+			reno = #{ reno }
 	</update>
 	
-	<select id="selectAccountList" resultType="account">
+	<select id="selectAccountList" parameterType="int" resultType="account">
 	
 		SELECT *
 		FROM
@@ -92,6 +91,29 @@
 	
 	</select>
 	
+	<select id="selectAccountStoreName" parameterType="int" resultType="account" >
+		SELECT *
+		FROM 
+			account
+		WHERE
+			acno = #{ acno }
+		
+	</select>
 	
+	<select id="selectStoreName" parameterType="string" resultType="account">
+		SELECT *
+		FROM
+			account
+		WHERE
+			storeno = #{ storeno }
+	</select>
+	
+	<select id="selectAllMisu"  parameterType="int" resultType="misu">
+		SELECT *
+		FROM
+			receivables
+		WHERE
+			acno = #{ acno }
+	</select>
 	
 </mapper>

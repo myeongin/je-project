@@ -18,4 +18,6 @@ public interface accountDao {
 
 	account selectAccountByAccountNo(int acno);
 
+	account selectAccountAll(int storeNo);
+
 }

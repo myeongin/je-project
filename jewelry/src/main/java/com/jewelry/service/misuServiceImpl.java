@@ -1,11 +1,14 @@
 package com.jewelry.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.jewelry.dao.misuDao;
+import com.jewelry.vo.ProductVo;
+import com.jewelry.vo.account;
 import com.jewelry.vo.receivables;
 
 public class misuServiceImpl implements misuService {
@@ -31,10 +34,12 @@ public class misuServiceImpl implements misuService {
 		
 	}
 	@Override
-	public List<receivables> findAllMisuByPage(int from, int to) {
+	public List<account> findAllMisuByPage(int from, int to) {
 		
-		List<receivables> misus = misudao.selectMisuByPage(from, to);
-		return misus;
+		List<account> accounts = misudao.selectMisuByPage(from, to);
+		
+		
+		return accounts;
 	}
 	
 	@Override
@@ -42,6 +47,28 @@ public class misuServiceImpl implements misuService {
 		
 		int count = misudao.selectMisuCount();
 		return count;
+	}
+
+	@Override
+	public List<account> accountList() {
+		
+		List<account> accounts = misudao.selectAccountList();
+		return accounts;
+	}
+
+	@Override
+	public account accountStoreName(int accountNo) {
+		
+		account accounts = misudao.selectAccountStoreName(accountNo);
+		
+		return accounts;
+	}
+
+	@Override
+	public account storeStoreName(int storeNo) {
+		
+		account accounts = misudao.selectStoreName(storeNo);
+		return accounts;
 	}
 	
 

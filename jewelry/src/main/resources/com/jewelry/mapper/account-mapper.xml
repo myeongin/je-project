@@ -131,6 +131,14 @@
 	
 	</select>
 	
+	<select id="selectAccountAll" parameterType="int" resultType="account">
+		SELECT 
+			*
+		FROM
+			account
+		WHERE
+			acno = #{ acno }
+	</select>
 	
 	
 	

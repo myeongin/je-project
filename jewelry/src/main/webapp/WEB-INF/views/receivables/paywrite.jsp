@@ -44,28 +44,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 	<script type="text/javascript">
 	$(function(event) {
-		$('#storeCk').on('click', function(event) {
 			
-			var storename = $('#storename').val();
-			
-			$.ajax({
-				"url": "storeck.action",
-				"method": "POST",
-				"data": "storename=" + storename,
-				"success": function(data, status, xhr) {
-					if (data === data) {
-						
-					} else {
-						alert('이름이 일치하는 거래처가 없습니다');
-					}
-				},
-				"error": function(xhr, status, err) {
-					
-				}
-			
-			});		
-			
-		});
 		
 		
 	});
@@ -105,28 +84,29 @@
                             
                             <div class="form-group">
                                 <label class="control-label">상호명</label>
-                                <input type="text" class="form-control" id="storename">
-                                
-                                <a href="/jewelry/account/storesearch.action?storeNo=${user.storeNo}"><div id="storeCk" class="buttonS">거래처 검색</div></a> 
-                                <a href="/jewelry/account/write.action?storeNo=${user.storeNo}"><div class="buttonS">거래처 등록</div></a> 
-                                <p>거래처에 등록되어 있어야만 결제가 가능합니다</p>
+                                <div class="form-control">${ accounts.acstore }</div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">금 중량  ( 단위 : g )</label>
-                                <input type="text" class="form-control" name="recarat">
+                                <input type="text" class="form-control" name="recarat" placeholder="0">
                             </div>
                             <div class="form-group">
                                 <label class="control-label">현금</label>
-                                <input type="number" class="form-control" name="remoney">
+                                <input type="number" class="form-control" name="remoney" placeholder="0">
                             </div>
                             <div class="form-group">
                                 <label class="control-label">결제일</label>
                                 <input type="date" class="form-control" name="repaydate">
                             </div>
+                            <div class="form-group">
+                                <label class="control-label">최근 거래일</label>
+                                <input type="date" class="form-control" name="retrdate">
+                            </div>
                             
-                            <input type="hidden" name="acno" value="">
-                            <input type="hidden" name="storeno" value="${ user.storeNo }">
-                            <button class="btn btn-success btn-block loginbtn" id="submit">등록</button>
+                            <!-- <input type="hedden"  name="retrdate" value=""> -->
+                            <input type="hidden" name="acno" value="${ accounts.acno }">
+                            <input type="hidden" name="storeno" value="${ accounts.storeno }">
+                            <button class="btn btn-success btn-block loginbtn" id="submit">결제</button>
                             <a href="/jewelry/receivables/list.action" class="btn btn-default btn-block">취소</a>
                         </form>
                         

@@ -16,6 +16,8 @@
 		<typeAlias type="com.jewelry.vo.SalesVo" alias="Sales"/>												
 		<typeAlias type="com.jewelry.vo.account" alias="account" />
 		<typeAlias type="com.jewelry.vo.receivables" alias="misu" />
+		<typeAlias type="com.jewelry.vo.Customer" alias="customer" />
+		<typeAlias type="com.jewelry.vo.PriceVo" alias="price" />
 	</typeAliases>
 
 	<environments default="development">

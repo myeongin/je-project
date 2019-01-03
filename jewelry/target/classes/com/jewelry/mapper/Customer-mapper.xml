@@ -5,15 +5,15 @@
 	
 <mapper namespace="com.jewelry.mapper.CustomerMapper">
 	
-	<insert id="insertCustomer" parameterType="com.jewelry.vo.Customer" useGeneratedKeys="true" keyColumn="cuNo" keyProperty="cuNo">
+	<insert id="insertCustomer" parameterType="customer" useGeneratedKeys="true" keyColumn="cuNo" keyProperty="cuNo">
 		INSERT INTO CUSTOMER (CUNO,CUNAME,CUPHONE,CUEMAIL,CUSEX,CUBIRTH)
 		VALUES (CUSTOMER_SEQUENCE.NEXTVAL,#{cuName},#{cuPhone},#{cuEmail},#{cuSex},#{cuBirth})
 	</insert>
 
-		<select id="selectCustomers" parameterType="hashmap" resultType="com.jewelry.vo.Customer">
+		<select id="selectCustomers" parameterType="hashmap" resultType="customer">
 		SELECT * FROM (SELECT rowNUM NUM , M.* FROM(SELECT * FROM CUSTOMER WHERE DELETED <![CDATA[!=]]> #{del} ORDER BY CUNO DESC)M)WHERE NUM <![CDATA[>=]]> #{from} AND NUM <![CDATA[<]]> #{to}
 	</select>
-	<update id="updateCustomer" parameterType="com.jewelry.vo.Customer">
+	<update id="updateCustomer" parameterType="customer">
 		UPDATE CUSTOMER SET CUNAME = #{cuName},CUPHONE = #{cuPhone},CUEMAIL = #{cuEmail},CUSEX = #{cuSex},CUBIRTH = #{cuBirth} WHERE CUNO = #{cuNo}
 	</update>
 	
@@ -21,7 +21,7 @@
 		UPDATE CUSTOMER SET DELETED = #{deleted} WHERE CUNO =#{cuNo}
 	</update>
 	
-	<select id="selectNewCustomer" parameterType="String" resultType="com.jewelry.vo.Customer">
+	<select id="selectNewCustomer" parameterType="String" resultType="customer">
 SELECT MAL.*
 	FROM 
 	(

@@ -5,12 +5,12 @@
 	
 <mapper namespace="com.jewelry.mapper.PriceMapper">
 
-		<insert id="insertPrice" parameterType="com.jewelry.vo.PriceVo" useGeneratedKeys="true" keyColumn="priceNo" keyProperty="priceNo">
+		<insert id="insertPrice" parameterType="price" useGeneratedKeys="true" keyColumn="priceNo" keyProperty="priceNo">
 		INSERT INTO PRICE (PRICENO,PRICE,STORENO)
 		VALUES (PRICE_SEQUENCE.NEXTVAL,#{price},#{userNo})
 	</insert>
 	
-		<select id="selectPrices" parameterType="hashmap" resultType="com.jewelry.vo.PriceVo">
+		<select id="selectPrices" parameterType="hashmap" resultType="price">
 		SELECT * FROM (SELECT rowNUM NUM , M.* FROM(SELECT * FROM PRICE WHERE DELETED <![CDATA[!=]]> #{del} ORDER BY PRICENO DESC)M)WHERE NUM <![CDATA[>=]]> #{from} AND NUM <![CDATA[<]]> #{to}
 	</select>
 	

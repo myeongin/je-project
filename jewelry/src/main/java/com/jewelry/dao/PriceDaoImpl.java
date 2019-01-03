@@ -1,5 +1,8 @@
 package com.jewelry.dao;
 
+import java.util.HashMap;
+import java.util.List;
+
 import com.jewelry.mapper.PriceMapper;
 import com.jewelry.vo.PriceVo;
 
@@ -9,6 +12,21 @@ public class PriceDaoImpl implements PriceDao{
 	public void setPriceMapper(PriceMapper priceMapper) {
 		this.priceMapper = priceMapper;
 	}
+	
+	public List<PriceVo> selectPrices(int from,int to) {	
+		
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("from", from);
+		params.put("to",to);
+		params.put("del",'1');
+		
+		List<PriceVo> prices=priceMapper.selectPrices(params);
+		
+		return prices;
+	}
+	
+	
+	
 	
 	//시세등록
 	@Override
@@ -22,10 +40,16 @@ public class PriceDaoImpl implements PriceDao{
 		priceMapper.updatePrice(priceVo);
 	}
 	
+	
+
+	
 	//시세삭제
 	@Override
 	public void deletePrice(int priceNo) {
-		priceMapper.deletePrice(priceNo);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("priceNo", priceNo);
+		params.put("deleted","1");
+		priceMapper.deletePrice(params);
 	}
 	
 }

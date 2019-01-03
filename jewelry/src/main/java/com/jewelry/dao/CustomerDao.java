@@ -47,7 +47,7 @@ public class CustomerDao implements CustomerDaoInterface{
 		
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("customerNo", cuNo);
-		params.put("delete","1");
+		params.put("deleted","1");
 		
 		customerMapper.deleteCustomer(params);
 		

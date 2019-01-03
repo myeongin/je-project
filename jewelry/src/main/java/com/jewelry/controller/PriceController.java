@@ -1,12 +1,17 @@
 package com.jewelry.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jewelry.service.PriceService;
+import com.jewelry.vo.Customer;
 import com.jewelry.vo.PriceVo;
 
 @Controller
@@ -23,10 +28,20 @@ public class PriceController {
 	/************************************************************************/
 	
 	//시세
-	@RequestMapping(value="price.action",method=RequestMethod.GET)
-	public String priceView() {
+	@RequestMapping(value="price.action",method= RequestMethod.GET)
+public String listPrice(@RequestParam(value="pageno",required = false,defaultValue ="1")int pageno,Model model) {
 		
+		int pagesize=1000000;
+		int from=(pageno-1)*pagesize +1;
+		int to =from+pagesize;
+		int pagersize = 5;
+		String linkUrl = "price.action";
 		
+		List<PriceVo> prices=priceService.takePriceList(from,to);
+		int newprice=prices.get(0).getPrice();
+		
+		model.addAttribute("prices", prices);
+		model.addAttribute("newprice",newprice);
 		
 		return "price/price";
 	}
@@ -40,6 +55,7 @@ public class PriceController {
 		return "price/price";
 	}
 	
+	/*
 	//시세수정
 	@RequestMapping(value="priceUd.action",method=RequestMethod.POST)
 	public String priceUpdate(PriceVo priceVo) {
@@ -47,16 +63,19 @@ public class PriceController {
 		priceService.updatePrice(priceVo);
 		
 		return "price/price";
-	}
+	}*/
+	
+	
 	
 	//시세삭제
-	@RequestMapping(value="priceDel.action",method=RequestMethod.POST)
+	@RequestMapping(value="priceDelete.action",method= {RequestMethod.POST,RequestMethod.GET})
 	public String priceDe(int priceNo) {
 		
 		priceService.deletePrice(priceNo);
 		
 		return "price/price";
 	}
+	
 
 	
 	

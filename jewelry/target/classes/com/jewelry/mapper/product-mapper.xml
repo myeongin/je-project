@@ -6,7 +6,7 @@
 <mapper namespace="com.jewelry.mapper.ProductMapper">
 	
 	<insert id="insertProduct" parameterType="Product" useGeneratedKeys="true" keyProperty="productNo" keyColumn="productNo">
-		INSERT INTO PRODUCT (productNo,productName,productCost,userNo) VALUES (product_productno_sequence.nextval,#{productName},#{productCost},#{userNo})
+		INSERT INTO PRODUCT (productNo,productName,productCost,storeNo) VALUES (product_productno_sequence.nextval,#{productName},#{productCost},#{userNo})
 	</insert>
 	
 	<insert id="insetProductImg" parameterType="ProductImg">
@@ -26,7 +26,7 @@
 	</update>
 	
 	<select id="selectAllProduct" parameterType="int" resultType="Product">
-		SELECT * FROM PRODUCT WHERE UserNO = #{userNo}
+		SELECT * FROM PRODUCT WHERE STORENO = #{userNo}
 	</select>
 	
 	<select id="selectAllImg" parameterType="int" resultType="ProductImg">
@@ -38,13 +38,13 @@
 	</select>
 	
 	<insert id="insertDetail" parameterType="Detail" useGeneratedKeys="true" keyColumn="detailNo" keyProperty="detailNo">
-		INSERT INTO DETAIL (DETAILNO,DETAILGOLD,DETAILColor,DETAILCARAT,DETAILSIZE,MOUNT,PRICE,DETAILDIV,PRODUCTNO) 
-		VALUES (detail_detailno_sequence.nextval,#{detailGold},#{detailColor},#{detailCarat},#{detailSize},#{mount},#{price},#{detailDiv},#{productNo})
+		INSERT INTO DETAIL (DETAILNO,DETAILGOLD,DETAILColor,DETAILCARAT,DETAILSIZE,MOUNT,PRICE,SHAPE,PRODUCTNO) 
+		VALUES (detail_detailno_sequence.nextval,#{detailGold},#{detailColor},#{detailCarat},#{detailSize},#{mount},#{price},#{shape},#{productNo})
 	</insert>
 	
 	<insert id="insertOrder" parameterType="Order">
-		INSERT INTO PRORDER (ORDERNO,DETAILNO,EMNO) 
-		VALUES (order_orderno_sequence.nextval,#{detailNo},#{emNo})
+		INSERT INTO PRORDER (ORDERNO,DETAILNO,USERNO,orderCount,OrderType) 
+		VALUES (order_orderno_sequence.nextval,#{detailNo},#{userNo},#{orderCount},#{orderType})
 	</insert>
 	
 	<update id="updateDetail" parameterType="Detail">
@@ -59,6 +59,44 @@
 	
 	</update>
 	
+	<select id="findDetail" parameterType="int" resultType="Detail">
+		Select * FROM DETAIL WHERE PRODUCTNO =#{productNo}
+	</select>
+	
+	<select id="selectAllOrderList" parameterType="int" resultType="OrderViews">
+		Select * FROM ORDERVIEW WHERE STORENO =#{storeNo}
+	</select>
+	
+	<select id="updateDetailType" parameterType="hashmap">
+		UPDATE DETAIL 
+		SET DETAILDIV = #{type}
+		WHERE DETAILNO =#{detailNo} 
+	</select>
+	
+	<select id="updateMount" parameterType="hashmap">
+		UPDATE DETAIL 
+		SET MOUNT = #{mount}
+		WHERE DETAILNO =#{detailNo} 
+	</select>
+	
+	<select id="selectProductDetail" parameterType="int" resultType="Detail">
+		SELECT * FROM DETAIL WHERE PRODUCTNO = #{productNo} and DETAILDIV = #{"1"}
+	</select>
+	
+	<update id="updateOrderViewType" parameterType="hashmap">
+		 UPDATE PRORDER
+		 SET ORDERCK = #{type}
+		 WHERE ORDERNO = #{orderNo}
+	</update>
+	
+	<insert id="insertSales" parameterType="Sales">
+		INSERT INTO SALES(SALESNO,PRODUCTPRICE,SALESDIV,USERNO,SALESCOUNT) 
+		VALUES(SALES_SALESNO_SEQUENCE.NEXTVAL,#{productPrice},#{salesDiv},#{userNo},#{salesCount})
+	</insert>
+	
+	<select id="findDetailBydetailNo" parameterType="int" resultType="Detail">
+		SELECT * FROM DETAIL WHERE DETAILNO = #{detailNo}
+	</select>
 </mapper>
 
 

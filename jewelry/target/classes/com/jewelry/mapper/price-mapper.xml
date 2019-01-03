@@ -4,17 +4,24 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="com.jewelry.mapper.PriceMapper">
-	
-	<insert id="insertPrice" parameterType="Price">
-	
+
+		<insert id="insertPrice" parameterType="com.jewelry.vo.PriceVo" useGeneratedKeys="true" keyColumn="priceNo" keyProperty="priceNo">
+		INSERT INTO PRICE (PRICENO,PRICE,STORENO)
+		VALUES (PRICE_SEQUENCE.NEXTVAL,#{price},#{userNo})
 	</insert>
+	
+		<select id="selectPrices" parameterType="hashmap" resultType="com.jewelry.vo.PriceVo">
+		SELECT * FROM (SELECT rowNUM NUM , M.* FROM(SELECT * FROM PRICE WHERE DELETED <![CDATA[!=]]> #{del} ORDER BY PRICENO DESC)M)WHERE NUM <![CDATA[>=]]> #{from} AND NUM <![CDATA[<]]> #{to}
+	</select>
+	
 	
 	<update id="updatePrice" parameterType="Price">
 	
 	</update>
 	
-	<update id="deletePrice" parameterType="int">
-	
+
+	<update id="deletePrice" parameterType="hashmap">
+	UPDATE PRICE SET DELETED = #{deleted} WHERE PRICENO =#{priceNo}
 	</update>
 	
 </mapper>

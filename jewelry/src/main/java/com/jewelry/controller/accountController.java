@@ -36,10 +36,10 @@ public class accountController {
 		List<account> accounts = accountservice.findAllAccountByPage(from, to);		
 		int accountCount = accountservice.findAccountCount();
 		
-		ThePager pager = new ThePager(accountCount, pageno, pageSize, pagerSize, linkUrl);
+		//ThePager pager = new ThePager(accountCount, pageno, pageSize, pagerSize, linkUrl,);
 			
 		model.addAttribute("accounts", accounts);
-		model.addAttribute("pager", pager);
+		//model.addAttribute("pager", pager);
 		model.addAttribute("pageno", pageno);
 		
 		return "account/list";

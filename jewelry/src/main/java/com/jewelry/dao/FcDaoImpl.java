@@ -28,12 +28,15 @@ public class FcDaoImpl implements FcDao{
 	
 	//직원정보
 	@Override
-	public List<FcVo> selectEmployeeByStoreNo(int userNo) {
+	public List<FcVo> selectEmployeeByStoreNo(int userNo,int from,int to) {
 		
 		HashMap<String, Object> user = new HashMap<>();
 		user.put("userNo", userNo);
 		user.put("fc","fc");
 		user.put("admin", "admin");
+		user.put("del", "1");
+		user.put("from",from);
+		user.put("to",to);
 		
 		List<FcVo> employees = fcMapper.selectEmployeeByStoreNo(user);
 		return employees;
@@ -80,6 +83,21 @@ public class FcDaoImpl implements FcDao{
 
 		fcMapper.updateEmployeeByEmpNo(fc);
 
+	}
+
+
+	@Override
+	public int findProductcount(int userNo) {
+		
+		HashMap<String, Object> user = new HashMap<>();
+		user.put("userNo", userNo);
+		user.put("fc","fc");
+		user.put("admin", "admin");
+		user.put("del", "1");
+
+		int count=fcMapper.findProductcount(user);
+		
+		return count;
 	}
 	
 }

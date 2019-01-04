@@ -13,7 +13,8 @@
 		<typeAlias type="com.jewelry.vo.DetailVo" alias="Detail"/>
 		<typeAlias type="com.jewelry.vo.OrderVo" alias="Order"/>
 		<typeAlias type="com.jewelry.vo.orderViewVo" alias="OrderViews"/>
-		<typeAlias type="com.jewelry.vo.SalesVo" alias="Sales"/>												
+		<typeAlias type="com.jewelry.vo.SalesVo" alias="Sales"/>	
+		<typeAlias type="com.jewelry.vo.salesViewVo" alias="SalesView"/>											
 		<typeAlias type="com.jewelry.vo.account" alias="account" />
 		<typeAlias type="com.jewelry.vo.receivables" alias="misu" />
 	</typeAliases>

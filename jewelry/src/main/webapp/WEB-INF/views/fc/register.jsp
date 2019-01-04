@@ -71,7 +71,7 @@
 			id.focus();
 		}
 		
-		$(function(event){
+		$(function(){
 			
 			var regular = /^[a-zA-Z0-9]{6,18}$/;
 			

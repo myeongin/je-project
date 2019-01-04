@@ -4,12 +4,15 @@ import java.util.List;
 
 import javax.xml.soap.Detail;
 
+import com.jewelry.vo.Customer;
 import com.jewelry.vo.DetailVo;
 import com.jewelry.vo.OrderVo;
 import com.jewelry.vo.ProductImgVo;
 import com.jewelry.vo.ProductVo;
 import com.jewelry.vo.SalesVo;
+import com.jewelry.vo.account;
 import com.jewelry.vo.orderViewVo;
+import com.jewelry.vo.salesViewVo;
 
 public interface ProductDao {
 
@@ -41,7 +44,7 @@ public interface ProductDao {
 
 	List<DetailVo> findDetail(int productNo);
 
-	List<orderViewVo> selectAllOrderList(int storeNo);
+	List<orderViewVo> selectAllOrderList(int storeNo, int from, int to);
 
 	void updateDetailType(int detailNo);
 
@@ -54,4 +57,30 @@ public interface ProductDao {
 	void insertSales(SalesVo sales);
 
 	DetailVo findDetailBydetailNo(int detailNo);
+
+	void updateOrderViewTypeAndDate(int orderNo, String type);
+
+	List<salesViewVo> findSalesView(int storeNo, int from, int to);
+
+	void updateSales(int salesNo, int salesPrice);
+
+	List<account> findAccountByStoreNo(int storeNo);
+
+	List<Customer> selectAllCustomer(int storeNo);
+
+	void insertAllSales(SalesVo sales);
+
+	void insertOrderNOCuNo(OrderVo order);
+
+	int findOrdercount(int storeNo);
+
+	List<ProductVo> selectAllProductBypager(int storeNo, int from, int to);
+
+	int findProductcount(int storeNo);
+
+	int findSalescount(int storeNo);
+
+	Double takeHarryByAcno(int acno);
+
+	int takNewPrice(int storeNo);
 }

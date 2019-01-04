@@ -38,10 +38,10 @@ public class receivablesController {
 		List<receivables> misus = misuservice.findAllMisuByPage(from, to);		
 		int accountCount = misuservice.findMisuCount();
 		
-		ThePager pager = new ThePager(accountCount, pageno, pageSize, pagerSize, linkUrl);
+		//ThePager pager = new ThePager(accountCount, pageno, pageSize, pagerSize, linkUrl);
 			
 		model.addAttribute("misus", misus);
-		model.addAttribute("pager", pager);
+		//model.addAttribute("pager", pager);
 		model.addAttribute("pageno", pageno);
 		
 		return "receivables/list";
@@ -60,10 +60,10 @@ public class receivablesController {
 			List<receivables> misus = misuservice.findAllMisuByPage(from, to);		
 			int accountCount = misuservice.findMisuCount();
 			
-			ThePager pager = new ThePager(accountCount, pageno, pageSize, pagerSize, linkUrl);
+			//ThePager pager = new ThePager(accountCount, pageno, pageSize, pagerSize, linkUrl);
 				
 			model.addAttribute("misus", misus);
-			model.addAttribute("pager", pager);
+			//model.addAttribute("pager", pager);
 			model.addAttribute("pageno", pageno);
 			
 			return "receivables/paylist";

@@ -21,6 +21,7 @@ public class orderViewVo {
 	private int productNo;
 	private int detailNo;
 	private int userNo;
+	private String acStore;
 	
 	public int getSotreNo() {
 		return sotreNo;
@@ -129,6 +130,12 @@ public class orderViewVo {
 	}
 	public void setDetailNo(int detailNo) {
 		this.detailNo = detailNo;
+	}
+	public String getAcStore() {
+		return acStore;
+	}
+	public void setAcStore(String acStore) {
+		this.acStore = acStore;
 	}
 	
 	

@@ -91,7 +91,7 @@
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="review-tab-pro-inner">
                                 <ul id="myTab3" class="tab-review-design">
-                                    <li class="active"><a href="#description"><i class="fa fa-pencil" aria-hidden="true"></i> Product Edit</a></li>  
+                                    <li class="active"><a href="#description"><i class="fa fa-pencil" aria-hidden="true"></i> 제품등록</a></li>  
                                 </ul>
                                 <div id="myTabContent" class="tab-content custom-product-edit">
                                     <div class="product-tab-list tab-pane fade active in" id="description">
@@ -99,48 +99,34 @@
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 <div class="review-content-section">
                                                     <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                                                        <span class="input-group-addon"><strong>제품이름</strong></span>
                                                         <input type="text" class="form-control" name="productName" placeholder="Name">
                                                     </div>
                                                     <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                                                        <span class="input-group-addon"><strong>공인비</strong></span>
                                                         <input type="text" class="form-control" name="productCost" placeholder="Cost">
-                                                    </div>
-                                                    <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
-                                                        <input type="text" class="form-control" name="productShape" placeholder="Regular Price">
-                                                    </div>
-                                                    <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"><i class="fa fa-sticky-note-o" aria-hidden="true"></i></span>
-                                                        <input type="text" class="form-control" name="userNo" value="${user.storeNo}" placeholder="Tax">
-                                                    </div>
-                                                    <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"><i class="fa fa-qrcode" aria-hidden="true"></i></span>
-                                                        
-                                                    </div>
+                                                    </div>                                                                     
+                                                        <input type="hidden" class="form-control" name="userNo" value="${user.storeNo}">                                                                                                     
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 <div class="review-content-section">
-                                                    <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
-                                                        <input type="file" name="img" class="form-control" placeholder="Last Name">
+                                                    <div class="input-group mg-b-pro-edt">                                                    
+                                                        <span class="input-group-addon"><i class="fa fa-download" aria-hidden="true"></i></span>
+                                                        <input type="file" name="img" class="form-control">
                                                     </div>
+                                                    
                                                     <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"><i class="fa fa-ticket" aria-hidden="true"></i></span>
-                                                       
-                                                    </div>
-                                                    <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
-                                                        
-                                                    </div>
-                                                    <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon"><i class="fa fa-tag" aria-hidden="true"></i></span>
-                                                        
-                                                    </div>
-
+                                                        <span class="input-group-addon">거래처</span>
+                                                        <select class="form-control" name="acno"> 
+                                                        	<option selected></option>                                                     
+                                                        	<c:forEach var="account" items="${accounts}">
+                                                        		<option value="${account.acno}">${account.acstore}</option>
+                                                       	 	</c:forEach>
+                                                        </select>                                                       
+                                                    </div>                                                                            
                                                 </div>
-                                            </div>
+                                            </div> 
                                         </div>
                                         
                                         <div class="row">

@@ -6,7 +6,7 @@
 <mapper namespace="com.jewelry.mapper.ProductMapper">
 	
 	<insert id="insertProduct" parameterType="Product" useGeneratedKeys="true" keyProperty="productNo" keyColumn="productNo">
-		INSERT INTO PRODUCT (productNo,productName,productCost,storeNo) VALUES (product_productno_sequence.nextval,#{productName},#{productCost},#{userNo})
+		INSERT INTO PRODUCT (productNo,productName,productCost,storeNo,acno) VALUES (product_productno_sequence.nextval,#{productName},#{productCost},#{userNo},#{acno})
 	</insert>
 	
 	<insert id="insetProductImg" parameterType="ProductImg">
@@ -43,6 +43,11 @@
 	</insert>
 	
 	<insert id="insertOrder" parameterType="Order">
+		INSERT INTO PRORDER (ORDERNO,DETAILNO,USERNO,orderCount,OrderType,CUNO) 
+		VALUES (order_orderno_sequence.nextval,#{detailNo},#{userNo},#{orderCount},#{orderType},#{cuno})
+	</insert>
+	
+	<insert id="insertOrderNOCuNo" parameterType="Order">
 		INSERT INTO PRORDER (ORDERNO,DETAILNO,USERNO,orderCount,OrderType) 
 		VALUES (order_orderno_sequence.nextval,#{detailNo},#{userNo},#{orderCount},#{orderType})
 	</insert>
@@ -63,8 +68,15 @@
 		Select * FROM DETAIL WHERE PRODUCTNO =#{productNo}
 	</select>
 	
-	<select id="selectAllOrderList" parameterType="int" resultType="OrderViews">
-		Select * FROM ORDERVIEW WHERE STORENO =#{storeNo}
+	<select id="selectAllOrderList" parameterType="hashmap" resultType="OrderViews">
+		SELECT * FROM 
+			(SELECT rowNUM NUM , M.* FROM 
+			(SELECT * FROM ORDERVIEW WHERE STORENO = #{storeNo} ORDER BY ORDERNO DESC )M) 
+			WHERE NUM <![CDATA[>=]]> #{from} AND NUM <![CDATA[<]]> #{to}		
+	</select>
+	
+	<select id="findOrdercount" parameterType="int" resultType="int">
+		SELECT count(*) FROM ORDERVIEW WHERE STORENO =#{storeNo}
 	</select>
 	
 	<select id="updateDetailType" parameterType="hashmap">
@@ -79,23 +91,78 @@
 		WHERE DETAILNO =#{detailNo} 
 	</select>
 	
-	<select id="selectProductDetail" parameterType="int" resultType="Detail">
-		SELECT * FROM DETAIL WHERE PRODUCTNO = #{productNo} and DETAILDIV = #{"1"}
+	<select id="selectProductDetail" parameterType="hashmap" resultType="Detail">
+		SELECT * FROM DETAIL WHERE PRODUCTNO = #{productNo} and DETAILDIV = #{div}
 	</select>
 	
 	<update id="updateOrderViewType" parameterType="hashmap">
 		 UPDATE PRORDER
 		 SET ORDERCK = #{type}
 		 WHERE ORDERNO = #{orderNo}
+	</update> 
+	
+	<update id="updateOrderViewTypeAndDate" parameterType="hashmap">
+		UPDATE PRORDER
+		SET ORDERCK = #{type},ORDERCKDATE = SYSDATE  		
+		WHERE ORDERNO = #{orderNo}
 	</update>
 	
 	<insert id="insertSales" parameterType="Sales">
-		INSERT INTO SALES(SALESNO,PRODUCTPRICE,SALESDIV,USERNO,SALESCOUNT) 
-		VALUES(SALES_SALESNO_SEQUENCE.NEXTVAL,#{productPrice},#{salesDiv},#{userNo},#{salesCount})
+		INSERT INTO SALES(SALESNO,SALESDIV,USERNO,SALESCOUNT,DETAILNO) 
+		VALUES(SALES_SALESNO_SEQUENCE.NEXTVAL,#{salesDiv},#{userNo},#{salesCount},#{detailNo})
 	</insert>
 	
 	<select id="findDetailBydetailNo" parameterType="int" resultType="Detail">
 		SELECT * FROM DETAIL WHERE DETAILNO = #{detailNo}
+	</select>
+	
+	<select id="findSalesView" parameterType="hashmap" resultType="SalesView">		
+		SELECT * FROM 
+			(SELECT rowNUM NUM , M.* FROM 
+			(SELECT * FROM SALESVIEW WHERE STORENO = #{storeNo} ORDER BY SALESNO DESC)M) 
+			WHERE NUM <![CDATA[>=]]> #{from} AND NUM <![CDATA[<]]> #{to}		
+	</select>
+	
+	<update id="updateSales" parameterType="hashmap">
+		UPDATE SALES
+		SET SALESPRICE=#{salesPrice},SALESDIV=#{salesDiv},SALESDATE=SYSDATE
+		WHERE SALESNO=#{salesNo}
+	</update>
+	
+	<select id="findAccountByStoreNo" parameterType="int" resultType="account">
+		SELECT * FROM ACCOUNT WHERE STORENO = #{storeNo}		
+	</select>
+	
+	<select id="selectAllCustomer" parameterType="int" resultType="com.jewelry.vo.Customer">
+		SELECT * FROM CUSTOMER WHERE STORENO = #{storeNo}
+	</select>
+	
+	<insert id="insertAllSales" parameterType="Sales">
+		INSERT INTO SALES(SALESNO,SALESPRICE,SALESDATE,SALESDIV,SALESCOUNT,CUNO,DETAILNO,USERNO)
+		VALUES(SALES_SALESNO_SEQUENCE.NEXTVAL,#{salesPrice},SYSDATE,#{salesDiv},#{salesCount},#{cuno},#{detailNo},#{userNo})
+	</insert>
+	
+	<select id="selectAllProductBypager" parameterType="hashmap" resultType="Product">
+		SELECT * FROM 
+			(SELECT rowNUM NUM , M.* FROM 
+			(SELECT * FROM PRODUCT WHERE STORENO = #{storeNo} ORDER BY PRODUCTNO DESC)M) 
+			WHERE NUM <![CDATA[>=]]> #{from} AND NUM <![CDATA[<]]> #{to}
+	</select>
+	
+	<select id="findProductcount" parameterType="int" resultType="int">
+	  	SELECT count(*) FROM PRODUCT WHERE STORENO =#{storeNo}
+	</select>
+	
+	<select id="findSalescount" parameterType="int" resultType="int">
+		SELECT count(*) FROM SALESVIEW WHERE STORENO =#{storeNo}
+	</select>
+	
+	<select  id="takeHarryByAcno" parameterType="int" resultType="double">
+		SELECT ACHEHERRY FROM ACCOUNT WHERE ACNO=#{acno}
+	</select>
+	
+	<select id="takNewPrice" parameterType="hashmap" resultType="int">
+		select a.* from(SELECT PRICE FROM PRICE WHERE STORENO= #{storeNo} ORDER BY priceNo DESC)a where rowNum = #{num}				
 	</select>
 </mapper>
 

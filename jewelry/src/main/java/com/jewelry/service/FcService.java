@@ -18,6 +18,8 @@ public interface FcService {
 
 	void updateEmployeeByEmpNo(FcVo fc);
 
-	List<FcVo> findEmployeeAll(int storeNo);	
+	List<FcVo> findEmployeeAll(int storeNo, int from, int to);
+
+	int findProductcount(int userNo);	
 	
 }

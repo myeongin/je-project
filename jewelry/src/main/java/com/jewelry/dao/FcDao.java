@@ -12,7 +12,7 @@ public interface FcDao {
 
 	void insterEmployee(FcVo fc);
 
-	List<FcVo> selectEmployeeByStoreNo(int userNo);
+	List<FcVo> selectEmployeeByStoreNo(int userNo, int from, int to);
 
 	List<FcVo> selectAccountAll();
 
@@ -21,5 +21,7 @@ public interface FcDao {
 	void updateAccountTypeByuserNo2(int userNo);
 
 	void updateEmployeeByEmpNo(FcVo employeeVo);
+
+	int findProductcount(int userNo);
 
 }

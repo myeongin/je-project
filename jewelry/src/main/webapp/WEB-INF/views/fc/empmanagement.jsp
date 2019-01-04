@@ -10,7 +10,7 @@
 <title>Data Table | jeweler - Material Admin Template</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/png" href="http://example.com/myicon.png">
+<link rel="icon" type="image/png" href="http://examp1le.com/myicon.png">
 <!-- favicon
 		============================================ -->
 <link rel="shortcut icon" type="image/x-icon"
@@ -119,7 +119,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
-    $(function(event){
+    $(function(){
     	
     	$('#employeeList').on('click','.sub',function(event){
     		
@@ -197,16 +197,16 @@
 										<a href="/jewelry/fc/employee.action">직원추가</a>
 									</div>
 									<table id="table" data-toggle="table" data-pagination="false"
-										data-search="true" data-show-columns="true"
+										data-search="false" data-show-columns="false"
 										data-show-pagination-switch="false" data-show-refresh="false"
-										data-key-events="true" data-show-toggle="false"
+										data-key-events="false" data-show-toggle="false"
 										data-resizable="false" data-cookie="true"
 										data-cookie-id-table="saveId" data-show-export="false"
-										data-click-to-select="true" data-toolbar="#toolbar">
+										data-click-to-select="false" data-toolbar="#toolbar">
 										<thead>
-											<tr>											
-												<th data-field="id">이름</th>
-												<th data-field="name" data-editable="true">아이디</th>
+											<tr>
+												<th data-field="id">아이디</th>
+												<th data-field="name" data-editable="true">이름</th>
 												<th data-field="company" data-editable="true">전화번호</th>
 												<th data-field="price" data-editable="true">이메일</th>
 												<th data-field="date" data-editable="false">입사일</th>
@@ -226,10 +226,14 @@
 
 													<td id="email">${employee.userEmail}</td>
 
-													<td><input style="width:100%;border:0px none" id="firstdate" type="text" data-mask="9999/99/99" value="${employee.firstDate}"></td>
+													<td><input style="width: 100%; border: 0px none"
+														id="firstdate" type="text" data-mask="9999/99/99"
+														value="${employee.firstDate}"></td>
 
-													<td><input style="width:100%;border:0px none" id="lastdate" type="text" data-mask="9999/99/99" value="${employee.lastDate}"></td>
-													<td><select id="type" style="border:0px none">
+													<td><input style="width: 100%; border: 0px none"
+														id="lastdate" type="text" data-mask="9999/99/99"
+														value="${employee.lastDate}"></td>
+													<td><select id="type" style="border: 0px none">
 															<option value="${employee.userType}">${employee.userType}</option>
 															<c:choose>
 																<c:when test="${employee.userType eq 'employee'}">
@@ -247,7 +251,15 @@
 									</table>
 								</div>
 							</div>
+							<div class="custom-pagination">
+								<nav aria-label="Page navigation example">
+									<ul class="pagination">
+										${pager}
+									</ul>
+								</nav>
+							</div>
 						</div>
+
 					</div>
 				</div>
 			</div>

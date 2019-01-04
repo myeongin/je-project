@@ -53,8 +53,8 @@ public class FcServiceImpl implements FcService{
 	
 	//모든직원
 	@Override
-	public List<FcVo> findEmployeeAll(int userNo) {
-		List<FcVo> employees = fcDao.selectEmployeeByStoreNo(userNo);
+	public List<FcVo> findEmployeeAll(int userNo,int from,int to) {
+		List<FcVo> employees = fcDao.selectEmployeeByStoreNo(userNo,from,to);
 		return employees;
 	}
 	
@@ -79,6 +79,13 @@ public class FcServiceImpl implements FcService{
 
 			fcDao.updateAccountTypeByuserNo2(fc.getUserNo());
 		}
+	}
+	
+	//직원수
+	@Override
+	public int findProductcount(int userNo) {
+		int count = fcDao.findProductcount(userNo);
+		return count;
 	}
 	
 

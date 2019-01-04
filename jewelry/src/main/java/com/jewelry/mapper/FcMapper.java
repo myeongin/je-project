@@ -14,4 +14,5 @@ public interface FcMapper {
 	List<FcVo> selectAccountAll(String user);
 	void updateEmployeeByEmpNo(FcVo fc);
 	void updateAccountTypeByuserNo(HashMap<String, Object> type);
+	int findProductcount(HashMap<String, Object> user);
 }

@@ -82,38 +82,42 @@
         </div>
       <jsp:include page="/WEB-INF/views/include/header.jsp" />
         <div class="blog-area mg-tb-15">
-        <div class="modal-bootstrap modal-login-form">
-        	<a class="zoomInDown mg-t" href="/jewelry/product/productupload.action" data-target="#zoomInDown1">제품추가</a>
-        </div>      
-            <div class="container-fluid">               
-                <div class="row">     
-        		<c:forEach var="product" items="${products}">
-                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                        <div class="hpanel blog-box mg-t-30">
-                        
-                            <div class="panel-body blog-pra">
-                                <div class="blog-img">
-                                <a href="/jewelry/product/detail.action?productNo=${product.productNo}">
-                                	<c:forEach var="img" items="${product.imgs}">
-                                    <img src="/jewelry/resources/product-img/${img.imgSavedName}" alt="" />
-                         			</c:forEach>                                                                    
-                                      <h4>${product.productName}</h4>
-                                    </a>
-                                </div>
-                                <p>
-                                dk
-                                </p>
-                            </div>
-                            <div class="panel-footer">
-                                <span class="pull-right"><i class="fa fa-comments-o"> </i> 22 comments</span>
-                                <i class="fa fa-eye"> </i> 142 views
-                            </div>
-                        </div>
-                    </div>
- 				</c:forEach>
-                </div>
-            </div>
-        </div>
+      
+            <div class="modal-bootstrap modal-login-form" style="margin: 5px 20px;">
+        		<a class="zoomInDown mg-t" href="/jewelry/product/productupload.action?storeNo=${user.storeNo}" data-target="#zoomInDown1">제품추가</a>
+        	</div>
+			<div class="container-fluid">
+				<div class="row">
+					<c:forEach var="product" items="${products}">
+						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+							<div class="hpanel blog-box mg-t-30">
+
+								<div class="panel-body blog-pra">
+									<div class="blog-img">
+										<a
+											href="/jewelry/product/detail.action?productNo=${product.productNo}&storeNo=${user.storeNo}">
+											<c:forEach var="img" items="${product.imgs}">
+												<img
+													src="/jewelry/resources/product-img/${img.imgSavedName}"
+													alt="" />
+											</c:forEach>
+											<h3>제품명:${product.productName}</h3>
+										</a>
+									</div>
+								</div>
+								<div class="panel-footer"></div>
+							</div>
+						</div>
+					</c:forEach>
+				</div>
+				<div class="custom-pagination">
+					<nav aria-label="Page navigation example">
+						<ul class="pagination">${pager}
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
         <jsp:include page="/WEB-INF/views/include/footer.jsp"/>
     </div>
 

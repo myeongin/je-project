@@ -6,12 +6,15 @@ import java.util.List;
 import javax.xml.soap.Detail;
 
 import com.jewelry.mapper.ProductMapper;
+import com.jewelry.vo.Customer;
 import com.jewelry.vo.DetailVo;
 import com.jewelry.vo.OrderVo;
 import com.jewelry.vo.ProductImgVo;
 import com.jewelry.vo.ProductVo;
 import com.jewelry.vo.SalesVo;
+import com.jewelry.vo.account;
 import com.jewelry.vo.orderViewVo;
+import com.jewelry.vo.salesViewVo;
 
 public class ProductDaoImpl implements ProductDao{
 	
@@ -60,6 +63,12 @@ public class ProductDaoImpl implements ProductDao{
 	@Override
 	public void insertOrder(OrderVo order) {
 		productMapper.insertOrder(order);
+	}
+	
+	//주문등록(재고)
+	@Override
+	public void insertOrderNOCuNo(OrderVo order) {		
+		productMapper.insertOrderNOCuNo(order);
 	}
 	
 	//제품상세수정
@@ -111,8 +120,14 @@ public class ProductDaoImpl implements ProductDao{
 	
 	//주문리스트
 	@Override
-	public List<orderViewVo> selectAllOrderList(int storeNo) {
-		List<orderViewVo> views = productMapper.selectAllOrderList(storeNo);
+	public List<orderViewVo> selectAllOrderList(int storeNo,int from,int to) {
+		
+		HashMap<String,Object> type = new HashMap<>();
+		type.put("from", from);
+		type.put("to",to);
+		type.put("storeNo",storeNo);
+		
+		List<orderViewVo> views = productMapper.selectAllOrderList(type);
 		return views;
 	}
 	
@@ -143,7 +158,11 @@ public class ProductDaoImpl implements ProductDao{
 	@Override
 	public List<DetailVo> selectProductDetail(int productNo) {
 		
-		List<DetailVo> details=productMapper.selectProductDetail(productNo);
+		HashMap<String,Object> type = new HashMap<>();
+		type.put("productNo", productNo);
+		type.put("div","1");
+		
+		List<DetailVo> details=productMapper.selectProductDetail(type);
 		
 		return details;
 	}
@@ -160,6 +179,17 @@ public class ProductDaoImpl implements ProductDao{
 		
 	}
 	
+	//주문상태변경 + 수령날짜
+		@Override
+		public void updateOrderViewTypeAndDate(int orderNo, String type) {
+			HashMap<String,Object> viewType = new HashMap<>();
+			viewType.put("orderNo", orderNo);
+			viewType.put("type",type);
+			
+			productMapper.updateOrderViewTypeAndDate(viewType);			
+		}
+
+	
 	//판매추가
 	@Override
 	public void insertSales(SalesVo sales) {
@@ -174,6 +204,115 @@ public class ProductDaoImpl implements ProductDao{
 		return detail;
 	}
 
+	//판매리스트
+	@Override
+	public List<salesViewVo> findSalesView(int storeNo,int from,int to) {
+		
+		HashMap<String,Object> sales = new HashMap<>();
+		sales.put("from", from);
+		sales.put("to",to);
+		sales.put("storeNo",storeNo);
+		
+		List<salesViewVo> salesViews = productMapper.findSalesView(sales);
+		return salesViews;
+	}
+	
+	//판매수정
+	@Override
+	public void updateSales(int salesNo, int salesPrice) {
+		
+		HashMap<String, Object> sales=new HashMap<>();
+		sales.put("salesNo", salesNo);
+		sales.put("salesPrice",salesPrice);
+		sales.put("salesDiv","판매완료");
+		
+		productMapper.updateSales(sales);
+		
+	}
+	
+	//거래처 리스트
+	@Override
+	public List<account> findAccountByStoreNo(int storeNo) {
+		
+		List<account> accounts = productMapper.findAccountByStoreNo(storeNo);		
+		return accounts;
+	}
+	
+	//고객리스트
+	@Override
+	public List<Customer> selectAllCustomer(int storeNo) {
+		
+		List<Customer> customers = productMapper.selectAllCustomer(storeNo);
+		
+		return customers;
+	}
+	
+	//재고제품판매등록
+	@Override
+	public void insertAllSales(SalesVo sales) {		
+		productMapper.insertAllSales(sales);
+	}
+	
+	//주문수
+	@Override
+	public int findOrdercount(int storeNo) {
+		int count = productMapper.findOrdercount(storeNo);
+		return count;
+	}
+	
+	//제품+pager
+	@Override
+	public List<ProductVo> selectAllProductBypager(int storeNo, int from, int to) {
+		
+		HashMap<String, Object> type = new HashMap<>();
+		type.put("storeNo", storeNo);
+		type.put("from",from);
+		type.put("to",to);
+		
+		List<ProductVo> products = productMapper.selectAllProductBypager(type);
+		
+		return products;
+	}
+	
+	//제품수
+	@Override
+	public int findProductcount(int storeNo) {
+		int count = productMapper.findProductcount(storeNo);
+		return count;
+	}
+	
+	//판매수
+	@Override
+	public int findSalescount(int storeNo) {
+		int count = productMapper.findSalescount(storeNo);
+		return count;
+	}
+	
+	//거래처 해리
+	@Override
+	public Double takeHarryByAcno(int acno) {
+		
+		Double harry = productMapper.takeHarryByAcno(acno);
+		
+		return harry;
+	}
+	
+	//최신시세
+	@Override
+	public int takNewPrice(int storeNo) {
+		
+		HashMap<String, Object> type = new HashMap<>();
+		type.put("storeNo", storeNo);
+		type.put("num",1);
+		
+		int price = productMapper.takNewPrice(type);
+		
+		return price;
+	}
+
+	
+	
+	
 	
 
 }

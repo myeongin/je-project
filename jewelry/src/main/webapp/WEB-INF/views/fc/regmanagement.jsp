@@ -95,57 +95,75 @@
         <div class="data-table-area mg-tb-15">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="sparkline13-list">
-                            <div class="sparkline13-hd">
-                                <div class="main-sparkline13-hd">
-                                    <h1>Products <span class="table-project-n">Data</span> Table</h1>
-                                </div>
-                            </div>
-                            <div class="sparkline13-graph">
-                                <div class="datatable-dashv1-list custom-datatable-overright">                                                        
-                                    <table id="table" data-toggle="table" data-pagination="false"
-										data-search="true" data-show-columns="true"
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="sparkline13-list">
+							<div class="sparkline13-hd">
+								<div class="main-sparkline13-hd">
+									<h1>
+										Products <span class="table-project-n">Data</span> Table
+									</h1>
+
+								</div>
+
+							</div>
+							<div class="sparkline13-graph">
+								<div class="datatable-dashv1-list custom-datatable-overright">
+									<table id="table" data-toggle="table" data-pagination="false"
+										data-search="false" data-show-columns="false"
 										data-show-pagination-switch="false" data-show-refresh="false"
-										data-key-events="true" data-show-toggle="false"
-										data-resizable="false" data-cookie="true"
+										data-key-events="false" data-show-toggle="false"
+										data-resizable="false" data-cookie="false"
 										data-cookie-id-table="saveId" data-show-export="false"
-										data-click-to-select="true" data-toolbar="#toolbar">
-                                        <thead>
-                                            <tr>                                               
-                                                <th data-field="id">회원아이디</th>
-                                                <th data-field="name">회원이름</th>
-                                                <th data-field="company">회원전화번호</th>
-                                                <th data-field="price">회원이메일</th>
+										data-click-to-select="false" data-toolbar="#toolbar">
+										<thead>
+											<tr>
+												<th data-field="id">회원아이디</th>
+												<th data-field="name">회원이름</th>
+												<th data-field="company">회원전화번호</th>
+												<th data-field="price">회원이메일</th>
 												<th data-field="date">가입날짜</th>
 												<th data-field="task">상호명</th>
-												<th data-field="action">수정</th>												
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        	<c:forEach var="account" items="${accounts}">
-                                            <tr>                                               
-                                                <td>${account.userId}</td>
-                                                <td>${account.userName}</td>
-                                                <td>${account.userPhone}</td>
-												<td>${account.userEmail}</td>
-												<td><fmt:formatDate value="${account.regdate}" pattern="yyyy/MM/dd"/></td>
-                                                <td>${account.userStore}</td>
-                                                <td><button class="sub" data-emno="${employee.userNo}">수정</button></td>												                                                
-                                            </tr>
-                                            </c:forEach>                                          
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+												<th data-field="action">수정</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="account" items="${accounts}">
+												<tr style="background-color: #f4f4f4">
+													<td>${account.userId}</td>
+													<td>${account.userName}</td>
+													<td>${account.userPhone}</td>
+													<td>${account.userEmail}</td>
+													<td><fmt:formatDate value="${account.regdate}"
+															pattern="yyyy/MM/dd" /></td>
+													<td>${account.userStore}</td>
+													<td><button class="sub" data-emno="${employee.userNo}">수정</button></td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="custom-pagination">
+							<nav aria-label="Page navigation example">
+								<ul class="pagination">
+									<li class="page-item"><a class="page-link" href="#">Previous</a></li>
+									<li class="page-item"><a class="page-link" href="#">1</a></li>
+									<li class="page-item"><a class="page-link" href="#">2</a></li>
+									<li class="page-item"><a class="page-link" href="#">3</a></li>
+									<li class="page-item"><a class="page-link" href="#">Next</a></li>
+								</ul>
+							</nav>
+						</div>
+						</div>						
+					</div>
+				</div>
+            </div>            
+        </div>  
+                      
         <!-- Static Table End -->
  		<jsp:include page="/WEB-INF/views/include/footer.jsp"/>
-    </div>
+    </div>        
+    
 
     <!-- jquery
 		============================================ -->

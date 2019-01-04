@@ -12,10 +12,13 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jewelry.service.FcService;
+import com.jewelry.ui.ThePager;
 import com.jewelry.vo.FcVo;
+import com.jewelry.vo.ProductVo;
 
 @Controller
 
@@ -108,10 +111,22 @@ public class FcController {
 	
 	//직원정보보기
 	@RequestMapping(value="/fc/empmanagement.action",method=RequestMethod.GET)
-	public String empManagement(int userNo,Model model) {
+	public String empManagement(int userNo,Model model,@RequestParam(value="pageNo",required = false,defaultValue ="1")int pageNo) {
 		
-		List<FcVo> employees = fcService.findEmployeeAll(userNo);
+		int pagesize=5;
+		int from=(pageNo-1)*pagesize +1;
+		int to =from+pagesize;
+		int pagersize = 5;
+		String linkUrl = "employeelist.action";
+		
+		List<FcVo> employees = fcService.findEmployeeAll(userNo,from,to);
+		int employeecount = fcService.findProductcount(userNo);
+		
+		ThePager pager = new ThePager(employeecount, pageNo, pagesize, pagersize, linkUrl,userNo);
+		
 		model.addAttribute("employees",employees);
+		model.addAttribute("pager",pager);
+		model.addAttribute("pageNo",pageNo);				
 		
 		return "fc/empmanagement";
 	}
@@ -145,10 +160,15 @@ public class FcController {
 	
 	//직원리스트
 	@RequestMapping(value="/fc/employeelist.action",method=RequestMethod.GET)
-	public String employeelist(int userNo,Model model) {
+	public String employeelist(int userNo,Model model,int pageNo) {
 		
-		List<FcVo> employees = fcService.findEmployeeAll(userNo);
+		int pagesize=5;
+		int from=(pageNo-1)*pagesize +1;
+		int to =from+pagesize;
+		
+		List<FcVo> employees = fcService.findEmployeeAll(userNo,from,to);
 		model.addAttribute("employees",employees);
+						
 		return "fc/employeelist";
 	}
 

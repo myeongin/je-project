@@ -66,62 +66,24 @@
     <script type="text/javascript">
     	$(function(){
     		
-    		$('#order').on('click','.ps-setting',function(event){
+    		$('#sales').on('click','.ps-setting',function(event){
     			
-    			var orderNo=$(this).attr('data-orderno');
-				var type="주문중";	
-    			
+    			var salesNo=$(this).attr('data-salesNo');
+    			var salesPrice=$('#tr'+salesNo+' #salesPrice').val();
+					    			
     			$.ajax({
-    				"url" : "ordertype.action",
+    				"url" : "salesupdate.action",
     				"method" : "POST",
-    				"data":{"orderNo":orderNo,"type":type},    				
+    				"data":{"salesNo":salesNo,"salesPrice":salesPrice},    				
     				"success":function(data,status,xhr){
     					alert("수정되었습니다.");
-    					$('#ordertable').load("orderVIewList.action",{"storeNo":${user.storeNo},"pageNo":${pageNo}});
+    					$('#salestable').load("salesviewlist.action",{"storeNo":${user.storeNo},"pageNo":${pageNo}});
     				},
     				"error":function(xhr,status,err){
     					alert("실패");
     				}
     			});	
     		});
-    		
-    		
-    		
-			$('#order').on('click','.ds-setting',function(event){
-    			
-    			var orderNo=$(this).attr('data-orderno');
-    			var price=$("#tr"+orderNo+" #price").text();
-    			var count=$("#tr"+orderNo+" #count").text();
-    			var salesDiv="판매대기";
-    			var detailNo=$("#tr"+orderNo+" #detailNo").text();
-    			var div=$("#tr"+orderNo+" #orType").text();
-    			var userNo=$("#tr"+orderNo+" #userNo").text();
-				var type="재품수령";												
-    			
-    			$.ajax({
-    				"url" : "ordertype.action",
-    				"method" : "POST",
-    				"data":{
-    						"orderNo":orderNo,
-    						"type":type,
-    						"productPrice":price,
-    						"salesCount":count,
-    						"detailNo":detailNo,
-    						"salesDiv":salesDiv,
-    						"userNo":userNo,
-    						"div":div
-    					},    				
-    				"success":function(data,status,xhr){
-    					alert("수정되었습니다.");
-    					$('#ordertable').load("orderVIewList.action",{"storeNo":${user.storeNo},"pageNo":${pageNo}});
-    				},
-    				"error":function(xhr,status,err){
-    					alert("실패");
-    				}
-    			});	
-    		})
-    		
-    		
     	});
     </script>
 </head>
@@ -148,9 +110,9 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="product-status-wrap" id="order">
+                        <div class="product-status-wrap" id="sales">
                             <h4>Products List</h4>                          
-                            <table id="ordertable">
+                            <table id="salestable">
                                 <tr>
                                     <th>제품명</th>
                                     <th>형태</th>
@@ -159,53 +121,49 @@
                                     <th>중량</th>
                                     <th>사이즈</th>
                                     <th>원가</th>
-                                    <th>주문수량</th>                                    
-                                    <th>주문구분</th>
-                                    <th>주문일</th>
-                                    <th>수령일</th>
-                                     <th>거래처</th>                                      
-                                    <th>주문담당자</th>                                
-                                    <th>상태</th> 
-                                    
+                                    <th>판매가격</th>
+                                    <th>판매수량</th>
+                                    <th>판매일</th>
+                                    <th>판매직원</th>
+                                    <th>판매상태</th>                                                                                                           
                                 </tr>
-                              	<c:forEach var="view" items="${views}">
-                                <tr id="tr${view.orderNo}">
-                                    <td id="proName">${view.productName}</td>
-                                    <td id="shape">${view.shape}</td>
-                                    <td id="color">${view.detailColor}</td>
-                                    <td id="gold">${view.detailGold}</td>
-                                    <td id="carat">${view.detailCarat}</td>
-                                    <td id="size">${view.detailSize}</td>
-                                    <td id="price">${view.price}</td>
-                                    <td id="count">${view.orderCount}</td>
-                                    <td id="orType">${view.orderType}</td>
-                                    <td id="orDate"><fmt:formatDate value="${view.orderDate}" pattern="yyyy/MM/dd(E) HH:mm:ss"/></td>
-                                    <td id="ckDate"><fmt:formatDate value="${view.orderCkDate}" pattern="yyyy/MM/dd(E) HH:mm:ss"/></td>
-                                    <td >${view.acStore}</td>
-                                    <td id="userName">${view.userName}</td>
-                                    <td id="productNo" style="display:none">${view.productNo}</td>
-									<td id="detailNo" style="display:none">${view.detailNo}</td>
-									<td id="userNo" style="display:none">${view.userNo}</td>                                     
+                                <c:forEach var="view" items="${views}">
+                                <tr id="tr${view.salesNo}">                                
+                                    <td>${view.productName}</td>
+                                    <td>${view.shape}</td>
+                                    <td>${view.detailColor}</td>
+                                    <td>${view.detailGold}</td>
+                                    <td>${view.detailCarat}</td>
+                                    <td>${view.detailSize}</td>
+                                    <td>${view.price}</td>
+                                    <c:choose>
+                                    	<c:when test="${view.salesDiv eq '판매대기' }">
+                                    		<td><input id="salesPrice" type="text" value="${veiw.salesPrice}"></td>
+                                    	</c:when>
+                                    	<c:when test="${view.salesDiv eq '판매완료' }">
+                                    		<td>${view.salesPrice}</td>
+                                    	</c:when>
+                                    </c:choose>                                                                  
+                                    <td>${view.salesCount}</td>
+                                    <td><fmt:formatDate value="${view.salesDate}" pattern="yyyy/MM/dd(E) HH:mm:ss"/></td>
+                                    <td>${view.userName}</td>
                                     <td>
                                     	<c:choose>
-                                    		<c:when test="${view.orderCk eq '주문대기' }">
-                                   				<button class="ps-setting" data-orderno="${view.orderNo}">${view.orderCk}</button>
+                                    		<c:when test="${view.salesDiv eq '판매대기' }">
+                                   				<button class="ps-setting" data-salesNo="${view.salesNo}">${view.salesDiv}</button>
                                    			</c:when>
-                                   			<c:when test="${view.orderCk eq '주문중' }">
-                                   				<button class="ds-setting" data-orderno="${view.orderNo}">${view.orderCk}</button>
+                                   			<c:when test="${view.salesDiv eq '판매완료' }">
+                                   				<button class="pd-setting" disabled='disabled'>${view.salesDiv}</button>
                                    			</c:when>
-                                   			<c:when test="${view.orderCk eq '재품수령' }">
-                                   				<button class="pd-setting" disabled='disabled'>${view.orderCk}</button>
-                                   			</c:when>
-                                   		</c:choose>
-                                    </td>                                   
+                                   		</c:choose>	
+                                    </td>                                                                                                                                                                                                    
                                 </tr>
-						</c:forEach>
+							</c:forEach>
                             </table>
                             <div class="custom-pagination">
                                 <nav aria-label="Page navigation example">
                                     <ul class="pagination">
-                                       ${pager}
+                                        ${pager}
                                     </ul>
                                 </nav>
                             </div>

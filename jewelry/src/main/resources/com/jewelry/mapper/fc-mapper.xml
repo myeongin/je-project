@@ -14,11 +14,14 @@
 	</insert>
 	
 	<select id="selectAccountByIdAndPswd" parameterType="Fc" resultType="Fc">
-		SELECT * FROM FC WHERE userId = #{userId} and userPswd=#{userPswd}
+		SELECT * FROM FC WHERE userId = #{userId} and userPswd=#{userPswd} and userdel !=1
 	</select>
 	
 	<select id="selectEmployeeByStoreNo" parameterType="hashmap" resultType="Fc">
-		SELECT * FROM Fc WHERE storeNo = #{userNo} and userType != #{fc} and userType != #{admin}
+		SELECT * FROM 
+		(SELECT rowNUM NUM , M.* FROM 
+		(SELECT * FROM Fc WHERE storeNo = #{userNo} and userType != #{fc} and userType != #{admin} and userDel !=#{del})M) 
+		WHERE NUM <![CDATA[>=]]> #{from} AND NUM <![CDATA[<]]> #{to}
 	</select>
 	
 	<update id="updateEmployeeByEmpNo" parameterType="Fc">
@@ -43,7 +46,9 @@
 		WHERE userNo = #{userNo}
 	</update>
 
-
+	<select id="findProductcount" parameterType="hashmap" resultType="int">
+		SELECT count(*) FROM Fc WHERE storeNo = #{userNo} and userType != #{fc} and userType != #{admin} and userDel !=#{del}
+	</select>
 	
 	
 </mapper>

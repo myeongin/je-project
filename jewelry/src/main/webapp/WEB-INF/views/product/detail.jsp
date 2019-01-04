@@ -62,10 +62,10 @@
 	href="../resources/css/calendar/fullcalendar.print.min.css">
 <!-- modals CSS
 		============================================ -->
-    <link rel="stylesheet" href="../resources/css/modals.css">
- <!-- forms CSS
+<link rel="stylesheet" href="../resources/css/modals.css">
+<!-- forms CSS
 		============================================ -->
-   <link rel="stylesheet" href="../resources/css/form/all-type-forms.css">
+<link rel="stylesheet" href="../resources/css/form/all-type-forms.css">
 <!-- style CSS
 		============================================ -->
 <link rel="stylesheet" href="../resources/style.css">
@@ -77,23 +77,70 @@
 <script src="../resources/js/vendor/modernizr-2.8.3.min.js"></script>
 <!-- touchspin CSS
 		============================================ -->
-    <link rel="stylesheet" href="../resources/css/touchspin/jquery.bootstrap-touchspin.min.css">
-    <!-- datapicker CSS
+<link rel="stylesheet"
+	href="../resources/css/touchspin/jquery.bootstrap-touchspin.min.css">
+<!-- datapicker CSS
 		============================================ -->
-    <link rel="stylesheet" href="../resources/css/datapicker/datepicker3.css">
-    <!-- colorpicker CSS
+<link rel="stylesheet"
+	href="../resources/css/datapicker/datepicker3.css">
+<!-- colorpicker CSS
 		============================================ -->
-    <link rel="stylesheet" href="../resources/css/colorpicker/colorpicker.css">
-    <!-- select2 CSS
+<link rel="stylesheet"
+	href="../resources/css/colorpicker/colorpicker.css">
+<!-- select2 CSS
 		============================================ -->
-    <link rel="stylesheet" href="../resources/css/select2/select2.min.css">
-    <!-- chosen CSS
+<link rel="stylesheet" href="../resources/css/select2/select2.min.css">
+<!-- chosen CSS
 		============================================ -->
-    <link rel="stylesheet" href="../resources/css/chosen/bootstrap-chosen.css">
-    <!-- ionRangeSlider CSS
+<link rel="stylesheet"
+	href="../resources/css/chosen/bootstrap-chosen.css">
+<!-- ionRangeSlider CSS
 		============================================ -->
-    <link rel="stylesheet" href="../resources/css/ionRangeSlider/ion.rangeSlider.css">
-    <link rel="stylesheet" href="../resources/css/ionRangeSlider/ion.rangeSlider.skinFlat.css">    
+<link rel="stylesheet"
+	href="../resources/css/ionRangeSlider/ion.rangeSlider.css">
+<link rel="stylesheet"
+	href="../resources/css/ionRangeSlider/ion.rangeSlider.skinFlat.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		
+		var gold;		
+		var carat;
+		var newPrice = $('#newPrice').val();
+		var harry =$('#harry').val();
+		var cost =$('#cost').val();
+		
+		$('.submitsales').on("click",function(event){		
+			var no = $(this).attr("data-no");			
+			$('#salesform'+no).submit();			
+		});	
+					
+		$('input').on('ifChecked',function(evnet){
+			
+			if(this.value=='14k'){
+				gold=0.585;
+			}else if(this.value=='18k'){
+				gold=0.75;
+			}else if(this.value=='24k'){
+				gold=1;
+			}else if(this.value=='재고' || this.value=='주문판매'){
+				var productprice=Math.ceil((newPrice * (gold*harry))*carat + cost);
+				$('#price').val(productprice);
+			}
+			
+		});
+		
+		$('#carat').on('focusout',function(event){
+			carat=$(this).val();
+		});
+			
+			
+			
+
+						
+		
+	});
+</script>
 </head>
 
 <body>
@@ -129,47 +176,46 @@
 								</div>
 							</c:forEach>
 							<div class="product-tab-list tab-pane fade" id="single-tab2">
-								<img src="/jewelry/resources/img/product/bg-2.jpg" alt="" />
+								<img src="/" alt="" />
 							</div>
 							<div class="product-tab-list tab-pane fade" id="single-tab3">
-								<img src="/jewelry/resources/img/product/bg-3.jpg" alt="" />
+								<img src="" alt="" />
 							</div>
 							<div class="product-tab-list tab-pane fade" id="single-tab4">
-								<img src="/jewelry/resources/img/product/bg-1.jpg" alt="" />
+								<img src="" alt="" />
 							</div>
 							<div class="product-tab-list tab-pane fade" id="single-tab5">
-								<img src="/jewelry/resources/img/product/bg-2.jpg" alt="" />
+								<img src="" alt="" />
 							</div>
 						</div>
 						<ul id="single-product-tab">
-							<li class="active"><a href="#single-tab1"><img
-									src="/jewelry/resources/img/product/1.jpg" alt="" /></a></li>
-							<li><a href="#single-tab2"><img src="/jewelry/resources/img/product/2.jpg"
-									alt="" /></a></li>
-							<li><a href="#single-tab3"><img src="/jewelry/resources/img/product/3.jpg"
-									alt="" /></a></li>
-							<li><a href="#single-tab4"><img src="/jewelry/resources/img/product/1.jpg"
-									alt="" /></a></li>
+							<li class=""><a href=""><img
+									src="" alt="" /></a></li>
+							<li><a href="#single-tab2"><img
+									src="" alt="" /></a></li>
+							<li><a href="#single-tab3"><img
+									src="" alt="" /></a></li>
+							<li><a href="#single-tab4"><img
+									src="" alt="" /></a></li>
 						</ul>
 					</div>
 					<form action="detail.action" method="post">
-						
-						<input type="hidden" name="storeNo" value="${user.storeNo}">	
-						
-						<input type="hidden" name="productNo" value="${product.productNo}">	
-											
+
+						<input type="hidden" name="storeNo" value="${user.storeNo}">
+
+						<input type="hidden" name="productNo" value="${product.productNo}">
+
 						<input type="hidden" name="userNo" value="${user.userNo}">
-										
+
 						<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
 							<div class="single-product-details res-pro-tb">
-							<span class="single-regular">제품명:${product.productName}</span>
-							<br>
-							<div class="single-pro-price">
-								<h4>주문가격:원가</h4>
-							</div>
-							
+								<span class="single-regular">제품명:${product.productName}</span> <br>
+								<div class="single-pro-price">
+									<h4>주문가격:<input id="price" type="text" name="price" style="border:none;background-color:transparent" readonly></h4>
+								</div>
+
 								<br>
-								
+
 								<div class="single-pro-size">
 									<h4>형태</h4>
 									<div class="i-checks pull-left">
@@ -193,136 +239,208 @@
 										</label>
 									</div>
 								</div>
-								
+
 								<br>
-								
-								<div class="single-pro-size">									
-										<h4>색깔</h4>
-										<div class="i-checks pull-left">
-											<label> <input type="radio" value="화이트" name="detailColor">
-												<i></i> 화이트
-											</label>
-										</div>
-										<div class="i-checks pull-left">
-											<label> <input type="radio" value="루비" name="detailColor">
-												<i></i> 루비
-											</label>
-										</div>
-										<div class="i-checks pull-left">
-											<label> <input type="radio" value="black" name="detailColor">
-												<i></i> 블랙
-											</label>
-										</div>
+
+								<div class="single-pro-size">
+									<h4>색깔</h4>
+									<div class="i-checks pull-left">
+										<label> <input type="radio" value="화이트"
+											name="detailColor"> <i></i> 화이트
+										</label>
+									</div>
+									<div class="i-checks pull-left">
+										<label> <input type="radio" value="루비"
+											name="detailColor"> <i></i> 로즈골드
+										</label>
+									</div>
+									<div class="i-checks pull-left">
+										<label> <input type="radio" value="black"
+											name="detailColor"> <i></i> 엘로우
+										</label>
+									</div>
 								</div>
-									
-									<br>
-									
-									<div class="single-pro-size">
-										<h4>골드</h4>
-											<div class="i-checks pull-left">
-											<label> <input type="radio" value="14k" name="detailGold">
-												<i></i> 14k
-											</label>
-										</div>
-										<div class="i-checks pull-left">
-											<label> <input type="radio" value="18k" name="detailGold">
-												<i></i> 18k
-											</label>
-										</div>
-										<div class="i-checks pull-left">
-											<label> <input type="radio" value="24k" name="detailGold">
-												<i></i> 24k
-											</label>
-										</div>
-										<div class="i-checks pull-left">
-											<label> <input type="radio" value="순금" name="detailGold">
-												<i></i> 순금
-											</label>
-										</div>
+
+								<br>
+
+								<div class="single-pro-size">
+									<h4>골드</h4>
+									<div class="i-checks pull-left">
+										<label> <input type="radio" value="14k"
+											name="detailGold" id="14k"> <i></i> 14k
+										</label>
 									</div>
-									
-									<br>
-																		
-									<div class="single-pro-size">
-										<h4>중량</h4>
-										<input type="text" name="detailCarat">
+									<div class="i-checks pull-left">
+										<label> <input type="radio" value="18k"
+											name="detailGold"> <i></i> 18k
+										</label>
 									</div>
-									
-									<div class="single-pro-size">
-										<h4>사이즈</h4>
-										<input type="text" name="detailSize">
+									<div class="i-checks pull-left">
+										<label> <input type="radio" value="24k"
+											name="detailGold"><i></i> 24k
+										</label>
+									</div>						
+								</div>
+
+								<br>
+
+								<div class="single-pro-size">
+									<h4>중량</h4>
+									<input type="text" name="detailCarat" id="carat">
+								</div>
+
+								<div class="single-pro-size">
+									<h4>사이즈</h4>
+									<input type="text" name="detailSize">
+								</div>
+
+								<div class="single-pro-size">
+									<h4>수량</h4>
+									<div class="pro-quantity-changer">
+									<input type="text" name="orderCount" value=1>
 									</div>
-									
-									<div class="single-pro-size">
-										<h4>수량</h4>
-										<input type="text" name="orderCount">
-									</div>									
-									
-									<div class="single-pro-size">
-										<h4>구분</h4>
-										<div class="i-checks pull-left">
-											<label> <input type="radio" value="재고" name="orderType">
-												<i></i> 재고
-											</label>
-										</div>
-										<div class="i-checks pull-left">
-											<label> <input type="radio" value="주문판매" name="orderType">
-												<i></i> 주문판매
-											</label> 
-										</div>
-									</div>	
-									
-									<br>
-									
-									<div class="single-pro-size">고객정보</div>
-									
-									<div class="clear"></div>
-									
-									<div class="single-pro-button">
-										<div>
-											<input type="submit" value="ADD">
-										</div>
+								</div>
+
+								<div class="single-pro-size">
+									<h4>구분</h4>
+									<div class="i-checks pull-left">
+										<label> <input type="radio" value="재고"
+											name="orderType"> <i></i> 재고
+										</label>
 									</div>
-									
-									<div class="clear"></div>						
+									<div class="i-checks pull-left">
+										<label> <input type="radio" value="주문판매"
+											name="orderType"> <i></i> 주문판매
+										</label>
+									</div>
+								</div>
+
+								<br>
+
+								<div class="single-pro-size">
+									<h4>고객정보</h4>																
+										<select name="cuno" style="width:150px">
+											<option selected="selected" value="0">재고주문</option>
+												<c:forEach var="customer" items="${customers}">
+													<option value="${customer.cuNo}">${customer.cuName}</option>
+												</c:forEach>
+										</select>									
+									</div>
+																															
+								<input type="hidden" id="harry" value="${harry}">
+								<input type="hidden" id="cost" value="${product.productCost}">
+								<input type="hidden" id="newPrice" value="${newPrice}">
+								
+								<input type="hidden" name="storeNo" value="${user.storeNo}">								
+								
+								<div class="single-pro-button">
+									<div>
+										<input type="submit" value="ADD">
+									</div>
+								</div>
+
+								<div class="clear"></div>
 							</div>
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
-		<!-- Single pro tab End-->
-		<!-- Single pro tab review Start-->
+
 		<div class="single-pro-review-area mt-t-30 mg-b-15">
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="alert-wrap1 shadow-reset wrap-alert-b">
-                            <div class="alert-title">
-                                <h2>재고목록</h2>                                
-                            </div>
-                            <c:forEach var="stock" items="${product.details}">
-                            <div class="alert alert-success" role="alert">
-                               <table style=" width: 100%;">
-                               	<tr>
-                               		<td><strong>형태:</strong>${stock.shape}</td>
-                               		<td><strong>색깔:</strong>${stock.detailColor}</td>
-                               		<td><strong>골드:</strong>${stock.detailGold}</td>
-                               		<td><strong>중량:</strong>${stock.detailCarat}</td>
-                               		<td><strong>사이즈:</strong>${stock.detailSize}</td>
-                               		<td><strong>수량:</strong>${stock.mount}</td>                               		                               
-                               		<td>
-                               			<div class="single-pro-button">
-											<div>
-												<input type="submit" value="ADD">
+							<div class="alert-title">
+								<h2>재고목록</h2>
+							</div>
+							<c:forEach var="stock" items="${product.details}">
+								<div class="alert alert-success" role="alert">
+									<table style="width: 100%;">
+										<tr>
+											<td><strong>형태:</strong>${stock.shape}</td>
+											<td><strong>색깔:</strong>${stock.detailColor}</td>
+											<td><strong>골드:</strong>${stock.detailGold}</td>
+											<td><strong>중량:</strong>${stock.detailCarat}</td>
+											<td><strong>사이즈:</strong>${stock.detailSize}</td>
+											<td><strong>수량:</strong>${stock.mount}</td>
+											<td>
+												<button type="button"
+													class="btn btn-custon-rounded-three btn-success"
+													data-toggle="modal" data-target="#myModal${stock.detailNo}">구입</button>
+											</td>
+										</tr>
+									</table>
+								</div>
+
+								<div id="myModal${stock.detailNo}"
+									class="modal modal-adminpro-general default-popup-PrimaryModal fade"
+									role="dialog">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-close-area modal-close-df">
+												<a class="close" data-dismiss="modal" href="#"><i
+													class="fa fa-close"></i></a>
+											</div>
+											<div class="modal-body">
+
+												<h2>구매 제품 정보</h2>
+												
+												<br>
+										
+												<div class="i-checks pull-left" style="padding: 0px 0px 30px 0px" >
+													<label><input type="checkbox" value="" disabled="" checked=""> <i></i> <span class="basic-ds-n">형태 : </span>${stock.shape}</label>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													<label><input type="checkbox" value="" disabled="" checked=""> <i></i> <span class="basic-ds-n">색깔 : </span>${stock.detailColor}</label>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													<label><input type="checkbox" value="" disabled="" checked=""> <i></i> <span class="basic-ds-n">골드 : </span>${stock.detailGold}</label>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													<label><input type="checkbox" value="" disabled="" checked=""> <i></i> <span class="basic-ds-n">중량 : </span>${stock.detailCarat}</label>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													<label><input type="checkbox" value="" disabled="" checked=""> <i></i> <span class="basic-ds-n">사이즈 : </span>${stock.detailSize}</label>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													<label><input type="checkbox" value="" disabled="" checked=""> <i></i> <span class="basic-ds-n">원가 : </span>${stock.price}</label>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													<label><input type="checkbox" value="" disabled="" checked=""> <i></i> <span class="basic-ds-n">수량 : </span>${stock.mount}</label>												
+												</div>
+																				
+												<hr>
+												
+												<form action="/jewelry/product/stocksales.action" method="post" id="salesform${stock.detailNo}"> 
+												<div> 
+													<input type="hidden" value="${user.storeNo }" name="storeNo">
+													<input type="hidden" value="${user.userNo}" name="userNo">
+													<input type="hidden" value="${stock.detailNo}" name="detailNo">
+													<input type="hidden" value="판매완료" name="salesDiv">
+													<label><strong>구매수량</strong></label>												
+													<input type="text" name="salesCount">
+													&nbsp;								
+													<label><strong>판매금액</strong></label> 
+													<input type="text" name="salesPrice">				
+												</div>												
+												<div style="padding:10px 0px 0px 0px "> 
+													<label><strong>고객정보</strong></label>
+													<select name="cuno" style="width:50%">
+														<option selected="selected">미지정</option>
+														<c:forEach var="customer" items="${customers}">													
+															<option value="${customer.cuNo}">${customer.cuName}</option>
+														</c:forEach>														
+													</select>
+												</div>
+												</form>																					
+											</div>
+											
+											<div class="modal-footer">
+												<a data-dismiss="modal" href="#">Cancel</a> <a class="submitsales" href="javascript:" data-no="${stock.detailNo}">Process</a>
 											</div>
 										</div>
-                               		</td>
-                               	</tr>
-                               </table>
-                            </div> 
-                            </c:forEach>                         
-                        </div>
+									</div>
+								</div>
+
+
+							</c:forEach>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -375,20 +493,21 @@
 	<!-- tab JS
 		============================================ -->
 	<script src="../resources/js/tab.js"></script>
-	 <!-- icheck JS
+	<!-- icheck JS
 		============================================ -->
-    <script src="../resources/js/icheck/icheck.min.js"></script>
-    <script src="../resources/js/icheck/icheck-active.js"></script>
+	<script src="../resources/js/icheck/icheck.min.js"></script>
+	<script src="../resources/js/icheck/icheck-active.js"></script>
 	<!-- plugins JS
 		============================================ -->
 	<script src="../resources/js/plugins.js"></script>
 	<!-- main JS
 		============================================ -->
 	<script src="../resources/js/main.js"></script>
-	 <!-- touchspin JS
+	<!-- touchspin JS
 		============================================ -->
-    <script src="../resources/js/touchspin/jquery.bootstrap-touchspin.min.js"></script>
-    <script src="../resources/js/touchspin/touchspin-active.js"></script>
+	<script
+		src="../resources/js/touchspin/jquery.bootstrap-touchspin.min.js"></script>
+	<script src="../resources/js/touchspin/touchspin-active.js"></script>
 </body>
 
 </html>

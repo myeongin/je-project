@@ -19,4 +19,6 @@ public interface accountMapper {
 
 	account selectAccountByAccountNo(int acno);
 
+	account selectAccountAll(int storeNo);
+
 }

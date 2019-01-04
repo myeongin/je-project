@@ -12,12 +12,18 @@ public interface misuMapper {
 
 	void uploadMisu(receivables misu);
 
-	List<receivables> selectAllMisuByPage(HashMap<String, Object> parmas);
+	List<account> selectAllMisuByPage(HashMap<String, Object> parmas);
 
 	int selectMisuCount(String recarats, String remoneys);
 
-	List<account> selectAccountList(int reno);
+	List<account> selectAccountList();
 
 	int selectMisuCount(HashMap<String, Object> params);
+
+	account selectAccountStoreName(int accountNo);
+
+	account selectStoreName(int storeNo);
+
+	List<receivables> selectAllMisu(int acno);
 
 }

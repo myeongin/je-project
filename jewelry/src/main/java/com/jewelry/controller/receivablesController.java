@@ -37,7 +37,7 @@ public class receivablesController {
 			List<account> accounts = misuservice.findAllMisuByPage(from, to);		
 			int misuCount = misuservice.findMisuCount();
 			
-			/*ThePager pager = new ThePager(misuCount, pageno, pageSize, pagerSize, linkUrl);*/
+			//ThePager pager = new ThePager(misuCount, pageno, pageSize, pagerSize, linkUrl);
 			
 			model.addAttribute("misus", accounts);
 			//model.addAttribute("pager", pager);

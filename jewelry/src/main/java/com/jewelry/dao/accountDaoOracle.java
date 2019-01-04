@@ -67,6 +67,12 @@ public class accountDaoOracle implements accountDao {
 		
 		return account;
 	}
+	@Override
+	public account selectAccountAll(int storeNo) {
+		
+		account accounts = accountmapper.selectAccountAll(storeNo);
+		return accounts;
+	}
 	
 	
 	

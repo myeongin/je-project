@@ -40,6 +40,14 @@
     <link rel="stylesheet" href="/jewelry/resources/style.css">
     <link rel="stylesheet" href="/jewelry/resources/css/responsive.css">
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    <style>
+    
+    .ing{
+    	margin: 5px;
+		border: 0px solid #ccc;
+		text-align: center;
+    }
+    </style>
 </head>
 
 <body>
@@ -62,7 +70,11 @@
        <jsp:include page="/WEB-INF/views/include/header.jsp" />
        
         <!-- Static Table Start -->
-        <div class="data-table-area mg-tb-15">
+       <div class="ing">
+       	<img src="http://송우교회.com/ONMAM_FILE/61306/T/2016/11/22e35914f8b78debd029bc0be5c722c0.jpg" width="750" height="750">
+       </div>
+       
+       <%--  <div class="data-table-area mg-tb-15">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -92,51 +104,37 @@
                                     <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
                                         data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                         <thead>
-                                        <a href="/jewelry/receivables/paylist.action"><div class="buttonS">결제List</div></a>
-                                        <a href="/jewelry/receivables/paywrite.action"><div class="buttonS">결제</div></a>
+                                        <a href="/jewelry/receivables/paylist.action?storeNo=${user.storeNo}"><div class="buttonS">결제 List</div></a>
+                                        <a href="/jewelry/account/storesearch.action?storeNo=${user.storeNo}"><div class="buttonS">결제</div></a>
                                         
                                             <tr>
-                                                <th data-field="reno" data-checkbox="true">No</th>
-                                                <th data-field="acstore" data-checkbox="true">상호명</th>
-                                                <th data-field="recarat" data-editable="true">중량</th>
-                                                <th data-field="remoney" data-editable="true">현금</th>
-                                                <th data-field="redate" data-editable="true">최근거래일</th>
-												<th data-field="repaydate" data-editable="true">최근결재일</th>
+                                            	<th data-field="reno" data-editable="false">No</th>
+                                                <th data-field="acstore" data-editable="false">상호명</th>
+                                                <th data-field="recarat" data-editable="false">중량</th>
+                                                <th data-field="remoney" data-editable="false">현금</th>
+                                                <th data-field="repaydate" data-editable="false">최근결재일</th>
+                                                <th data-field="redate" data-editable="false">최근거래일</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         
-                                        	<c:forEach var="receivables" items="${ misus }">
+                                        	<c:forEach var="account" items="${ accounts }">
+                                        		<c:forEach var="receivables" items="${ account.misus }">
                                         	
 	                                            <tr>
-	                                                <td>${ reno }</td>
-	                                                <td>${ acstore }</td>
-	                                                <td>${ recarat }</td>
-	                                                <td>${ remoney }</td>
-	                                                <td>${ retrdate }</td>
-	                                                <td>${ repaydate }</td>
+	                                            	<td></td>
+	                                                <td>${ receivables.acno }</td>
+	                                                <td>${ receivables.recarat }</td>
+	                                                <td>${ receivables.remoney }</td>
+	                                                <td><fmt:formatDate value="${ receivables.repaydate}" 
+		                											pattern="yyyy년 MM월 dd일" /></td>
+		                							<td><fmt:formatDate value="${ receivables.retrdate}" 
+		                											pattern="yyyy년 MM월 dd일" /></td>
 	                                            </tr>
-                                            
+                                            	</c:forEach>
                                             </c:forEach>
                                             
                                             
-                                            <tr>
-                                                <td></td>
-                                                <td>2</td>
-                                                <td>In Of Stock</td>
-												<td>$5</td>
-												<td>Jul 14, 2017</td>
-                                                <td>Active</td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td>3</td>
-                                                <td>Product Title</td>
-												<td>$5</td>
-												<td>Jul 14, 2017</td>
-												<td>$700</td>
-                                            </tr>
-                                           
                                            
                                            
                                            
@@ -160,7 +158,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --%>
         <!-- Static Table End -->
         <jsp:include page="/WEB-INF/views/include/footer.jsp"/>
     </div>

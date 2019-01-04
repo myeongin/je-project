@@ -16,13 +16,13 @@ public class misuDaoOracle implements misuDao {
 	
 	
 	@Override
-	public List<receivables> selectMisuByPage(int first, int last) {
+	public List<account> selectMisuByPage(int first, int last) {
 		
 		HashMap<String, Object> parmas = new HashMap<>();
 		parmas.put("first", first);
 		parmas.put("last", last);
 		
-		List<receivables> misus = misumapper.selectAllMisuByPage(parmas);
+		List<account> misus = misumapper.selectAllMisuByPage(parmas);
 		
 		return misus;
 	}
@@ -59,11 +59,37 @@ public class misuDaoOracle implements misuDao {
 
 
 	@Override
-	public List<account> selectAccountList(int reno) {
+	public List<account> selectAccountList() {
 		
-		List<account> accounts = misumapper.selectAccountList(reno);
+		List<account> accounts= misumapper.selectAccountList();
 		return accounts;
 	}
+
+
+	@Override
+	public account selectAccountStoreName(int accountNo) {
+		
+		account accounts = misumapper.selectAccountStoreName(accountNo);
+		
+		return accounts;
+	}
+
+
+	@Override
+	public account selectStoreName(int storeNo) {
+		account accounts = misumapper.selectStoreName(storeNo);
+		return accounts;
+	}
+
+
+	@Override
+	public List<receivables> selectAllMisu(int acno) {
+
+		List<receivables> misus = misumapper.selectAllMisu(acno);
+		return misus;
+	}
+
+
 
 
 	

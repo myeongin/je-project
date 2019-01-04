@@ -43,13 +43,10 @@
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 	<script type="text/javascript">
-	$(function(event) {
-		$("#uppay").on('click',)
-		
-		
-		
-	});
+	
 	</script>
+	
+	
 </head>
 
 <body>
@@ -83,7 +80,22 @@
                                     <div id="toolbar">
                                     </div>
                                     
+                                    <!-- -------------------------------------------------------- -->
                                     
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+
+
+                                    
+                                    
+                                    
+                                    
+                                    <!-- -------------------------------------------------------- -->
                                     
                                     <!-- 미수 list -->
                                     

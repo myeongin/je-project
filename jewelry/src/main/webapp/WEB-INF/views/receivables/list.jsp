@@ -40,6 +40,14 @@
     <link rel="stylesheet" href="/jewelry/resources/style.css">
     <link rel="stylesheet" href="/jewelry/resources/css/responsive.css">
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    <style>
+    
+    .ing{
+    	margin: 5px;
+		border: 0px solid #ccc;
+		text-align: center;
+    }
+    </style>
 </head>
 
 <body>
@@ -62,7 +70,11 @@
        <jsp:include page="/WEB-INF/views/include/header.jsp" />
        
         <!-- Static Table Start -->
-        <div class="data-table-area mg-tb-15">
+       <div class="ing">
+       	<img src="http://송우교회.com/ONMAM_FILE/61306/T/2016/11/22e35914f8b78debd029bc0be5c722c0.jpg" width="750" height="750">
+       </div>
+       
+       <%--  <div class="data-table-area mg-tb-15">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -146,7 +158,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --%>
         <!-- Static Table End -->
         <jsp:include page="/WEB-INF/views/include/footer.jsp"/>
     </div>

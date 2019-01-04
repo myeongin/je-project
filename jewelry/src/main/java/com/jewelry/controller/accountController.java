@@ -78,7 +78,7 @@ public class accountController {
 	
 	@RequestMapping(value = "/write.action", method = RequestMethod.POST)
 	public String accountWrite(account account) {
-		
+
 		accountservice.accountWrite(account);
 		
 		return "redirect:/account/list.action";

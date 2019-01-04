@@ -43,6 +43,7 @@
     
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 	<script type="text/javascript">
+	
 	$(function(event) {
 			
 		
@@ -87,12 +88,12 @@
                                 <div class="form-control">${ accounts.acstore }</div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label">금 중량  ( 단위 : g )</label>
-                                <input type="text" class="form-control" name="recarat" placeholder="0">
+                                <label class="control-label">금 중량  ( 단위 : 1돈 = (3.75) )</label>
+                                <input type="text" class="form-control" name="recarat" value="0">
                             </div>
                             <div class="form-group">
                                 <label class="control-label">현금</label>
-                                <input type="number" class="form-control" name="remoney" placeholder="0">
+                                <input type="number" class="form-control" name="remoney" value="0">
                             </div>
                             <div class="form-group">
                                 <label class="control-label">결제일</label>
@@ -100,10 +101,11 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">최근 거래일</label>
-                                <input type="date" class="form-control" name="retrdate">
+                                <input type="date" class="form-control" name="retrdate" value="">
                             </div>
                             
-                            <!-- <input type="hedden"  name="retrdate" value=""> -->
+                            <!-- <input type="hedden"  name="retrdate" value="${  }"> -->
+                            
                             <input type="hidden" name="acno" value="${ accounts.acno }">
                             <input type="hidden" name="storeno" value="${ accounts.storeno }">
                             <button class="btn btn-success btn-block loginbtn" id="submit">결제</button>

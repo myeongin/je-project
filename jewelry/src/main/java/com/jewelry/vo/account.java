@@ -10,6 +10,8 @@ public class account {
 	@NotEmpty
 	private String acstore;
 	private String acadd;
+	private String acadd2;
+	private String acadd3;
 	private String achonumber;
 	private String acname;
 	private String acphone;
@@ -35,12 +37,6 @@ public class account {
 	}
 	public void setAcstore(String acstore) {
 		this.acstore = acstore;
-	}
-	public String getAcadd() {
-		return acadd;
-	}
-	public void setAcadd(String acadd) {
-		this.acadd = acadd;
 	}
 	public String getAchonumber() {
 		return achonumber;
@@ -101,6 +97,24 @@ public class account {
 	}
 	public void setStoreno(int storeno) {
 		this.storeno = storeno;
+	}
+	public String getAcadd() {
+		return acadd;
+	}
+	public void setAcadd(String acadd) {
+		this.acadd = acadd;
+	}
+	public String getAcadd2() {
+		return acadd2;
+	}
+	public void setAcadd2(String acadd2) {
+		this.acadd2 = acadd2;
+	}
+	public String getAcadd3() {
+		return acadd3;
+	}
+	public void setAcadd3(String acadd3) {
+		this.acadd3 = acadd3;
 	}
 	
 

@@ -40,7 +40,9 @@
 		acmaname,
 		acmaphone,
 		acheherry,
-		acdel
+		storeno,
+		acadd2,
+		acadd3
 	</sql>
 
 	<select id="selectAccountCount" parameterType="String" resultType="int">
@@ -59,11 +61,7 @@
 			   FROM 
 			   ( 
 			   		SELECT 
-			   		acno, acstore, 
-			   		acadd, achonumber, 
-			   		acname, acphone, 
-			   		acmaname, acmaphone, 
-			   		acheherry, acdel, storeno
+			   		*
 				FROM 
 					account 
 				WHERE 
@@ -77,8 +75,7 @@
 	<insert id="insertAccount" parameterType="account">
 		INSERT INTO account
 		(
-			<include refid="account_columns" />
-			, storeno
+			<include refid="account_columns"></include>
 		)
 		VALUES
 		(
@@ -91,8 +88,9 @@
 			#{ acmaname },
 			#{ acmaphone },
 			#{ acheherry },
-			0,
-			#{ storeno }
+			#{ storeno },
+			#{ acadd2 },
+			#{ acadd3 }
 		) 
 	</insert>
 	
@@ -107,7 +105,9 @@
 			acphone = #{ acphone },
 			acmaname = #{ acmaname },
 			acmaphone = #{ acmaphone },
-			acheherry = #{ acheherry }
+			acheherry = #{ acheherry },
+			acadd2 = #{ acadd2 },
+			acadd3 = #{ acadd3 }
 		WHERE 
 			acno = #{ acno }
 	</update>

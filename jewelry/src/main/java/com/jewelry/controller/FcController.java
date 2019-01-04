@@ -18,7 +18,7 @@ import com.jewelry.service.FcService;
 import com.jewelry.vo.FcVo;
 
 @Controller
-@RequestMapping("/fc/")
+
 public class FcController {
 	
 	@Autowired
@@ -31,14 +31,14 @@ public class FcController {
 /************************************************************************/
 	
 	//회원가입
-	@RequestMapping(value="register.action",method=RequestMethod.GET)
+	@RequestMapping(value="/fc/register.action",method=RequestMethod.GET)
 	public String registerView() {
 		
 		return "fc/register";
 		
 	}
 	
-	@RequestMapping(value="register.action",method=RequestMethod.POST)
+	@RequestMapping(value="/fc/register.action",method=RequestMethod.POST)
 	public String register(@Valid FcVo accountVo,BindingResult br) {
 		
 		if(br.hasErrors()) {
@@ -54,20 +54,20 @@ public class FcController {
 /************************************************************************/
 	
 	//로그인
-	@RequestMapping(value="login.action",method=RequestMethod.GET)
+	@RequestMapping(value= {"/","/fc/login.action"},method=RequestMethod.GET)
 	public String loginView() {
 		
 		return "fc/login";
 		
 	}
 	
-	@RequestMapping(value="login.action",method=RequestMethod.POST)
+	@RequestMapping(value="/fc/login.action",method=RequestMethod.POST)
 	public String login(FcVo accountVo,HttpSession session) {
 		
 		FcVo accountVo2 = fcService.findAccountByIdAndPswd(accountVo);
 
 			if (accountVo2 != null) {
-				session.setAttribute("user", accountVo2);
+				session.setAttribute("user", accountVo2);				
 				return "redirect:/home.action";
 			} else {
 				return "fc/login";
@@ -75,7 +75,7 @@ public class FcController {
 		}
 	
 	//로그아웃
-	@RequestMapping(value="logout.action",method=RequestMethod.GET)
+	@RequestMapping(value="/fc/logout.action",method=RequestMethod.GET)
 	public String logout(HttpSession session) {
 		session.removeAttribute("user");
 		return "redirect:/fc/login.action";
@@ -85,7 +85,7 @@ public class FcController {
 	/************************************************************************/	
 	
 	//회원계정관리
-	@RequestMapping(value="regmanagement.action",method=RequestMethod.GET)
+	@RequestMapping(value="/fc/regmanagement.action",method=RequestMethod.GET)
 	public String regManagementView(HttpSession session,Model model) {
 		
 		List<FcVo> accounts = fcService.findAccountAll();
@@ -96,7 +96,7 @@ public class FcController {
 	}	
 	
 	//회원계정상태변경
-	@RequestMapping(value="regact.action",method=RequestMethod.POST)
+	@RequestMapping(value="/fc/regact.action",method=RequestMethod.POST)
 	public String regAct(FcVo accountVo) {
 		
 		fcService.updateAccountTypeByuserNo(accountVo);
@@ -107,7 +107,7 @@ public class FcController {
 	/************************************************************************/
 	
 	//직원정보보기
-	@RequestMapping(value="empmanagement.action",method=RequestMethod.GET)
+	@RequestMapping(value="/fc/empmanagement.action",method=RequestMethod.GET)
 	public String empManagement(int userNo,Model model) {
 		
 		List<FcVo> employees = fcService.findEmployeeAll(userNo);
@@ -117,7 +117,7 @@ public class FcController {
 	}
 	
 	//직원등록
-	@RequestMapping(value="employee.action",method=RequestMethod.GET)
+	@RequestMapping(value="/fc/employee.action",method=RequestMethod.GET)
 	public String employeeView(HttpSession session) {
 			
 		FcVo accountVo = (FcVo)session.getAttribute("user");
@@ -130,7 +130,7 @@ public class FcController {
 			
 	}
 		
-	@RequestMapping(value="employee.action",method=RequestMethod.POST)
+	@RequestMapping(value="/fc/employee.action",method=RequestMethod.POST)
 	public String employee(@Valid FcVo fc,BindingResult br,Model model) {
 			
 		/*	if(br.hasErrors()) {
@@ -144,7 +144,7 @@ public class FcController {
 	}
 	
 	//직원리스트
-	@RequestMapping(value="employeelist.action",method=RequestMethod.GET)
+	@RequestMapping(value="/fc/employeelist.action",method=RequestMethod.GET)
 	public String employeelist(int userNo,Model model) {
 		
 		List<FcVo> employees = fcService.findEmployeeAll(userNo);
@@ -153,7 +153,7 @@ public class FcController {
 	}
 
 	//직원정보수정
-	@RequestMapping(value="empmanagement.action",method=RequestMethod.POST)
+	@RequestMapping(value="/fc/empmanagement.action",method=RequestMethod.POST)
 	@ResponseBody
 	public String empManagement(FcVo fc) {
 

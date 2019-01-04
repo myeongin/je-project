@@ -10,56 +10,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon
 		============================================ -->
-    <link rel="shortcut icon" type="image/x-icon" href="../resources/img/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/jewelry/resources/img/favicon.ico">
     <!-- Google Fonts
 		============================================ -->
     <link href="https://fonts.googleapis.com/css?family=Play:400,700" rel="stylesheet">
     <!-- Bootstrap CSS
 		============================================ -->
-    <link rel="stylesheet" href="../resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/jewelry/resources/css/bootstrap.min.css">
     <!-- Bootstrap CSS
 		============================================ -->
-    <link rel="stylesheet" href="../resources/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/jewelry/resources/css/font-awesome.min.css">
     <!-- owl.carousel CSS
 		============================================ -->
-    <link rel="stylesheet" href="../resources/css/owl.carousel.css">
-    <link rel="stylesheet" href="../resources/css/owl.theme.css">
-    <link rel="stylesheet" href="../resources/css/owl.transitions.css">
+    <link rel="stylesheet" href="/jewelry/resources/css/owl.carousel.css">
+    <link rel="stylesheet" href="/jewelry/resources/css/owl.theme.css">
+    <link rel="stylesheet" href="/jewelry/resources/css/owl.transitions.css">
     <!-- animate CSS
 		============================================ -->
-    <link rel="stylesheet" href="../resources/css/animate.css">
+    <link rel="stylesheet" href="/jewelry/resources/css/animate.css">
     <!-- normalize CSS
 		============================================ -->
-    <link rel="stylesheet" href="../resources/css/normalize.css">
+    <link rel="stylesheet" href="/jewelry/resources/css/normalize.css">
     <!-- main CSS
 		============================================ -->
-    <link rel="stylesheet" href="../resources/css/main.css">
+    <link rel="stylesheet" href="/jewelry/resources/css/main.css">
     <!-- morrisjs CSS
 		============================================ -->
-    <link rel="stylesheet" href="../resources/css/morrisjs/morris.css">
+    <link rel="stylesheet" href="/jewelry/resources/css/morrisjs/morris.css">
     <!-- mCustomScrollbar CSS
 		============================================ -->
-    <link rel="stylesheet" href="../resources/css/scrollbar/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="/jewelry/resources/css/scrollbar/jquery.mCustomScrollbar.min.css">
     <!-- metisMenu CSS
 		============================================ -->
-    <link rel="stylesheet" href="../resources/css/metisMenu/metisMenu.min.css">
-    <link rel="stylesheet" href="../resources/css/metisMenu/metisMenu-vertical.css">
+    <link rel="stylesheet" href="/jewelry/resources/css/metisMenu/metisMenu.min.css">
+    <link rel="stylesheet" href="/jewelry/resources/css/metisMenu/metisMenu-vertical.css">
     <!-- calendar CSS
 		============================================ -->
-    <link rel="stylesheet" href="../resources/css/calendar/fullcalendar.min.css">
-    <link rel="stylesheet" href="../resources/css/calendar/fullcalendar.print.min.css">
+    <link rel="stylesheet" href="/jewelry/resources/css/calendar/fullcalendar.min.css">
+    <link rel="stylesheet" href="/jewelry/resources/css/calendar/fullcalendar.print.min.css">
     <!-- forms CSS
 		============================================ -->
-    <link rel="stylesheet" href="../resources/css/form/all-type-forms.css">
+    <link rel="stylesheet" href="/jewelry/resources/css/form/all-type-forms.css">
     <!-- style CSS
 		============================================ -->
-    <link rel="stylesheet" href="../resources/style.css">
+    <link rel="stylesheet" href="/jewelry/resources/style.css">
     <!-- responsive CSS
 		============================================ -->
-    <link rel="stylesheet" href="../resources/css/responsive.css">
+    <link rel="stylesheet" href="/jewelry/resources/css/responsive.css">
     <!-- modernizr JS
 		============================================ -->
-    <script src="../resources/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="/jewelry/resources/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
 <body>
@@ -118,48 +118,48 @@
 
     <!-- jquery
 		============================================ -->
-    <script src="../resources/js/vendor/jquery-1.11.3.min.js"></script>
+    <script src="/jewelry/resources/js/vendor/jquery-1.11.3.min.js"></script>
     <!-- bootstrap JS
 		============================================ -->
-    <script src="../resources/js/bootstrap.min.js"></script>
+    <script src="/jewelry/resources/js/bootstrap.min.js"></script>
     <!-- wow JS
 		============================================ -->
-    <script src="../resources/js/wow.min.js"></script>
+    <script src="/jewelry/resources/js/wow.min.js"></script>
     <!-- price-slider JS
 		============================================ -->
-    <script src="../resources/js/jquery-price-slider.js"></script>
+    <script src="/jewelry/resources/js/jquery-price-slider.js"></script>
     <!-- meanmenu JS
 		============================================ -->
-    <script src="../resources/js/jquery.meanmenu.js"></script>
+    <script src="/jewelry/resources/js/jquery.meanmenu.js"></script>
     <!-- owl.carousel JS
 		============================================ -->
-    <script src="../resources/js/owl.carousel.min.js"></script>
+    <script src="/jewelry/resources/js/owl.carousel.min.js"></script>
     <!-- sticky JS
 		============================================ -->
-    <script src="../resources/js/jquery.sticky.js"></script>
+    <script src="/jewelry/resources/js/jquery.sticky.js"></script>
     <!-- scrollUp JS
 		============================================ -->
-    <script src="../resources/js/jquery.scrollUp.min.js"></script>
+    <script src="/jewelry/resources/js/jquery.scrollUp.min.js"></script>
     <!-- mCustomScrollbar JS
 		============================================ -->
-    <script src="../resources/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="../resources/js/scrollbar/mCustomScrollbar-active.js"></script>
+    <script src="/jewelry/resources/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="/jewelry/resources/js/scrollbar/mCustomScrollbar-active.js"></script>
     <!-- metisMenu JS
 		============================================ -->
-    <script src="../resources/js/metisMenu/metisMenu.min.js"></script>
-    <script src="../resources/js/metisMenu/metisMenu-active.js"></script>
+    <script src="/jewelry/resources/js/metisMenu/metisMenu.min.js"></script>
+    <script src="/jewelry/resources/js/metisMenu/metisMenu-active.js"></script>
     <!-- tab JS
 		============================================ -->
-    <script src="../resources/js/tab.js"></script>
+    <script src="/jewelry/resources/js/tab.js"></script>
     <!-- icheck JS
 		============================================ -->
-    <script src="../resources/js/icheck/icheck.min.js"></script>
-    <script src="../resources/js/icheck/icheck-active.js"></script>
+    <script src="/jewelry/resources/js/icheck/icheck.min.js"></script>
+    <script src="/jewelry/resources/js/icheck/icheck-active.js"></script>
     <!-- plugins JS
 		============================================ -->
-    <script src="../resources/js/plugins.js"></script>
+    <script src="/jewelry/resources/js/plugins.js"></script>
     <!-- main JS
 		============================================ -->
-    <script src="../resources/js/main.js"></script>
+    <script src="/jewelry/resources/js/main.js"></script>
 </body>
 </html>

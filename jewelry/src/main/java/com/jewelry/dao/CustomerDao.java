@@ -64,17 +64,17 @@ public class CustomerDao implements CustomerDaoInterface{
 	
 
 	@Override //등록된 고객 수
-	public int countMM() {
+	public int countMM(int userNo) {
 		
-		int countMM=customerMapper.selectCustomerCount();
+		int countMM=customerMapper.selectCustomerCount(userNo);
 		System.out.println(countMM);
 		
 		return countMM;
 	}
 
-	public int countWW() {
+	public int countWW(int userNo) {
 		
-		int countWW=customerMapper.selectCustomerCount2();
+		int countWW=customerMapper.selectCustomerCount2(userNo);
 		System.out.println(countWW);
 		return countWW;
 	}

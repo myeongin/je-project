@@ -17,8 +17,10 @@ public interface CustomerDaoInterface {
 
 	List<Customer> selectNewCustomer(String string);
 
-	int countMM();
-	int countWW();
+	int countMM(int userNo);
+	int countWW(int userNo);
+
+	
 
 /*	int countMM();*/
 	

@@ -57,14 +57,14 @@ public class CustomerService implements CustomerServiceInterface{
 	}
 
 
-	public int countMM() {
-		int countMM = customerDao.countMM();
+	public int countMM(int userNo) {
+		int countMM = customerDao.countMM(userNo);
 
 		return countMM;
 	}
 	
-	public int countWW() {
-		int countWW = customerDao.countWW();
+	public int countWW(int userNo) {
+		int countWW = customerDao.countWW(userNo);
 
 		return countWW;
 	}

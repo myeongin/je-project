@@ -138,7 +138,7 @@
                                         
 											<%-- <c:forEach var="customer" begin="0" end="3" step="1" items="${newcustomers}">   --%>                                      
                                             <%-- <c:forEach var="customer"  items="${customers}"> --%>
-                                            <c:forEach var="customer" begin="0" end="19" step="1" items="${customers}">  
+                                            <c:forEach var="customer" begin="0" end="15" step="1" items="${customers}">  
                                             <tr>
                                                 <td>${customer.cuNo}</td>
                                                 <td>${customer.cuName}</td>
@@ -153,15 +153,58 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                            <div class="charts-single-pro responsive-mg-b-30">
-                            <div class="alert-title">
-                                <h2>고객 성비 비교</h2>
-                                <p>샵에 등록한 고객의 남여 성비 비교</p>
+                    
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <!-- ----------------------------------------------------- -->
+<!--                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"> -->
+                        <div class="sparkline9-list mt-b-30">
+                            <div class="sparkline9-hd">
+                                <div class="main-sparkline9-hd">
+                                    <h1>Sparkle Table</h1>
+                                </div>
                             </div>
+                            <div class="sparkline9-graph">
+                                <div class="static-table-list">
+                                    <table class="table sparkle-table">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th></th>
+                                                <th>성별</th>
+                                                
+                                                <th>인원(명)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td><span id="sparkline1"></span>
+                                                </td>
+                                                <td>남성</td>
+                                                <td><i class="fa fa-level-up"></i> ${countMM} <span>명</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td><span id="sparkline2"></span>
+                                                </td>
+                                                <td>여성</td>
+                                                <td><i class="fa fa-level-down"></i> ${countWW} <span>명</span></td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                         </div>
+                   <!-- </div> -->
+                <!-- ----------------------------------------------------- -->
+                                            <div class="charts-single-pro responsive-mg-b-30">
+                                            
+
                             <div id="pie-chart">
                                 <canvas id="piechart"></canvas>
                             </div>
+                            
                       
                     
                     
@@ -220,8 +263,7 @@
                     </div>
                 </div>
                 
-                
-                
+
 
                     </div>
                     

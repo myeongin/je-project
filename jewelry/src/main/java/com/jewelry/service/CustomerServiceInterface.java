@@ -19,8 +19,8 @@ public interface CustomerServiceInterface {
 
 	void insertCustomer(Customer customer);
 
-	int countMM();
-	int countWW();
+	int countMM(int userNo);
+	int countWW(int userNo);
 
 
 	

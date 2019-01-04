@@ -103,16 +103,17 @@ public class CustomerController {
 		int pagersize = 5;
 		String linkUrl = "customer.action";
 		List<Customer> customers=customerService.takeList(from,to, userNo);
-		String birth00 = customers.get(0).getCuBirth();
 		
+		if(customers.size() != 0) {
+			int countMM = customerService.countMM(userNo);
+			int countWW = customerService.countWW(userNo);
+			model.addAttribute("countMM", countMM);
+			model.addAttribute("countWW", countWW);
+		};
 		
-		int countMM = customerService.countMM();
-		int countWW = customerService.countWW();
-		System.out.println(countMM);
-		System.out.println(countWW);
+
 		model.addAttribute("customers", customers);
-		model.addAttribute("countMM", countMM);
-		model.addAttribute("countWW", countWW);
+
 /*		model.addAttribute("newlist2", newcusotmer2);
 		model.addAttribute("newlist3", newcusotmer3);
 */

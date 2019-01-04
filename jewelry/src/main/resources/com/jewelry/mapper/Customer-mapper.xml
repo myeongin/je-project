@@ -60,11 +60,11 @@ SELECT MAL.*
 	
 
 <select id="selectCustomerCount"  resultType="int">
-		select count (decode(cuSex,'남자','1')) from customer 
+		select count (decode(cuSex,'남자','1')) from customer where STORENO = #{userNo}
 	</select> 
 	
 	<select id="selectCustomerCount2" resultType="int">
-		select count (decode(cuSex,'여자','1')) from customer 
+		select count (decode(cuSex,'여자','1')) from customer where STORENO = #{userNo}
 	</select> 
 </mapper>
 

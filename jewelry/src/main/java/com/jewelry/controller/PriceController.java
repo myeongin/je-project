@@ -38,10 +38,14 @@ public String listPrice(@RequestParam(value="pageno",required = false,defaultVal
 		String linkUrl = "price.action";
 		
 		List<PriceVo> prices=priceService.takePriceList(from,to,userNo);
-		int newprice=prices.get(0).getPrice();
+		if(prices.size() != 0) {
+			int newprice=prices.get(0).getPrice();
+			model.addAttribute("newprice",newprice);
+		};
+		
 		
 		model.addAttribute("prices", prices);
-		model.addAttribute("newprice",newprice);
+
 		model.addAttribute("userNo",userNo);
 		
 		return "price/price";
@@ -54,7 +58,7 @@ public String listPrice(@RequestParam(value="pageno",required = false,defaultVal
 		priceService.insertPrice(priceVo);
 		model.addAttribute("userNo",userNo);
 		
-		return "price/price";
+		return "redirect:/price/price.action";
 	}
 	
 	/*
@@ -76,7 +80,7 @@ public String listPrice(@RequestParam(value="pageno",required = false,defaultVal
 		priceService.deletePrice(priceNo);
 		model.addAttribute("userNo",userNo);
 		
-		return "price/price";
+		return "redirect:/price/price.action";
 	}
 	
 

@@ -21,13 +21,13 @@ public class CustomerService implements CustomerServiceInterface{
 	public void insertCustomer(Customer customer) {
 
 		customerDao.insertCustomer(customer);
-				
+		
 	}
 	
 	@Override
-	public List<Customer> takeList(int from,int to) {
+	public List<Customer> takeList(int from,int to, int userNo) {
 		
-		List<Customer> customers = customerDao.selectCustomer(from,to);
+		List<Customer> customers = customerDao.selectCustomer(from,to, userNo);
 
 
 		return customers;
@@ -42,9 +42,9 @@ public class CustomerService implements CustomerServiceInterface{
 	}
 
 	@Override
-	public void deleteCustomer(int customerNo) {
+	public void deleteCustomer(int cuNo) {
 		
-		customerDao.deleteCustomer(customerNo);
+		customerDao.deleteCustomer(cuNo);
 		
 	}
 
@@ -55,6 +55,20 @@ public class CustomerService implements CustomerServiceInterface{
 		List<Customer> newcustomers = customerDao.selectNewCustomer(string);
 		return null;
 	}
+
+
+	public int countMM(int userNo) {
+		int countMM = customerDao.countMM(userNo);
+
+		return countMM;
+	}
+	
+	public int countWW(int userNo) {
+		int countWW = customerDao.countWW(userNo);
+
+		return countWW;
+	}
+
 
 
 /*	public int findmoviecount() {

@@ -135,6 +135,22 @@
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
 	</bean>
 		
+		
+		<bean id="homeService"
+		class="com.jewelry.service.HomeService">
+		<property name="homeDao" ref="homeDao" />
+	</bean>
+
+	<bean id="homeDao" class="com.jewelry.dao.HomeDao">
+		<property name="homeMapper" ref="homeMapper" />
+	</bean>
+
+	<bean id="homeMapper"
+		class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface"
+			value="com.jewelry.mapper.HomeMapper" />
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	</bean>
 </beans>
 
 

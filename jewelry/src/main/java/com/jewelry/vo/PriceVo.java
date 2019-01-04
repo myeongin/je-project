@@ -8,6 +8,8 @@ public class PriceVo {
 	private String priceGold;
 	private int price;
 	private int userNo;
+	private Boolean deleted;
+	
 	
 	public int getPriceNo() {
 		return priceNo;
@@ -38,6 +40,12 @@ public class PriceVo {
 	}
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
+	}
+	public Boolean getDeleted() {
+		return deleted;
+	}
+	public void setDeleted(Boolean deleted) {
+		this.deleted = deleted;
 	}
 	
 	

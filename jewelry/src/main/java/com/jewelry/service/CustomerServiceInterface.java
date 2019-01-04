@@ -9,16 +9,18 @@ public interface CustomerServiceInterface {
 
 	
 
-	List<Customer> takeList(int from, int to);
+	List<Customer> takeList(int from, int to, int userNo);
 	List<Customer> takeNewCustomers(String string);
 
 
-	void deleteCustomer(int customerNo);
+	void deleteCustomer(int cuNo);
 
 	void updateCustomer(Customer customer);
 
 	void insertCustomer(Customer customer);
 
+	int countMM(int userNo);
+	int countWW(int userNo);
 
 
 	

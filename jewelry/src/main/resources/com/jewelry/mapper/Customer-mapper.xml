@@ -5,23 +5,23 @@
 	
 <mapper namespace="com.jewelry.mapper.CustomerMapper">
 	
-	<insert id="insertCustomer" parameterType="com.jewelry.vo.Customer" useGeneratedKeys="true" keyColumn="cuNo" keyProperty="cuNo">
-		INSERT INTO CUSTOMER (CUNO,CUNAME,CUPHONE,CUEMAIL,CUSEX,CUBIRTH)
-		VALUES (CUSTOMER_SEQUENCE.NEXTVAL,#{cuName},#{cuPhone},#{cuEmail},#{cuSex},#{cuAge})
+	<insert id="insertCustomer" parameterType="customer" useGeneratedKeys="true" keyColumn="cuNo" keyProperty="cuNo">
+		INSERT INTO CUSTOMER (CUNO,CUNAME,CUPHONE,CUEMAIL,CUSEX,CUBIRTH,STORENO)
+		VALUES (CUSTOMER_SEQUENCE.NEXTVAL,#{cuName},#{cuPhone},#{cuEmail},#{cuSex},#{cuBirth},#{userNo})
 	</insert>
 
-		<select id="selectCustomers" parameterType="hashmap" resultType="com.jewelry.vo.Customer">
-		SELECT * FROM (SELECT rowNUM NUM , M.* FROM(SELECT * FROM CUSTOMER WHERE DELETED <![CDATA[!=]]> #{del} ORDER BY CUNO DESC)M)WHERE NUM <![CDATA[>=]]> #{from} AND NUM <![CDATA[<]]> #{to}
+		<select id="selectCustomers" parameterType="hashmap" resultType="customer">
+		SELECT * FROM (SELECT rowNUM NUM , M.* FROM(SELECT * FROM CUSTOMER WHERE DELETED <![CDATA[!=]]> #{del} AND STORENO = #{userNo} ORDER BY CUNO DESC)M)WHERE NUM <![CDATA[>=]]> #{from} AND NUM <![CDATA[<]]> #{to}
 	</select>
-	<update id="updateCustomer" parameterType="com.jewelry.vo.Customer">
-		UPDATE CUSTOMER SET CUNAME = #{cuName},CUPHONE = #{cuPhone},CUMAIL = #{cuEmail},CUSEX = #{cuSex},CUAGE = #{cuAge} WHERE CUNO = #{cuNo}
+	<update id="updateCustomer" parameterType="customer">
+		UPDATE CUSTOMER SET CUNAME = #{cuName},CUPHONE = #{cuPhone},CUEMAIL = #{cuEmail},CUSEX = #{cuSex},CUBIRTH = #{cuBirth} WHERE CUNO = #{cuNo}
 	</update>
 	
 	<update id="deleteCustomer" parameterType="hashmap">
 		UPDATE CUSTOMER SET DELETED = #{deleted} WHERE CUNO =#{cuNo}
 	</update>
 	
-	<select id="selectNewCustomer" parameterType="String" resultType="com.jewelry.vo.Customer">
+	<select id="selectNewCustomer" parameterType="String" resultType="customer">
 SELECT MAL.*
 	FROM 
 	(
@@ -58,10 +58,14 @@ SELECT MAL.*
     where mal.mn=#{mn}
 </select>
 	
-	<!--
-	<select id="selectmoviecount" parameterType="string" resultType="int">
-		SELECT COUNT(*) FROM CUSTOMER WHERE DELETED != #{delete}
-	</select> -->
+
+<select id="selectCustomerCount"  resultType="int">
+		select count (decode(cuSex,'남자','1')) from customer where STORENO = #{userNo}
+	</select> 
+	
+	<select id="selectCustomerCount2" resultType="int">
+		select count (decode(cuSex,'여자','1')) from customer where STORENO = #{userNo}
+	</select> 
 </mapper>
 
 

@@ -141,6 +141,7 @@
 		============================================ -->
     <script src="/jewelry/resources/js/jquery.scrollUp.min.js"></script>
     <!-- mCustomScrollbar JS
+<<<<<<< HEAD
 		============================================ -->
     <script src="/jewelry/resources/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="/jewelry/resources/js/scrollbar/mCustomScrollbar-active.js"></script>

@@ -22,12 +22,13 @@ public class CustomerDao implements CustomerDaoInterface{
 	}
 
 	@Override //고객 목록 보기
-	public List<Customer> selectCustomer(int from,int to) {	
+	public List<Customer> selectCustomer(int from,int to, int userNo) {	
 		
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("from", from);
 		params.put("to",to);
 		params.put("del",'1');
+		params.put("userNo", userNo);
 		
 		List<Customer> customers=customerMapper.selectCustomers(params);
 		
@@ -43,11 +44,11 @@ public class CustomerDao implements CustomerDaoInterface{
 	}
 
 	@Override //고객 삭제
-	public void deleteCustomer(int customerNo) {
+	public void deleteCustomer(int cuNo) {
 		
 		HashMap<String, Object> params = new HashMap<>();
-		params.put("customerNo", customerNo);
-		params.put("delete","1");
+		params.put("cuNo", cuNo);
+		params.put("deleted","1");
 		
 		customerMapper.deleteCustomer(params);
 		
@@ -62,14 +63,21 @@ public class CustomerDao implements CustomerDaoInterface{
 	}
 	
 
-/*	@Override //등록된 고객 수
-	public int selectCustomerCount() {
+	@Override //등록된 고객 수
+	public int countMM(int userNo) {
 		
-		String delete="1";
-		int count=customerMapper.selectCustomerCount(delete);
-		return count;
+		int countMM=customerMapper.selectCustomerCount(userNo);
+		System.out.println(countMM);
 		
-	}*/
+		return countMM;
+	}
+
+	public int countWW(int userNo) {
+		
+		int countWW=customerMapper.selectCustomerCount2(userNo);
+		System.out.println(countWW);
+		return countWW;
+	}
 
 	
 }

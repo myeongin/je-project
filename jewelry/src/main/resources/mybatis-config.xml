@@ -17,6 +17,9 @@
 		<typeAlias type="com.jewelry.vo.salesViewVo" alias="SalesView"/>											
 		<typeAlias type="com.jewelry.vo.account" alias="account" />
 		<typeAlias type="com.jewelry.vo.receivables" alias="misu" />
+		<typeAlias type="com.jewelry.vo.Customer" alias="customer" />
+		<typeAlias type="com.jewelry.vo.PriceVo" alias="price" />
+		<typeAlias type="com.jewelry.vo.Home" alias="home" />
 	</typeAliases>
 
 	<environments default="development">
@@ -47,6 +50,7 @@
 		<mapper resource="com/jewelry/mapper/account-mapper.xml" />
 		<mapper resource="com/jewelry/mapper/misu-mapper.xml" />
 		<mapper resource="com/jewelry/mapper/Customer-mapper.xml" />
+		<mapper resource="com/jewelry/mapper/Home-mapper.xml" />
 	</mappers>
 	
 </configuration>

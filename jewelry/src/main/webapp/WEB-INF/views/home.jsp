@@ -88,13 +88,13 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <div class="admin-content analysis-progrebar-ctn res-mg-t-30">
-                                <h4 class="text-left text-uppercase"><b>Orders1</b></h4>
+                                <h4 class="text-left text-uppercase"><b>당일 매출</b></h4>
                                 <div class="row vertical-center-box vertical-center-box-tablet">
                                     <div class="col-xs-3 mar-bot-15 text-left">
                                         <label class="label bg-green">30% <i class="fa fa-level-up" aria-hidden="true"></i></label>
                                     </div>
                                     <div class="col-xs-9 cus-gh-hd-pro">
-                                        <h2 class="text-right no-margin">10,000</h2>
+                                        <h2 class="text-right no-margin">100000<spna>원</spna></h2>
                                     </div>
                                 </div>
                                 <div class="progress progress-mini">
@@ -104,13 +104,13 @@
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <div class="admin-content analysis-progrebar-ctn res-mg-t-30">
-                                <h4 class="text-left text-uppercase"><b>Orders1</b></h4>
+                                <h4 class="text-left text-uppercase"><b>주간 매출</b></h4>
                                 <div class="row vertical-center-box vertical-center-box-tablet">
                                     <div class="text-left col-xs-3 mar-bot-15">
                                         <label class="label bg-red">15% <i class="fa fa-level-down" aria-hidden="true"></i></label>
                                     </div>
                                     <div class="col-xs-9 cus-gh-hd-pro">
-                                        <h2 class="text-right no-margin">5,000</h2>
+                                        <h2 class="text-right no-margin">5600000<spna>원</spna></h2>
                                     </div>
                                 </div>
                                 <div class="progress progress-mini">
@@ -120,13 +120,13 @@
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <div class="admin-content analysis-progrebar-ctn res-mg-t-30">
-                                <h4 class="text-left text-uppercase"><b>Orders2</b></h4>
+                                <h4 class="text-left text-uppercase"><b>월간 매출</b></h4>
                                 <div class="row vertical-center-box vertical-center-box-tablet">
                                     <div class="text-left col-xs-3 mar-bot-15">
                                         <label class="label bg-blue">50% <i class="fa fa-level-up" aria-hidden="true"></i></label>
                                     </div>
                                     <div class="col-xs-9 cus-gh-hd-pro">
-                                        <h2 class="text-right no-margin">$70,000</h2>
+                                        <h2 class="text-right no-margin">17600000<spna>원</spna></h2>
                                     </div>
                                 </div>
                                 <div class="progress progress-mini">
@@ -180,13 +180,13 @@
                             </div>
                             <ul class="list-inline cus-product-sl-rp">
                                 <li>
-                                    <h5><i class="fa fa-circle" style="color: #24caa1;"></i>Bags</h5>
+                                    <h5><i class="fa fa-circle" style="color: #24caa1;"></i>반지</h5>
                                 </li>
                                 <li>
-                                    <h5><i class="fa fa-circle" style="color: #00b5c2;"></i>Shoes</h5>
+                                    <h5><i class="fa fa-circle" style="color: #00b5c2;"></i>목걸이</h5>
                                 </li>
                                 <li>
-                                    <h5><i class="fa fa-circle" style="color: #ff7f5a;"></i>Jewelery</h5>
+                                    <h5><i class="fa fa-circle" style="color: #ff7f5a;"></i>귀걸이</h5>
                                 </li>
                             </ul>
                             <div id="morris-area-chart" style="height: 356px;"></div>
@@ -199,7 +199,38 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="white-box tranffic-als-inner">
+                    
+                    
+                    <div class="white-box tranffic-als-inner">
+                    			<div class="content-error">
+                    			<h1>현재 금 시세</h1>
+									<br><h1> <span class="counter">${newprice}</span>원</h1>
+								</div>
+								</div>
+							
+
+<%-- 
+<c:choose>
+
+    <c:when test="${newprice not empty}">
+        <br><h1> <span class="counter">${newprice}</span>원</h1>
+    </c:when>
+
+    <c:when test="${newprice empty}">
+        <br><h1> <span class="counter">0</span>원</h1>
+    </c:when>
+        <c:otherwise>
+        <h1>오류</h1>
+    </c:otherwise>
+
+
+    </c:choose>
+ --%>
+
+
+
+                    
+<!--                         <div class="white-box tranffic-als-inner">
                             <h3 class="box-title"><small class="pull-right m-t-10 text-success"><i class="fa fa-sort-asc"></i> 18% last month</small> Site Traffic</h3>
                             <div class="stats-row">
                                 <div class="stat-item">
@@ -213,11 +244,11 @@
                                     <b>5.50%</b></div>
                             </div>
                             <div id="sparkline8"></div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                         <div class="white-box tranffic-als-inner res-mg-t-30">
-                            <h3 class="box-title"><small class="pull-right m-t-10 text-danger"><i class="fa fa-sort-desc"></i> 18% last month</small>Site Traffic</h3>
+                            <h3 class="box-title"><small class="pull-right m-t-10 text-danger"><i class="fa fa-sort-desc"></i> 최근 14건</small>최근 금 시세</h3>
                             <div class="stats-row">
                                 <div class="stat-item">
                                     <h6>Overall Growth</h6>
@@ -252,37 +283,33 @@
                 </div>
             </div>
         </div>
-        <div class="product-new-list-area">
-            <div class="container-fluid">
+
+
+       
+      
+									  
+							
+
+                 			 
+							   
+							   
+			
+        <div class="product-new-list-area">   
+				 <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                         <div class="single-new-trend mg-t-30">
                             <a href="#"><img src="img/new-product/5.jpg" alt=""></a>
                             <div class="overlay-content">
                                 <a href="#">
-                                    <h2>$280</h2>
+                                    <h2>73000원</h2>
                                 </a>
-                                <a href="#" class="btn-small">Now</a>
-                                <div class="product-action">
-                                    <ul>
-                                        <li>
-                                            <a data-toggle="tooltip" title="Shopping" href="#"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
-                                        </li>
-                                        <li>
-                                            <a data-toggle="tooltip" title="Quick view" href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                <a href="#" class="btn-small">선택</a>
+                               
                                 <a href="#">
                                     <h4>Princes Diamond</h4>
                                 </a>
-                                <div class="pro-rating">
-                                    <i class="fa fa-star color"></i>
-                                    <i class="fa fa-star color"></i>
-                                    <i class="fa fa-star color"></i>
-                                    <i class="fa fa-star color"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
+                           
                             </div>
                         </div>
                     </div>
@@ -380,10 +407,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="product-sales-area mg-tb-30">
-            <div class="container-fluid">
+            </div> 
+        </div> 
+       <div class="product-sales-area mg-tb-30">
+     <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="product-sales-chart">
@@ -424,88 +451,111 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div> -->
+        </div> 
         <div class="author-area-pro">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                         <div class="personal-info-wrap">
-                            <div class="widget-head-info-box">
-                                <div class="persoanl-widget-hd">
-                                    <h2>Jon Royita</h2>
-                                    <p>Founder of Uttara It Park</p>
-                                </div>
-                                <img src="img/notification/5.jpg" class="img-circle circle-border m-b-md" alt="profile">
-                                <div class="social-widget-result">
-                                    <span>100 Tweets</span> |
-                                    <span>350 Following</span> |
-                                    <span>610 Followers</span>
-                                </div>
-                            </div>
-                            <div class="widget-text-box">
-                                <h4>Jhon Royita</h4>
-                                <p>To all the athaists attacking me right now, I can't make you believe in God, you have to have faith.</p>
-                                <div class="text-right like-love-list">
-                                    <a class="btn btn-xs btn-white"><i class="fa fa-thumbs-up"></i> Like </a>
-                                    <a class="btn btn-xs btn-primary"><i class="fa fa-heart"></i> Love</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="author-widgets-single res-mg-t-30">
-                            <div class="author-wiget-inner">
-                                <div class="perso-img">
-                                    <img src="img/notification/6.jpg" class="img-circle circle-border m-b-md" alt="profile">
-                                </div>
+						
+						<!-- 1번째 포스트잇 시작-->
+ 							<div class="author-wiget-inner">
                                 <div class="persoanl-widget-hd persoanl1-widget-hd">
-                                    <h2>Fire Foxy</h2>
-                                    <p>Founder of Uttara It House</p>
+                                    <h2>최신 가입 고객</h2>
                                 </div>
-                                <div class="social-widget-result social-widget1-result">
-                                    <span>100 Tweets</span> |
-                                    <span>350 Following</span> |
-                                    <span>610 Followers</span>
                                 </div>
-                            </div>
-                            <div class="widget-text-box">
-                                <h4>Fire Foxy</h4>
-                                <p>To all the athaists attacking me right now, I can't make you believe in God, you have to have faith.</p>
-                                <div class="text-right like-love-list">
-                                    <a class="btn btn-xs btn-white"><i class="fa fa-thumbs-up"></i> Like </a>
-                                    <a class="btn btn-xs btn-primary"><i class="fa fa-heart"></i> Love</a>
-                                </div>
-                            </div>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>고객번호</th>
+                                                <th>고객이름</th>
+                                                <th>고객 연락처</th>
+                                                <th>고객 성별</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                      		<c:forEach var="customer" begin="0" end="5" step="1" items="${customers}">  
+                                            	<tr>
+                                                	<td>${customer.cuNo}</td>
+                                                	<td>${customer.cuName}</td>
+                                                	<td>${customer.cuPhone}</td>
+                                                	<td>${customer.cuSex}</td>
+                                           		</tr>
+                                            	</c:forEach>
+                                            </tbody>
+                                    	</table>
+                              </div>
+                    </div>
+								<!-- 1번째 포스트잇 끝  -->
+
+                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="author-widgets-single res-mg-t-30">
+
+                                 <div class="author-wiget-inner">
+                                <div class="persoanl-widget-hd persoanl1-widget-hd">
+                                    <h2>최근 등록 제품</h2>
+                                </div></div>
+                   
+                                   <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>제품번호</th>
+                                                <th>제품명</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+						<c:forEach var="product" begin="0" end="5" step="1" items="${products}">
+						  		<tr><td><strong>${product.productNo}</strong></td>
+						  				<td>${product.productName}</td></tr>
+						  				
+						</c:forEach>
+						</tbody>
+						</table>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="personal-info-wrap personal-info-ano res-mg-t-30">
-                            <div class="widget-head-info-box">
-                                <div class="persoanl-widget-hd">
-                                    <h2>Jon Royita</h2>
-                                    <p>Founder of Uttara It Park</p>
-                                </div>
-                                <img src="img/contact/2.jpg" class="img-circle circle-border m-b-md" alt="profile">
-                                <div class="social-widget-result">
-                                    <span>100 Tweets</span> |
-                                    <span>350 Following</span> |
-                                    <span>610 Followers</span>
-                                </div>
-                            </div>
-                            <div class="widget-text-box">
-                                <h4>Jhon Royita</h4>
-                                <p>To all the athaists attacking me right now, I can't make you believe in God, you have to have faith.</p>
-                                <div class="text-right like-love-list">
-                                    <a class="btn btn-xs btn-white"><i class="fa fa-thumbs-up"></i> Like </a>
-                                    <a class="btn btn-xs btn-primary"><i class="fa fa-heart"></i> Love</a>
-                                </div>
-                            </div>
+
+						<!-- 2번째 포스트잇 끝  -->
+
+
+								<!-- 3번째 포스트잇 끝  -->
+
+                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="author-widgets-single res-mg-t-30">
+
+                                 <div class="author-wiget-inner">
+                                <div class="persoanl-widget-hd persoanl1-widget-hd">
+                                    <h2>최근 등록 거래처</h2>
+                                </div></div>
+                   
+                                   <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>거래처 번호</th>
+                                                <th>업체명</th>
+                                                <th>연락처</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+						<c:forEach var="acList" begin="0" end="5" step="1" items="${acList}">
+						  		<tr><td><strong>${acList.acNo}</strong></td>
+						  				<td>${acList.acName}</td>
+						  				<td>${acList.acPhone}</td>
+						  				</tr>
+						  				
+						</c:forEach>
+						</tbody>
+						</table>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
+
+						<!-- 3번째 포스트잇 끝  -->
+                    </div>
+                    </div>
+                    </div>
+
         <div class="calender-area mg-tb-30">
             <div class="container-fluid">
                 <div class="row">
@@ -572,6 +622,13 @@
     <!-- main JS
 		============================================ -->
     <script src="resources/js/main.js"></script>
+    
+    	    <!-- 숫자 ACTION
+		============================================ -->
+	<script src="/jewelry/resources/js/counterup/jquery.counterup.min.js"></script>
+    <script src="/jewelry/resources/js/counterup/waypoints.min.js"></script>
+    <script src="/jewelry/resources/js/counterup/counterup-active.js"></script>
+    
 </body>
 
 </html>

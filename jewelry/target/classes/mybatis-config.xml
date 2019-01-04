@@ -7,14 +7,18 @@
 
 	<typeAliases>
 		<typeAlias type="com.jewelry.vo.FcVo" alias="Fc"/>
-		<typeAlias type="com.jewelry.vo.EmployeeVo" alias="Employee"/>
 		<typeAlias type="com.jewelry.vo.PriceVo" alias="Price"/>
 		<typeAlias type="com.jewelry.vo.ProductVo" alias="Product"/>
 		<typeAlias type="com.jewelry.vo.ProductImgVo" alias="ProductImg"/>
 		<typeAlias type="com.jewelry.vo.DetailVo" alias="Detail"/>
 		<typeAlias type="com.jewelry.vo.OrderVo" alias="Order"/>
+		<typeAlias type="com.jewelry.vo.orderViewVo" alias="OrderViews"/>
+		<typeAlias type="com.jewelry.vo.SalesVo" alias="Sales"/>												
 		<typeAlias type="com.jewelry.vo.account" alias="account" />
 		<typeAlias type="com.jewelry.vo.receivables" alias="misu" />
+		<typeAlias type="com.jewelry.vo.Customer" alias="customer" />
+		<typeAlias type="com.jewelry.vo.PriceVo" alias="price" />
+		<typeAlias type="com.jewelry.vo.Home" alias="home" />
 	</typeAliases>
 
 	<environments default="development">
@@ -45,6 +49,7 @@
 		<mapper resource="com/jewelry/mapper/account-mapper.xml" />
 		<mapper resource="com/jewelry/mapper/misu-mapper.xml" />
 		<mapper resource="com/jewelry/mapper/Customer-mapper.xml" />
+		<mapper resource="com/jewelry/mapper/Home-mapper.xml" />
 	</mappers>
 	
 </configuration>

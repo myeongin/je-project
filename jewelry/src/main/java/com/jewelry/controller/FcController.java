@@ -64,13 +64,16 @@ public class FcController {
 		
 	}
 	
-	@RequestMapping(value="/fc/login.action",method=RequestMethod.POST)
-	public String login(FcVo accountVo,HttpSession session) {
+
+	@RequestMapping(value = "/fc/login.action",method=RequestMethod.POST)
+	public String login(FcVo accountVo,HttpSession session,Model model) {
 		
 		FcVo accountVo2 = fcService.findAccountByIdAndPswd(accountVo);
 
 			if (accountVo2 != null) {
 				session.setAttribute("user", accountVo2);				
+				model.addAttribute("storeNo",accountVo2.getStoreNo());
+
 				return "redirect:/home.action";
 			} else {
 				return "fc/login";
@@ -112,6 +115,7 @@ public class FcController {
 	//직원정보보기
 	@RequestMapping(value="/fc/empmanagement.action",method=RequestMethod.GET)
 	public String empManagement(int userNo,Model model,@RequestParam(value="pageNo",required = false,defaultValue ="1")int pageNo) {
+
 		
 		int pagesize=5;
 		int from=(pageNo-1)*pagesize +1;
@@ -161,6 +165,7 @@ public class FcController {
 	//직원리스트
 	@RequestMapping(value="/fc/employeelist.action",method=RequestMethod.GET)
 	public String employeelist(int userNo,Model model,int pageNo) {
+
 		
 		int pagesize=5;
 		int from=(pageNo-1)*pagesize +1;

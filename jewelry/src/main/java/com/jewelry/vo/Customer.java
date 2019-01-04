@@ -28,8 +28,10 @@ public class Customer {
 
 	private Date cuDate;
 	
-	private char deleted;
-
+	private Boolean deleted;
+	
+	private int userNo;
+	
 	public int getCuNo() {
 		return cuNo;
 	}
@@ -94,15 +96,22 @@ public class Customer {
 		this.cuDate = cuDate;
 	}
 
-	public char getDeleted() {
+	public Boolean getDeleted() {
 		return deleted;
 	}
 
-	public void setDeleted(char deleted) {
+	public void setDeleted(Boolean deleted) {
 		this.deleted = deleted;
 	}
-	
-	
+
+	public int getUserNo() {
+		return userNo;
+	}
+
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
+	}
+
 
 	
 	

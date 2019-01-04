@@ -2,7 +2,7 @@
  <div class="left-sidebar-pro">
         <nav id="sidebar" class="">
             <div class="sidebar-header">
-                <a href="index.html"><img class="main-logo" src="/jewelry/resources/img/logo/logo.png" alt="" /></a>
+                <a href="/jewelry/home.action"><img class="main-logo" src="/jewelry/resources/img/logo/logo.png" alt="" /></a>
                 <strong><img src="/jewelry/resources/img/logo/logosn.png" alt="" /></strong>
             </div>
             <div class="left-custom-menu-adp-wrap">

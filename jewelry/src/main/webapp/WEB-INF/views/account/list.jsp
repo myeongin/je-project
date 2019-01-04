@@ -86,7 +86,9 @@
 	        }).open();
 	    }
     
-    $("#myButtons1").click(function(){
+    
+    
+    $("#myButtons").click(function(){
 		$('#myModal').modal('hide')
 		
 		$('#myModal').modal({backdrop: 'static', keyboard: false}) ;
@@ -263,7 +265,11 @@
                                         </thead>
                                         
                                         <tbody>
+                                        
+                                        
 	                                        <c:forEach var="account" items="${ accounts }">
+	                                        
+	                                        <c:if test="${ account.storeno == user.storeNo }">
 		                                    	<tr>
 	 	                                            <td>${ account.acno }</td>
 		                                            <td>${ account.acstore }</td>
@@ -278,7 +284,10 @@
 		                                            <td><a href="/jewelry/account/rewrite.action?accountNo=${ account.acno }"><div class="buttonA">수정</div></a>
 		                                       		<a id="acdel" href="/jewelry/account/delete.action?accountNo=${ account.acno }"><div class="buttonA">삭제</div></a></td>
 		                                    	</tr>
+		                                    </c:if>
+		                                    
 	                                    	</c:forEach>
+	                                    
                                         </tbody>
                                     </table>
                                     <!-- end account list -->

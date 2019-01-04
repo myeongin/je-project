@@ -9,7 +9,7 @@ public interface CustomerServiceInterface {
 
 	
 
-	List<Customer> takeList(int from, int to);
+	List<Customer> takeList(int from, int to, int userNo);
 	List<Customer> takeNewCustomers(String string);
 
 
@@ -19,6 +19,8 @@ public interface CustomerServiceInterface {
 
 	void insertCustomer(Customer customer);
 
+	int countMM();
+	int countWW();
 
 
 	

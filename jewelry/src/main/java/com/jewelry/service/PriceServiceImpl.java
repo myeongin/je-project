@@ -13,9 +13,9 @@ public class PriceServiceImpl implements PriceService{
 	}
 	
 	@Override
-	public 	List<PriceVo> takePriceList(int from, int to) {
+	public 	List<PriceVo> takePriceList(int from, int to,int userNo) {
 
-		List<PriceVo> prices = priceDao.selectPrices(from,to);
+		List<PriceVo> prices = priceDao.selectPrices(from,to,userNo);
 		return prices;
 		
 	}

@@ -13,12 +13,13 @@ public class PriceDaoImpl implements PriceDao{
 		this.priceMapper = priceMapper;
 	}
 	
-	public List<PriceVo> selectPrices(int from,int to) {	
+	public List<PriceVo> selectPrices(int from,int to,int userNo) {	
 		
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("from", from);
 		params.put("to",to);
 		params.put("del",'1');
+		params.put("userNo", userNo);
 		
 		List<PriceVo> prices=priceMapper.selectPrices(params);
 		

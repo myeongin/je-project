@@ -27,7 +27,7 @@
                             <a href="/jewelry/product/sales.action?userNo=${user.storeNo}" aria-expanded="false"><i class="fa big-icon fa-table icon-wrap"></i> <span class="mini-click-non">판매</span></a>
                         </li>                 
                         <li id="removable">
-                            <a  href="/jewelry/customer/customer2.action?userNo=${user.userNo}" aria-expanded="false"><i class="fa big-icon fa-files-o icon-wrap"></i> <span class="mini-click-non">고객</span></a>
+                            <a  href="/jewelry/customer/customer2.action?userNo=${user.storeNo}" aria-expanded="false"><i class="fa big-icon fa-files-o icon-wrap"></i> <span class="mini-click-non">고객</span></a>
                         </li>
                         <li><a href="/jewelry/price/price.action?userNo=${user.storeNo}" aria-expanded="false"><i class="fa fa-bookmark icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">시세관리</span></a></li>
                     </ul>

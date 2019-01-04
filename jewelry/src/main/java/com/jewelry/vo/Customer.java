@@ -30,6 +30,8 @@ public class Customer {
 	
 	private Boolean deleted;
 	
+	private int userNo;
+	
 	public int getCuNo() {
 		return cuNo;
 	}
@@ -100,6 +102,14 @@ public class Customer {
 
 	public void setDeleted(Boolean deleted) {
 		this.deleted = deleted;
+	}
+
+	public int getUserNo() {
+		return userNo;
+	}
+
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
 	}
 
 

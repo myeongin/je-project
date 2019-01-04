@@ -174,6 +174,7 @@
                                     <label>고객 성별</label>
                                     <input class="form-control" name="cuSex">
                                 </div>
+                                <input type="hidden" name="userNo" value="${user.storeNo}">
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="register">Register</button>
@@ -299,6 +300,7 @@
                                     <label>고객 성별</label>
                                     <input class="form-control" name="cuSex">
                                 </div>
+                                <input type="hidden" name="userNo" value="${user.storeNo}">
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="update">수정</button>
@@ -313,7 +315,7 @@
                                                 
                                                 
                                                 <span> / </span>
-                                                <button type="button"><a href="/jewelry/customer/customerDelete.action?cuNo=${customer.cuNo}">삭제</a></button>
+                                                <button type="button"><a href="/jewelry/customer/customerDelete.action?cuNo=${customer.cuNo}&userNo=${user.storeNo}">삭제</a></button>
                                                 </td>
                                        </tr>
 									</c:forEach> 

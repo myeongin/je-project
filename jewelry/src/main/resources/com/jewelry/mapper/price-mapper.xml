@@ -11,7 +11,7 @@
 	</insert>
 	
 		<select id="selectPrices" parameterType="hashmap" resultType="price">
-		SELECT * FROM (SELECT rowNUM NUM , M.* FROM(SELECT * FROM PRICE WHERE DELETED <![CDATA[!=]]> #{del} ORDER BY PRICENO DESC)M)WHERE NUM <![CDATA[>=]]> #{from} AND NUM <![CDATA[<]]> #{to}
+		SELECT * FROM (SELECT rowNUM NUM , M.* FROM(SELECT * FROM PRICE WHERE DELETED <![CDATA[!=]]> #{del} AND STORENO = #{userNo} ORDER BY PRICENO DESC)M)WHERE NUM <![CDATA[>=]]> #{from} AND NUM <![CDATA[<]]> #{to}
 	</select>
 	
 	

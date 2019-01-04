@@ -22,12 +22,13 @@ public class CustomerDao implements CustomerDaoInterface{
 	}
 
 	@Override //고객 목록 보기
-	public List<Customer> selectCustomer(int from,int to) {	
+	public List<Customer> selectCustomer(int from,int to, int userNo) {	
 		
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("from", from);
 		params.put("to",to);
 		params.put("del",'1');
+		params.put("userNo", userNo);
 		
 		List<Customer> customers=customerMapper.selectCustomers(params);
 		
@@ -61,14 +62,22 @@ public class CustomerDao implements CustomerDaoInterface{
 		return newlist;
 	}
 	
-/*
+
 	@Override //등록된 고객 수
 	public int countMM() {
 		
 		int countMM=customerMapper.selectCustomerCount();
+		System.out.println(countMM);
+		
 		return countMM;
 	}
-*/
+
+	public int countWW() {
+		
+		int countWW=customerMapper.selectCustomerCount2();
+		System.out.println(countWW);
+		return countWW;
+	}
 
 	
 }

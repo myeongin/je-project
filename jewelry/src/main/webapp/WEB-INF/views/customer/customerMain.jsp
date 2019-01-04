@@ -68,8 +68,7 @@
       <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script type="text/javascript">
 
-    var M = ${CountMM};
-    var W = ${CountWW};
+
 
     $(function () { 
     	 "use strict";
@@ -81,17 +80,14 @@
     		var piechart = new Chart(ctx, {
     			type: 'pie',
     			data: {
-    				labels: ["Red", "Orange", "Yellow", "Green", "Blue"],
+    				labels: ["여성", "남성"],
     				datasets: [{
     					label: 'pie Chart',
     	                backgroundColor: [
     						'rgb(255, 99, 132)',
-    						'rgb(255, 159, 64)',
-    						'rgb(255, 205, 86)',
-    						'#03a9f4',
     						'#303030'
     					],
-    					data: [CountMM, CountWW]
+    					data: [${countWW},${countMM}]
     	            }]
     			},
     			options: {
@@ -122,7 +118,7 @@
                         <div class="sparkline8-list">
                             <div class="sparkline8-hd">
                                 <div class="main-sparkline8-hd">
-                                    <h1>최근 가입 고객    <button type="button" class="btn btn-success loginbtn"><a style="color: white;" href="/jewelry/customer/customer.action">자세히 보기 / 고객 등록하기</a></button></h1>
+                                    <h1>최근 가입 고객    <button type="button" class="btn btn-success loginbtn"><a style="color: white;" href="/jewelry/customer/customer.action?userNo=${user.storeNo}">자세히 보기 / 고객 등록하기</a></button></h1>
                                 </div>
                             </div>
                             <div class="sparkline8-graph">
@@ -142,7 +138,7 @@
                                         
 											<%-- <c:forEach var="customer" begin="0" end="3" step="1" items="${newcustomers}">   --%>                                      
                                             <%-- <c:forEach var="customer"  items="${customers}"> --%>
-                                            <c:forEach var="customer" begin="0" end="5" step="1" items="${customers}">  
+                                            <c:forEach var="customer" begin="0" end="19" step="1" items="${customers}">  
                                             <tr>
                                                 <td>${customer.cuNo}</td>
                                                 <td>${customer.cuName}</td>
@@ -158,7 +154,19 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                        <div class="sparkline9-list mt-b-30">
+                                            <div class="charts-single-pro responsive-mg-b-30">
+                            <div class="alert-title">
+                                <h2>고객 성비 비교</h2>
+                                <p>샵에 등록한 고객의 남여 성비 비교</p>
+                            </div>
+                            <div id="pie-chart">
+                                <canvas id="piechart"></canvas>
+                            </div>
+                      
+                    
+                    
+                    
+ <%--                        <div class="sparkline9-list mt-b-30">
                             <div class="sparkline9-hd">
                                 <div class="main-sparkline9-hd">
                                     <h1>생일이 가까운 고객</h1>
@@ -177,19 +185,23 @@
                                         </thead>
                                         <tbody>
                                         
-											<%-- <c:forEach var="customer" begin="0" end="3" step="1" items="${newcustomers}">   --%>                                      
-                                            <%-- <c:forEach var="customer"  items="${customers}"> --%>
+											<c:forEach var="customer" begin="0" end="3" step="1" items="${newcustomers}">                                        
+                                            <c:forEach var="customer"  items="${customers}">
                                               
                                            
                                                 <jsp:useBean id="now"  class="java.util.Date" />
-                                                <fmt:parseDate var="birth" value="${   customer.cuBirth  }"  pattern="yyyyMMdd"/>
+                                                <fmt:parseDate var="birth" value="${customer.cuBirth}"  pattern="yyyyMMdd"/>
+                                                <fmt:parseDate var="birth" value="${birth00}"  pattern="yyyyMMdd"/>
                                                 <c:set var="target_date" value="${ now.time }"  />
                                                 <c:set var="target_birth"  value="${ birth.time  }" />
-                                                <%-- <fmt:parseDate var="target_date2" value="${ target_date }"  pattern="yyyy"></fmt:parseDate> --%>
-                                                	<fmt:parseNumber var='target_date'   integerOnly="true" value="${   (target_date - target_birth) / (1000 * 60 * 60 * 24)   }"></fmt:parseNumber>
-                                <%--                 	<c:out value="${   target_date }" />
-                                                	<c:out value="${   (target_date - target_age) / (1000 * 60 * 60 * 24)  < 7   }" /> --%>
-                                                <c:if test="${(target_date - target_age) / (1000 * 60 * 60 * 24) le 7 }">
+                                                 <fmt:parseDate var="target_date" value="${ target_date }"  pattern="yyyy"></fmt:parseDate> 
+                                               <fmt:parseNumber var='target_date'   integerOnly="true" value="${   (target_date - target_birth) / (1000 * 60 * 60 * 24)   }"></fmt:parseNumber> 
+                                                	<c:out value="${   target_date }" />
+                                                	<c:out value="${   (target_date - target_age) / (1000 * 60 * 60 * 24)  < 7   }" />
+                                                <c:if test="${(target_date - target_birth) / (1000 * 60 * 60 * 24) le 7 }">
+                                                <c:out value="${(target_date + target_birth) / (1000 * 60 * 60 * 24)}"   />
+                                              
+                                                <c:if test="${(target_date - target_birth) / (1000 * 60 * 60 * 24) le 7} ">
                                             	<c:forEach var="customer" begin="0" end="5" step="1" items="${customers}">	
                                                  <tr>
                                                 <td>${customer.cuNo}</td>
@@ -204,118 +216,18 @@
                                     </table>
                                 </div>
                             </div>
-                        </div>
+                        </div> --%>
                     </div>
                 </div>
                 
                 
                 
-  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                        <div class="charts-single-pro responsive-mg-b-30">
-                            <div class="alert-title">
-                                <h2>Pie Chart</h2>
-                                <p>A bar chart provides a way of showing data values. It is sometimes used to show trend data. we create a bar chart for a single dataset and render that in our page.</p>
-                            </div>
-                            <div id="pie-chart">
-                                <canvas id="piechart"></canvas>
-                            </div>
-                        </div>
+
                     </div>
                     
                     
                     
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                        <div class="sparkline12-list mg-b-15">
-                            <div class="sparkline12-hd">
-                                <div class="main-sparkline12-hd">
-                                    <h1>Hover Table</h1>
-                                </div>
-                            </div>
-                            <div class="sparkline12-graph">
-                                <div class="static-table-list">
-                                    <table class="table hover-table">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>First Name</th>
-                                                <th>Last Name</th>
-                                                <th>Username</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Mamun</td>
-                                                <td>Roshid</td>
-                                                <td>@Facebook</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Suhag</td>
-                                                <td>Khan</td>
-                                                <td>@Twitter</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Sakil</td>
-                                                <td>Shak</td>
-                                                <td>@Linkedin</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                        <div class="sparkline13-list mg-b-15">
-                            <div class="sparkline13-hd">
-                                <div class="main-sparkline13-hd">
-                                    <h1>Line Table</h1>
-                                </div>
-                            </div>
-                            <div class="sparkline13-graph">
-                                <div class="static-table-list">
-                                    <table class="table sparkle-table">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Data</th>
-                                                <th>User</th>
-                                                <th>Value</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td><span data-diameter="40" class="updating-chart">2,5,9,6,5,9,7,3,5,2,5,3,9,6,5,8,7,8,5,2</span>
-                                                </td>
-                                                <td>Roshid</td>
-                                                <td><i class="fa fa-level-up"></i> 55%</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td><span class="line">8,5,2,-1,-3,-2,8,3,5,3</span>
-                                                </td>
-                                                <td>Khan</td>
-                                                <td><i class="fa fa-level-down"></i> 75%</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td><span class="bar">5,3,9,6,5,9,7,3,5,2</span>
-                                                </td>
-                                                <td>Shak</td>
-                                                <td><i class="fa fa-level-up"></i> 95%</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-            </div>
         </div>
         <!-- Static Table End -->
         <div class="footer-copyright-area">

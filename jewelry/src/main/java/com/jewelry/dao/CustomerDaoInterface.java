@@ -7,7 +7,7 @@ import com.jewelry.vo.Customer;
 public interface CustomerDaoInterface {
 
 
-	List<Customer> selectCustomer(int from, int to);
+	List<Customer> selectCustomer(int from, int to, int userNo);
 
 	void deleteCustomer(int cuNo);
 
@@ -16,6 +16,9 @@ public interface CustomerDaoInterface {
 	void insertCustomer(Customer customer);
 
 	List<Customer> selectNewCustomer(String string);
+
+	int countMM();
+	int countWW();
 
 /*	int countMM();*/
 	

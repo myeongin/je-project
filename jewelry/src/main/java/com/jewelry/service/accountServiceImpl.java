@@ -65,6 +65,14 @@ public class accountServiceImpl implements accountService {
 		return account;
 	
 	}
+
+	@Override
+	public account accountAll(int accountNo) {
+		
+		account accounts = accountdao.selectAccountAll(accountNo);
+		
+		return accounts;
+	}
 	
 
 }

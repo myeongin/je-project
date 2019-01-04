@@ -1,5 +1,4 @@
-<%@ page import="com.jewelry.vo.account" %>
-<%@ page import="com.jewelry.vo.receivables" %>
+
 <%@ page import="java.util.List" %>
 <%@ page language="java" 
 		 contentType="text/html; charset=utf-8"
@@ -42,89 +41,98 @@
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-	<script type="text/javascript">
-	
-	$(function(event) {
-			
-		
-		
-	});
-	
-	</script>
-	
-	
-	
-	
+    <script type="text/javascript">
+    $(function() {
+    	
+    });
+    
+    </script>
 </head>
-
 
 <body>
     <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-	<div class="color-line"></div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="back-link back-backend">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"></div>
-            <div class="col-md-4 col-md-4 col-sm-4 col-xs-12">
-                <div class="text-center m-b-md custom-login">
-                    <h3>결제 정보 입력</h3>
-                </div>
-                <div class="hpanel">
-                    <div class="panel-body">
-                        <form id="paywrite" action="/jewelry/receivables/paywrite.action" method="post">
-                            
-                            <div class="form-group">
-                                <label class="control-label">상호명</label>
-                                <div class="form-control">${ accounts.acstore }</div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">금 중량  ( 단위 : 1돈 = (3.75) )</label>
-                                <input type="text" class="form-control" name="recarat" value="0">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">현금</label>
-                                <input type="number" class="form-control" name="remoney" value="0">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">결제일</label>
-                                <input type="date" class="form-control" name="repaydate">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">최근 거래일</label>
-                                <input type="date" class="form-control" name="retrdate" value="">
-                            </div>
-                            
-                            <!-- <input type="hedden"  name="retrdate" value="${  }"> -->
-                            
-                            <input type="hidden" name="acno" value="${ accounts.acno }">
-                            <input type="hidden" name="storeno" value="${ accounts.storeno }">
-                            <button class="btn btn-success btn-block loginbtn" id="submit">결제</button>
-                            <a href="/jewelry/receivables/list.action" class="btn btn-default btn-block">취소</a>
-                        </form>
-                        
-                        
-                        
+    <jsp:include page="/WEB-INF/views/include/sidebar.jsp" />
+    
+    <!-- Start Welcome area -->
+    <div class="all-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="logo-pro">
+                        <a href="index.html"><img class="main-logo" src="img/logo/logo.png" alt="" /></a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"></div>
         </div>
-        <div class="row">
-            <div class="col-md-12 col-md-12 col-sm-12 col-xs-12 text-center">
+        
+        <jsp:include page="/WEB-INF/views/include/header.jsp" />
+        
+        <!-- Static Table Start -->
+        <div class="data-table-area mg-tb-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sparkline13-list">
+                            <div class="sparkline13-hd">
+                                <div class="main-sparkline13-hd">
+                                    <h1>결제 할 거래처의 상호명을 <span class="table-project-n">선택해 주세요!</span> </h1>
+                                </div>
+                            </div>
+                            <div class="sparkline13-graph">
+                                <div class="datatable-dashv1-list custom-datatable-overright">
+                                    <div id="toolbar">
+                                        <select class="form-control">
+											<option value="all">전체</option>
+										</select>
+                                    </div>
+                                    
+                                    
+                                    
+                                    <!-- storesearch list -->
+                                    
+                                    
+                                    
+                                    
+                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>상호명</th>
+                                                <th>전화번호</th>
+												<th>담당자</th>
+												<th>담장자번호</th>
+                                                <th>해리</th>
+                                            </tr>
+                                        </thead>
+                                        
+                                        <tbody>
+	                                        <c:forEach var="account" items="${ accounts }">
+		                                    	<tr>
+	 	                                            <td>${ account.acno }</td>
+		                                            <td><a href="/jewelry/receivables/paywrite.action?accountNo=${account.acno}">${ account.acstore }</a></td>
+		                                            <td>${ account.achonumber }</td>
+		                                            <td>${ account.acmaname }</td>
+		                                           	<td>${ account.acmaphone }</td>
+		                                            <td>${ account.acheherry }</td>
+		                                    	</tr>
+	                                    	</c:forEach>
+                                        </tbody>
+                                    </table>
+                                    <!-- end account list -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+        <!-- Static Table End -->
+        <jsp:include page="/WEB-INF/views/include/footer.jsp" />
     </div>
-
 
     <script src="/jewelry/resources/js/vendor/jquery-1.11.3.min.js"></script>
     <script src="/jewelry/resources/js/bootstrap.min.js"></script>

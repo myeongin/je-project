@@ -1,5 +1,7 @@
 package com.jewelry.vo;
 
+import java.util.List;
+
 import javax.validation.constraints.NotEmpty;
 
 public class account {
@@ -8,15 +10,20 @@ public class account {
 	@NotEmpty
 	private String acstore;
 	private String acadd;
+	private String acadd2;
+	private String acadd3;
 	private String achonumber;
 	private String acname;
 	private String acphone;
 	private String acmaname;
 	private String acmaphone;
 	@NotEmpty
-	private String acheherry;
+	private double acheherry;
 	private Boolean acdel;
 	private int usno;
+	private int storeno;
+	
+	private List<receivables> misus;
 	
 	
 	public int getAcno() {
@@ -30,12 +37,6 @@ public class account {
 	}
 	public void setAcstore(String acstore) {
 		this.acstore = acstore;
-	}
-	public String getAcadd() {
-		return acadd;
-	}
-	public void setAcadd(String acadd) {
-		this.acadd = acadd;
 	}
 	public String getAchonumber() {
 		return achonumber;
@@ -67,10 +68,10 @@ public class account {
 	public void setAcmaphone(String acmaphone) {
 		this.acmaphone = acmaphone;
 	}
-	public String getAcheherry() {
+	public double getAcheherry() {
 		return acheherry;
 	}
-	public void setAcheherry(String acheherry) {
+	public void setAcheherry(double acheherry) {
 		this.acheherry = acheherry;
 	}
 	public Boolean getAcdel() {
@@ -84,6 +85,36 @@ public class account {
 	}
 	public void setUsno(int usno) {
 		this.usno = usno;
+	}
+	public List<receivables> getMisus() {
+		return misus;
+	}
+	public void setMisus(List<receivables> misus) {
+		this.misus = misus;
+	}
+	public int getStoreno() {
+		return storeno;
+	}
+	public void setStoreno(int storeno) {
+		this.storeno = storeno;
+	}
+	public String getAcadd() {
+		return acadd;
+	}
+	public void setAcadd(String acadd) {
+		this.acadd = acadd;
+	}
+	public String getAcadd2() {
+		return acadd2;
+	}
+	public void setAcadd2(String acadd2) {
+		this.acadd2 = acadd2;
+	}
+	public String getAcadd3() {
+		return acadd3;
+	}
+	public void setAcadd3(String acadd3) {
+		this.acadd3 = acadd3;
 	}
 	
 

@@ -2,6 +2,7 @@ package com.jewelry.service;
 
 import java.util.List;
 
+import com.jewelry.vo.account;
 import com.jewelry.vo.receivables;
 
 public interface misuService {
@@ -10,9 +11,15 @@ public interface misuService {
 
 	void misuRewrite(receivables misu);
 
-	List<receivables> findAllMisuByPage(int from, int to);
+	List<account> findAllMisuByPage(int from, int to);
 
 	int findMisuCount();
+
+	List<account> accountList();
+
+	account accountStoreName(int accountNo);
+
+	account storeStoreName(int storeNo);
 
 }
 

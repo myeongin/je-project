@@ -36,13 +36,36 @@ public class accountController {
 		List<account> accounts = accountservice.findAllAccountByPage(from, to);		
 		int accountCount = accountservice.findAccountCount();
 		
-		//ThePager pager = new ThePager(accountCount, pageno, pageSize, pagerSize, linkUrl,);
+		//ThePager pager = new ThePager(accountCount, pageno, pageSize, pagerSize, linkUrl);
 			
 		model.addAttribute("accounts", accounts);
 		//model.addAttribute("pager", pager);
 		model.addAttribute("pageno", pageno);
 		
 		return "account/list";
+			
+	}
+	
+	// 결제 거래처 리스트
+	@RequestMapping(value="/storesearch.action",method=RequestMethod.GET)
+	public String viewAccountSerach(@RequestParam(value= "pageno", required = false, defaultValue = "1") Integer pageno, Model model) {
+			
+		int pageSize = 20;
+		int from = (pageno - 1) * pageSize + 1;
+		int to = from + pageSize;
+		int pagerSize = 5;
+		String linkUrl = "list.action";
+			
+		List<account> accounts = accountservice.findAllAccountByPage(from, to);		
+		int accountCount = accountservice.findAccountCount();
+		
+		//ThePager pager = new ThePager(accountCount, pageno, pageSize, pagerSize, linkUrl);
+			
+		model.addAttribute("accounts", accounts);
+		//model.addAttribute("pager", pager);
+		model.addAttribute("pageno", pageno);
+		
+		return "account/storesearch";
 			
 	}
 	
@@ -55,7 +78,7 @@ public class accountController {
 	
 	@RequestMapping(value = "/write.action", method = RequestMethod.POST)
 	public String accountWrite(account account) {
-		
+
 		accountservice.accountWrite(account);
 		
 		return "redirect:/account/list.action";
@@ -65,10 +88,11 @@ public class accountController {
 	// 거래처 수정
 	@RequestMapping(value = "/rewrite.action", method = RequestMethod.GET)
 	public String accountRewrite(
-			int acno, 
+			int accountNo,
 			Model model) {
 		
-		model.addAttribute("acno", acno);
+		account accounts = accountservice.accountAll(accountNo);
+		model.addAttribute("accounts", accounts);
 		
 		return "account/rewrite";
 	}
@@ -79,7 +103,7 @@ public class accountController {
 			Model model) {
 		
 		accountservice.accountRewrite(account);
-		model.addAttribute("acno", account.getAcno());
+		model.addAttribute("accountNo", account.getAcno());
 		
 		return "redirect:/account/list.action";
 	}
@@ -87,10 +111,10 @@ public class accountController {
 	// 거래처 삭제
 	@RequestMapping(value = "/delete.action", method = RequestMethod.GET)
 	public String accountDelete(
-			int acno, 
+			int accountNo, 
 			Model model) {
 		
-		accountservice.accountDelete(acno);
+		accountservice.accountDelete(accountNo);
 		
 		return "redirect:/account/list.action";
 	}

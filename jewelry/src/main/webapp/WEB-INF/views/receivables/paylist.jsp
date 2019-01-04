@@ -1,3 +1,4 @@
+<%@ page import="com.jewelry.vo.FcVo" %>
 <%@ page import="com.jewelry.vo.account" %>
 <%@ page import="com.jewelry.vo.receivables" %>
 <%@ page import="java.util.List" %>
@@ -40,6 +41,12 @@
     <link rel="stylesheet" href="/jewelry/resources/style.css">
     <link rel="stylesheet" href="/jewelry/resources/css/responsive.css">
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script type="text/javascript">
+	
+	</script>
+	
+	
 </head>
 
 <body>
@@ -65,20 +72,30 @@
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd">
-                                    <h1>미수<span class="table-project-n">정보</span> </h1>
+                                    <h1>결제<span class="table-project-n">정보</span> </h1>
                                 </div>
                             </div>
                             <div class="sparkline13-graph">
                                 <div class="datatable-dashv1-list custom-datatable-overright">
                                     <div id="toolbar">
-                                        <select class="form-control">
-											<option value="">Export Basic</option>
-											<option value="all">Export All</option>
-											<option value="selected">Export Selected</option>
-										</select>
                                     </div>
                                     
+                                    <!-- -------------------------------------------------------- -->
                                     
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+
+
+                                    
+                                    
+                                    
+                                    
+                                    <!-- -------------------------------------------------------- -->
                                     
                                     <!-- 미수 list -->
                                     
@@ -88,52 +105,34 @@
                                     <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
                                         data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                         <thead>
-                                        <a href="/jewelry/receivables/list.action"><div class="buttonS">미수List</div></a>
-                                        <a href="/jewelry/receivables/paywrite.action"><div class="buttonS">결제</div></a>
+                                        <a href="/jewelry/receivables/list.action?storeNo=${user.storeNo}"><div class="buttonS">미수 List</div></a>
+                                        <a href="/jewelry/account/storesearch.action?storeNo=${user.storeNo}"><div class="buttonS">결제</div></a>
                                         
                                             <tr>
-                                                <th data-field="reno" data-checkbox="true">No</th>
-                                                <th data-field="acstore" data-checkbox="true">상호명</th>
+                                                <th data-field="reno" data-editable="false">No</th>
+                                                <th data-field="acstore" data-editable="false">상호명</th>
                                                 <th data-field="recarat" data-editable="true">중량</th>
                                                 <th data-field="remoney" data-editable="true">현금</th>
-                                                <th data-field="redate" data-editable="true">최근거래일</th>
-												<th data-field="repaydate" data-editable="true">최근결재일</th>
+                                                <th data-field="repaydate" data-editable="true">결재일</th>
+												<th>비고</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         
-                                        	<c:forEach var="receivables" items="${ misus }">
-                                        	
+                                        	<c:forEach var="account" items="${ accounts }">
+                                        		<c:forEach var="receivables" items="${ account.misus }">
 	                                            <tr>
-	                                                <td>${ reno }</td>
-	                                                <td>${ acstore }</td>
-	                                                <td>${ recarat }</td>
-	                                                <td>${ remoney }</td>
-	                                                <td>${ retrdate }</td>
-	                                                <td>${ repaydate }</td>
+	                                                <td>${ receivables.reno }</td>
+	                                                <td>${ receivables.acno }</td>
+	                                                <td id="uprecarat">${ receivables.recarat }</td>
+	                                                <td id="upremoney">${ receivables.remoney }</td>
+		                							<td><fmt:formatDate value="${ receivables.repaydate}" 
+		                											pattern="yyyy년 MM월 dd일" /></td>
+	                                               	<td><a href=""><div id="uppay" class="buttonA">수정</div></a>
 	                                            </tr>
-                                            
+                                            	</c:forEach>
                                             </c:forEach>
                                             
-                                            
-                                            <tr>
-                                                <td></td>
-                                                <td>2</td>
-                                                <td>In Of Stock</td>
-												<td>$5</td>
-												<td>Jul 14, 2017</td>
-                                                <td>Active</td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td>3</td>
-                                                <td>Product Title</td>
-												<td>$5</td>
-												<td>Jul 14, 2017</td>
-												<td>$700</td>
-                                            </tr>
-                                           
-                                           
                                            
                                            
                                            

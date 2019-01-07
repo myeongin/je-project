@@ -274,8 +274,14 @@
 		                                            <td>${ account.acmaname }</td>
 		                                           	<td>${ account.acmaphone }</td>
 		                                           	<td>${ account.acheherry }</td>
-		                                            <td><a href="/jewelry/account/rewrite.action?accountNo=${ account.acno }"><div class="buttonA">수정</div></a>
-		                                       		<a id="acdel" href="/jewelry/account/delete.action?accountNo=${ account.acno }"><div class=buttonA>삭제</div></a></td>
+		                                            <td>
+			                                            <a href="/jewelry/account/rewrite.action?accountNo=${ account.acno }">
+			                                            <button data-toggle="tooltip" title class="pd-setting-ed" data-original-title="Edit" aria-describedby="tooltip147223"><i class="fa fa-pencil-square-o"></i></button>
+			                                            </a>
+		                                       			<a id="acdel" href="/jewelry/account/delete.action?accountNo=${ account.acno }">
+		                                       			<button data-toggle="tooltip" title class="pd-setting-ed" data-original-title="Trash"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+		                                       			</a>
+		                                       		</td>
 		                                       		
  
       												</div>	

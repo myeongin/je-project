@@ -1,5 +1,8 @@
 package com.jewelry.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import com.jewelry.dao.ProductDao;
@@ -37,7 +40,8 @@ public class ProdcutServiceImpl implements ProductService{
 	public void updateProduct(ProductVo productVo) {
 		productDao.updateProduct(productVo);
 		
-		for(ProductImgVo img:productVo.getImgs()) {
+		for(ProductImgVo img:productVo.getImgs()) {	
+			img.setProductNo(productVo.getProductNo());
 			productDao.updateProductImg(img);
 		}
 	}
@@ -114,6 +118,11 @@ public class ProdcutServiceImpl implements ProductService{
 			product.setImgs(productDao.selectAllImg(product.getProductNo()));
 		}
 		
+		for(ProductVo product:products) {
+			Double harry=productDao.takeHarryByAcno(product.getAcno());
+			product.setHarry(harry);
+		}
+		
 		return products;
 	}
 	
@@ -169,13 +178,9 @@ public class ProdcutServiceImpl implements ProductService{
 	
 	//재고리스트
 	@Override
-	public List<ProductVo> takeAllStockList(int storeNo) {
+	public List<ProductVo> takeAllStockList(int storeNo,int from,int to) {
 		
-		List<ProductVo> products = productDao.selectAllProduct(storeNo);
-		
-		for(ProductVo product:products) {			
-			product.setDetails(productDao.selectProductDetail(product.getProductNo()));
-		}
+		List<ProductVo> products = productDao.selectProductandDetail(storeNo,from,to);
 		
 		return products;
 	}
@@ -216,6 +221,8 @@ public class ProdcutServiceImpl implements ProductService{
 	public List<salesViewVo> findSalesView(int storeNo,int from,int to) {
 		
 		List<salesViewVo> salesViews = productDao.findSalesView(storeNo,from,to);
+		
+		
 		
 		return salesViews;
 	}
@@ -315,6 +322,77 @@ public class ProdcutServiceImpl implements ProductService{
 		int price = productDao.takNewPrice(storeNo);
 		
 		return price;
+	}
+	
+	//재고수
+	@Override
+	public int findStockcount(int storeNo) {
+		
+		int stocks = productDao.findStockcount(storeNo);
+		
+		return stocks;
+	}
+	
+	//재고수정
+	@Override
+	public void updateStock(int detailNo, int mount) {
+		
+		productDao.updateStock(detailNo,mount);
+		
+	}
+	
+	//재고삭제
+	@Override
+	public void deleteStock(int detailNo) {
+		
+		productDao.deleteStock(detailNo);
+		
+	}
+	
+	//이익
+	@Override
+	public List<Integer> takeProfit(int storeNo, String start, String end) {
+		
+		List<Integer> profit = productDao.takeProfit(storeNo,start,end);
+		return profit;
+	}
+	
+	//판매검색
+	@Override
+	public HashMap<String, Object> searchSalesView(int storeNo, int from, int to, String start, String end) {
+		
+		SimpleDateFormat dt = new SimpleDateFormat("MM/dd/yyyy");
+		HashMap<String, Object> salesView=new HashMap<>();
+		int profit=0;
+		int revenue=0;
+		
+		List<salesViewVo> sales=productDao.searchSalesView(storeNo,from,to,start,end);
+						
+		for (salesViewVo sale : sales) {
+
+			if (sale.getSalesDate() != null) {
+
+				String day = dt.format(sale.getSalesDate());
+				if (sale.getSalesPrice() != 0) {
+					if (day.compareTo(start) >= 0 && day.compareTo(end) <= 0) {
+						revenue += sale.getSalesPrice();
+					}
+				}
+
+				if (sale.getPrice() != 0) {
+					if (day.compareTo(start) >= 0 && day.compareTo(end) <= 0) {
+						profit += sale.getPrice();
+					}
+
+				}
+			}
+		}
+		
+		salesView.put("sales", sales);
+		salesView.put("profit",revenue-profit);
+		salesView.put("revenue",revenue);
+	
+		return salesView;
 	}
 
 

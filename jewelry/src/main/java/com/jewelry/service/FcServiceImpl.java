@@ -32,22 +32,18 @@ public class FcServiceImpl implements FcService{
 	
 	//모든회원
 	@Override
-	public List<FcVo> findAccountAll() {
+	public List<FcVo> findAccountAll(int from,int to) {
 		
-		List<FcVo> accounts = fcDao.selectAccountAll();
+		List<FcVo> accounts = fcDao.selectAccountAll(from,to);
 		
 		return accounts;
 	}
 
 	//회원상태변경
 	@Override
-	public void updateAccountTypeByuserNo(FcVo accountVo) {
+	public void updateAccountTypeByuserNo(int userNo,String del) {
 		
-		if(accountVo.getUserDel()) {
-			fcDao.updateAccountTypeByuserNo1(accountVo.getUserNo());
-		}else {
-			fcDao.updateAccountTypeByuserNo2(accountVo.getUserNo());
-		}
+		fcDao.updateAccountTypeByuserNo(userNo,del);
 		
 	}
 	
@@ -83,14 +79,16 @@ public class FcServiceImpl implements FcService{
 	
 	//직원수
 	@Override
-	public int findProductcount(int userNo) {
-		int count = fcDao.findProductcount(userNo);
+	public int findempcount(int userNo) {
+		int count = fcDao.findempcount(userNo);
 		return count;
 	}
 	
-
-
-
-
+	//회원수
+	@Override
+	public int findregcount() {
+		int count = fcDao.findregcount();
+		return count;
+	}
 	
 }

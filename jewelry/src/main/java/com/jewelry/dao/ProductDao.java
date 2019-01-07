@@ -2,8 +2,6 @@ package com.jewelry.dao;
 
 import java.util.List;
 
-import javax.xml.soap.Detail;
-
 import com.jewelry.vo.Customer;
 import com.jewelry.vo.DetailVo;
 import com.jewelry.vo.OrderVo;
@@ -83,4 +81,16 @@ public interface ProductDao {
 	Double takeHarryByAcno(int acno);
 
 	int takNewPrice(int storeNo);
+
+	List<ProductVo> selectProductandDetail(int storeNo, int from, int to);
+
+	int findStockcount(int storeNo);
+
+	void updateStock(int detailNo, int mount);
+
+	void deleteStock(int detailNo);
+
+	List<Integer> takeProfit(int storeNo, String start, String end);
+
+	List<salesViewVo> searchSalesView(int storeNo, int from, int to, String start, String end);
 }

@@ -1,9 +1,8 @@
 package com.jewelry.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import javax.xml.soap.Detail;
 
 import com.jewelry.mapper.ProductMapper;
 import com.jewelry.vo.Customer;
@@ -50,7 +49,10 @@ public class ProductDaoImpl implements ProductDao{
 	//제품삭제
 	@Override
 	public void deleteProduct(int productNo) {
-		productMapper.deleteProduct(productNo);
+		HashMap<String, Object> del = new HashMap<>();
+		del.put("productNo", productNo);
+		del.put("del","1");
+		productMapper.deleteProduct(del);
 	}
 	
 	//제품상세등록
@@ -268,6 +270,7 @@ public class ProductDaoImpl implements ProductDao{
 		type.put("storeNo", storeNo);
 		type.put("from",from);
 		type.put("to",to);
+		type.put("del","1");
 		
 		List<ProductVo> products = productMapper.selectAllProductBypager(type);
 		
@@ -308,6 +311,88 @@ public class ProductDaoImpl implements ProductDao{
 		int price = productMapper.takNewPrice(type);
 		
 		return price;
+	}
+	
+	//재고 + pager
+	@Override
+	public List<ProductVo> selectProductandDetail(int storeNo, int from, int to) {
+		HashMap<String, Object> type = new HashMap<>();
+		type.put("storeNo", storeNo);
+		type.put("from", from);
+		type.put("to", to);
+		type.put("del", "1");
+		
+		List<ProductVo> products = productMapper.selectProductandDetail(type);
+		
+		return products;
+	}
+	
+	//재고 수
+	@Override
+	public int findStockcount(int storeNo) {
+		HashMap<String, Object> type = new HashMap<>();
+		type.put("storeNo", storeNo);
+		type.put("del", "1");
+		
+		int count = productMapper.findStockcount(type);
+		
+		return count;
+	}
+	
+	//재고 수정
+	@Override
+	public void updateStock(int detailNo, int mount) {
+		HashMap<String, Object> type = new HashMap<>();
+		type.put("detailNo",detailNo);
+		type.put("mount",mount);
+		
+		productMapper.updateStock(type);
+		
+	}
+	
+	//재고삭제
+	@Override
+	public void deleteStock(int detailNo) {
+		HashMap<String,Object> del =  new HashMap<>();
+		del.put("detailNo",detailNo);
+		del.put("del","0");
+		
+		productMapper.deleteStock(del);
+		
+	}
+	
+	//이익
+	@Override
+	public List<Integer> takeProfit(int storeNo, String start, String end) {
+		
+		HashMap<String,Object> profit = new HashMap<>();
+		profit.put("storeNo", storeNo);
+		profit.put("start",start);
+		profit.put("end",end);
+		
+		int revenue = productMapper.takeRevenue(profit);
+		int profit2 = productMapper.takeProfit(profit);
+		
+		List<Integer> profits = new ArrayList<>();
+		profits.add(revenue);
+		profits.add(profit2);
+		
+		return profits;
+	}
+	
+	//검색
+	@Override
+	public List<salesViewVo> searchSalesView(int storeNo, int from, int to, String start, String end) {
+		
+		HashMap<String, Object> sal = new HashMap<>();
+		sal.put("storeNo", storeNo);
+		sal.put("from",from);
+		sal.put("to",to);
+		sal.put("start",start);
+		sal.put("end",end);
+		
+		List<salesViewVo> salesViewVos = productMapper.searchSalesView(sal);
+		return salesViewVos;
 	}
 
 	

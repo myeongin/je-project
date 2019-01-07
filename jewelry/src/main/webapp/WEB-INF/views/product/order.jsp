@@ -149,7 +149,7 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="product-status-wrap" id="order">
-                            <h4>Products List</h4>                          
+                            <h4>주문관리</h4>                          
                             <table id="ordertable">
                                 <tr>
                                     <th>제품명</th>

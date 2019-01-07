@@ -67,6 +67,16 @@ public class HomeController {
 		};
 		model.addAttribute("acList", acList );
 		
+	////////////////////////////////////////////////////////////////////////
+		
+		List<Integer> revenue = homeService.takeRevenue(storeNo);
+		
+		if(revenue.size() != 0) {
+			model.addAttribute("day", revenue.get(0));
+			model.addAttribute("week", revenue.get(1));
+			model.addAttribute("month", revenue.get(2));
+			model.addAttribute("year", revenue.get(3));
+		}
 		
 		
 		

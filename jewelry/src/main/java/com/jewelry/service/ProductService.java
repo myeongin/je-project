@@ -1,5 +1,7 @@
 package com.jewelry.service;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import com.jewelry.vo.Customer;
@@ -23,7 +25,7 @@ public interface ProductService {
 	ProductVo takeProductByProductNo(int productNo);
 	List<orderViewVo> selectAllOrderList(int storeNo, int from, int to);
 	void insertStock(DetailVo detailVo);
-	List<ProductVo> takeAllStockList(int storeNo);
+	List<ProductVo> takeAllStockList(int storeNo, int from, int to);
 	void changeOrderViewType(int orderNo, String type);
 	void insertSales(SalesVo sales);
 	void updateStockMount(int detailNo, int salesCount);
@@ -38,5 +40,11 @@ public interface ProductService {
 	int findSalescount(int storeNo);
 	Double takeHarryByAcno(int acno);
 	int takeNewPrice(int storeNo);
+	int findStockcount(int storeNo);
+	void updateStock(int detailNo, int mount);
+	void deleteStock(int detailNo);
+	List<Integer> takeProfit(int storeNo,String start, String end );
+	HashMap<String, Object> searchSalesView(int storeNo, int from, int to, String start, String end);
+	
 	
 }

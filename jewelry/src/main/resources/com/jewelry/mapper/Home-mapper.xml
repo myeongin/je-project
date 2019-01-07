@@ -20,6 +20,12 @@
 		<select id="selectPrices" parameterType="hashmap" resultType="home">
 		SELECT rowNUM NUM , M.* FROM(SELECT * FROM PRICE WHERE DELETED <![CDATA[!=]]> #{del} AND STORENO = #{storeNo} ORDER BY PRICENO DESC)M
 	</select>
+	
+	<select id="selectSalesByStoreNo" parameterType="int" resultType="Sales">
+		
+		SELECT * FROM SALES WHERE USERNO=#{storeNo}
+
+	</select>
 
 </mapper>
 

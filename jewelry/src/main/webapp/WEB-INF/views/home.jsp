@@ -91,14 +91,14 @@
                                 <h4 class="text-left text-uppercase"><b>당일 매출</b></h4>
                                 <div class="row vertical-center-box vertical-center-box-tablet">
                                     <div class="col-xs-3 mar-bot-15 text-left">
-                                        <label class="label bg-green">30% <i class="fa fa-level-up" aria-hidden="true"></i></label>
+                                        <label class="label bg-green"><i class="fa fa-level-up" aria-hidden="true"></i></label>
                                     </div>
                                     <div class="col-xs-9 cus-gh-hd-pro">
-                                        <h2 class="text-right no-margin">100000<spna>원</spna></h2>
+                                        <h2 class="text-right no-margin">${day}<span>원</span></h2>
                                     </div>
                                 </div>
                                 <div class="progress progress-mini">
-                                    <div style="width: 78%;" class="progress-bar bg-green"></div>
+                                    <div style="width: 100%;" class="progress-bar bg-green"></div>
                                 </div>
                             </div>
                         </div>
@@ -107,14 +107,14 @@
                                 <h4 class="text-left text-uppercase"><b>주간 매출</b></h4>
                                 <div class="row vertical-center-box vertical-center-box-tablet">
                                     <div class="text-left col-xs-3 mar-bot-15">
-                                        <label class="label bg-red">15% <i class="fa fa-level-down" aria-hidden="true"></i></label>
+                                        <label class="label bg-red"><i class="fa fa-level-up" aria-hidden="true"></i></label>
                                     </div>
                                     <div class="col-xs-9 cus-gh-hd-pro">
-                                        <h2 class="text-right no-margin">5600000<spna>원</spna></h2>
+                                        <h2 class="text-right no-margin">${week }<span>원</span></h2>
                                     </div>
                                 </div>
                                 <div class="progress progress-mini">
-                                    <div style="width: 38%;" class="progress-bar progress-bar-danger bg-red"></div>
+                                    <div style="width: 100%;" class="progress-bar progress-bar-danger bg-red"></div>
                                 </div>
                             </div>
                         </div>
@@ -123,30 +123,30 @@
                                 <h4 class="text-left text-uppercase"><b>월간 매출</b></h4>
                                 <div class="row vertical-center-box vertical-center-box-tablet">
                                     <div class="text-left col-xs-3 mar-bot-15">
-                                        <label class="label bg-blue">50% <i class="fa fa-level-up" aria-hidden="true"></i></label>
+                                        <label class="label bg-blue"><i class="fa fa-level-up" aria-hidden="true"></i></label>
                                     </div>
                                     <div class="col-xs-9 cus-gh-hd-pro">
-                                        <h2 class="text-right no-margin">17600000<spna>원</spna></h2>
+                                        <h2 class="text-right no-margin">${month}<span>원</span></h2>
                                     </div>
                                 </div>
                                 <div class="progress progress-mini">
-                                    <div style="width: 60%;" class="progress-bar bg-blue"></div>
+                                    <div style="width: 100%;" class="progress-bar bg-blue"></div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <div class="admin-content analysis-progrebar-ctn res-mg-t-30">
-                                <h4 class="text-left text-uppercase"><b>Orders1</b></h4>
+                                <h4 class="text-left text-uppercase"><b>년간 매출</b></h4>
                                 <div class="row vertical-center-box vertical-center-box-tablet">
                                     <div class="text-left col-xs-3 mar-bot-15">
-                                        <label class="label bg-purple">80% <i class="fa fa-level-up" aria-hidden="true"></i></label>
+                                        <label class="label bg-purple"> <i class="fa fa-level-up" aria-hidden="true"></i></label>
                                     </div>
                                     <div class="col-xs-9 cus-gh-hd-pro">
-                                        <h2 class="text-right no-margin">$100,000</h2>
+                                        <h2 class="text-right no-margin">${year}<span>원</span></h2>
                                     </div>
-                                </div>
+                                </div> 
                                 <div class="progress progress-mini">
-                                    <div style="width: 60%;" class="progress-bar bg-purple"></div>
+                                    <div style="width: 100%;" class="progress-bar bg-purple"></div>
                                 </div>
                             </div>
                         </div>

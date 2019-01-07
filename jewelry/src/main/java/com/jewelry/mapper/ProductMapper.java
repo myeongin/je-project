@@ -19,7 +19,7 @@ public interface ProductMapper {
 	void insetProductImg(ProductImgVo productImgVo);
 	void updateProduct(ProductVo productVo);
 	void updateProductImg(ProductImgVo productImgVo);
-	void deleteProduct(int productNo);
+	void deleteProduct(HashMap<String, Object> del);
 	void insertDetail(DetailVo detailVo);
 	void insertOrder(OrderVo order);
 	void insertOrderNOCuNo(OrderVo order);
@@ -49,4 +49,11 @@ public interface ProductMapper {
 	int findSalescount(int storeNo);
 	Double takeHarryByAcno(int acno);
 	int takNewPrice(HashMap<String, Object> type);
+	List<ProductVo> selectProductandDetail(HashMap<String, Object> type);
+	int findStockcount(HashMap<String, Object> type);
+	void updateStock(HashMap<String, Object> type);
+	void deleteStock(HashMap<String, Object> del);
+	int takeProfit(HashMap<String, Object> profit);
+	int takeRevenue(HashMap<String, Object> profit);
+	List<salesViewVo> searchSalesView(HashMap<String, Object> sal);
 }

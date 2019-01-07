@@ -71,6 +71,36 @@
     <!-- modernizr JS
 		============================================ -->
     <script src="../resources/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+    	
+    	$('#regtable').on('click','.buttonS',function(event){
+    		
+    		var no=$(this).attr('data-regno'); 		
+    		var del=$(this).attr('data-del');
+    		
+    		//수정
+    		$.ajax({
+				"url" : "regact.action",
+				"method" : "POST",
+				"data": {
+					"userNo":no,
+					"del":del,				
+				},
+				"success":function(data,status,xhr){
+					alert("수정되었습니다.");
+					//$('#employeeList').load("employeelist.action",{"userNo":${user.userNo}});
+				},
+				"error":function(xhr,status,err){
+					alert("실패");
+				}
+			});	
+    		
+    	});
+    	
+    });
+    </script>
 </head>
 
 <body>
@@ -100,7 +130,7 @@
 							<div class="sparkline13-hd">
 								<div class="main-sparkline13-hd">
 									<h1>
-										Products <span class="table-project-n">Data</span> Table
+										회원 <span class="table-project-n">정보</span> 관리
 									</h1>
 
 								</div>
@@ -123,10 +153,10 @@
 												<th data-field="price">회원이메일</th>
 												<th data-field="date">가입날짜</th>
 												<th data-field="task">상호명</th>
-												<th data-field="action">수정</th>
+												<th data-field="action">활성화</th>
 											</tr>
 										</thead>
-										<tbody>
+										<tbody id="regtable">
 											<c:forEach var="account" items="${accounts}">
 												<tr style="background-color: #f4f4f4">
 													<td>${account.userId}</td>
@@ -136,7 +166,16 @@
 													<td><fmt:formatDate value="${account.regdate}"
 															pattern="yyyy/MM/dd" /></td>
 													<td>${account.userStore}</td>
-													<td><button class="sub" data-emno="${employee.userNo}">수정</button></td>
+													<td>
+														<c:choose>
+															<c:when test="${account.userDel}">
+																<button class="buttonS" data-regno="${account.userNo}" data-del="0">활성화</button>
+															</c:when>
+															<c:otherwise>
+																<button class="buttonS" data-regno="${account.userNo}" data-del="1">비활성화</button>
+															</c:otherwise>
+														</c:choose>
+													</td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -146,11 +185,7 @@
 							<div class="custom-pagination">
 							<nav aria-label="Page navigation example">
 								<ul class="pagination">
-									<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-									<li class="page-item"><a class="page-link" href="#">1</a></li>
-									<li class="page-item"><a class="page-link" href="#">2</a></li>
-									<li class="page-item"><a class="page-link" href="#">3</a></li>
-									<li class="page-item"><a class="page-link" href="#">Next</a></li>
+									${pager}
 								</ul>
 							</nav>
 						</div>

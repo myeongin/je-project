@@ -36,8 +36,11 @@
 		WHERE userNo = #{userNo}	
 	</update>
 	
-	<select id="selectAccountAll" parameterType="string" resultType="Fc">
-		SELECT * FROM FC WHERE userType = #{user}
+	<select id="selectAccountAll" parameterType="hashmap" resultType="Fc">		
+		SELECT * FROM 
+		(SELECT rowNUM NUM , M.* FROM 
+		(SELECT * FROM Fc WHERE userType = #{user})M) 
+		WHERE NUM <![CDATA[>=]]> #{from} AND NUM <![CDATA[<]]> #{to}
 	</select>
 	
 	<update id="updateAccountTypeByuserNo" parameterType="hashmap">
@@ -46,10 +49,13 @@
 		WHERE userNo = #{userNo}
 	</update>
 
-	<select id="findProductcount" parameterType="hashmap" resultType="int">
+	<select id="findempcount" parameterType="hashmap" resultType="int">
 		SELECT count(*) FROM Fc WHERE storeNo = #{userNo} and userType != #{fc} and userType != #{admin} and userDel !=#{del}
 	</select>
 	
+	<select id="findregcount" parameterType="string" resultType="int">
+		SELECT count(*) FROM Fc WHERE userType = #{user}
+	</select>
 	
 </mapper>
 

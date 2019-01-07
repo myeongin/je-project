@@ -61,6 +61,44 @@
     <!-- modernizr JS
 		============================================ -->
     <script src="../resources/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		
+		var gold=0;		
+		var carat=0;		
+		var newPrice =parseInt(${newPrice});
+		var harry =0;		
+		var cost =0;
+		
+		
+		$('#cost').change(function(evnet){
+			cost=parseInt($("#cost option:selected").attr('id'));
+			harry=parseFloat($("#cost option:selected").attr('data-harry'));
+		});	
+		
+		$('#detailGold').change(function(evnet){
+			if($("#detailGold option:selected").val() == '14k'){
+				gold=parseFloat(0.585);			
+			}else if($("#detailGold option:selected").val() == '18k'){
+				gold=parseFloat(0.75);	
+			}else if($("#detailGold option:selected").val() == '24k'){
+				gold=parseFloat(1);	
+			}
+		});
+		
+		$('#carat').on('focusout',function(evnet){
+			carat=parseInt($('#carat').val());
+		});
+		
+		
+		$('#mount').on('focusout',function(event){
+			var productprice=Math.ceil((newPrice*gold*harry*carat)+cost);
+			$('#price').val(productprice);
+		});
+					
+	});
+</script>
 </head>
 
 <body>
@@ -101,20 +139,21 @@
                                                 <div class="review-content-section">
                                                     <div class="input-group mg-b-pro-edt">
                                                         <span class="input-group-addon">제품명</span>                                                        
-                                                        <select class="form-control" name="productNo">
+                                                        <select class="form-control" name="productNo" id="cost">
                                                         	<option>----</option>
                                                         	<c:forEach var="product" items="${products}">
-                                                        		<option value="${product.productNo}">${product.productName}</option>
+                                                        		<option value="${product.productNo}" id="${product.productCost}" data-harry="${product.harry}">${product.productName}</option>                                                        		
                                                         	</c:forEach>
                                                         </select>
                                                     </div>
                                                     <div class="input-group mg-b-pro-edt">
-                                                        <span class="input-group-addon">원가</span>
-                                                        <input type="text" class="form-control" name="price" placeholder="price">
+                                                        <span class="input-group-addon">원가</span>                
+                                                        <input type="text" class="form-control" name="price" placeholder="price"  id="price" readonly>
                                                     </div>
                                                     <div class="input-group mg-b-pro-edt">
                                                         <span class="input-group-addon">형태</span>                                                       
                                                          <select class="form-control" name="shape">
+                                                         	<option selected="selected">----</option>
                                                          	<option value="반지">반지</option>
                                                          	<option value="팔찌">팔찌</option>
                                                          	<option value="목걸이">목걸이</option>
@@ -124,6 +163,7 @@
                                                     <div class="input-group mg-b-pro-edt">
                                                         <span class="input-group-addon">색깔</span>                                                                                                                                   
                                                          <select class="form-control" name="detailColor">
+                                                         	<option selected="selected">----</option>
                                                          	<option value="화이트">화이트</option>
                                                          	<option value="루비">루비</option>
                                                          	<option value="블랙">블랙</option>                                                         	
@@ -131,11 +171,11 @@
                                                     </div>
                                                     <div class="input-group mg-b-pro-edt">
                                                         <span class="input-group-addon">골드</span>
-                                                        <select class="form-control" name="detailGold">
+                                                        <select class="form-control" name="detailGold" id="detailGold">
+                                                        	<option selected="selected">----</option>
                                                          	<option value="14k">14k</option>
                                                          	<option value="18k">18k</option>
-                                                         	<option value="24k">24k</option>
-                                                         	<option value="순금">순금</option>                                                         	
+                                                         	<option value="24k">24k</option>                                                                                                                
                                                          </select>                                                        
                                                     </div>
                                                 </div>
@@ -144,7 +184,7 @@
                                                 <div class="review-content-section">
                                                     <div class="input-group mg-b-pro-edt">
                                                         <span class="input-group-addon">중량</span>
-                                                        <input type="text" name="detailCarat" class="form-control" placeholder="Carat">
+                                                        <input type="text" name="detailCarat" class="form-control" placeholder="Carat" id="carat">
                                                     </div>
                                                     <div class="input-group mg-b-pro-edt">
                                                         <span class="input-group-addon">사이즈</span>
@@ -152,12 +192,11 @@
                                                     </div>
                                                     <div class="input-group mg-b-pro-edt">
                                                         <span class="input-group-addon">수량</span>
-                                                        <input type="text" name="mount" class="form-control" placeholder="Mount">
+                                                        <input type="text" name="mount" class="form-control" placeholder="Mount" id="mount">
                                                     </div>                                                    
                                                 </div>
                                             </div>
-                                        </div>
-                                        
+                                        </div>                                      
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                 <div class="text-center mg-b-pro-edt custom-pro-edt-ds">

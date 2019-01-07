@@ -7,6 +7,7 @@ import com.jewelry.mapper.CustomerMapper;
 import com.jewelry.mapper.HomeMapper;
 import com.jewelry.vo.Customer;
 import com.jewelry.vo.Home;
+import com.jewelry.vo.SalesVo;
 
 
 
@@ -65,6 +66,16 @@ public class HomeDao implements HomeDaoInterface{
 		List<Home> prices=homeMapper.selectPrices(params);
 		
 		return prices;
+	}
+
+
+
+	@Override
+	public List<SalesVo> selectSalesByStoreNo(int storeNo) {
+		
+		List<SalesVo> sales =homeMapper.selectSalesByStoreNo(storeNo);
+		
+		return sales;
 	}
 	
 	

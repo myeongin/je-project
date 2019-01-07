@@ -61,6 +61,62 @@
     <!-- modernizr JS
 		============================================ -->
     <script src="../resources/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+    $(function(){
+    	
+    	$('#stocktable').on('click','.update',function(event){ // 수정
+    		
+    		var no=$(this).attr('data-no'); 		    		
+    		var mount=$('#mount'+no).val();	
+    	
+    		$.ajax({
+				"url" : "stockupdate.action",
+				"method" : "POST",
+				"data": {
+					"detailNo":no,
+					"mount":mount
+				},
+				"success":function(data,status,xhr){
+					alert("수정되었습니다.");					
+				},
+				"error":function(xhr,status,err){
+					alert("실패");
+				}
+			});	
+    		
+    	});
+    	
+	
+		$('#stocktable').on('click', '.delete', function(event) { // 수정
+
+				var no = $(this).attr('data-no');
+				var mount = $('#mount' + no).val();
+
+				if (mount > 0) {
+					alert("재고가 아직 남아있습니다.")
+				} else {
+
+					$.ajax({
+						"url" : "stockdelete.action",
+						"method" : "POST",
+						"data" : {
+							"detailNo" : no
+						},
+						"success" : function(data, status, xhr) {
+							alert("수정되었습니다.");
+							$('#stocktable').load("stocklist.action",{"storeNo":${ user.storeNo },"pageNo":${ pageNo }});
+						},
+						"error" : function(xhr, status, err) {
+							alert("실패");
+						}
+					});
+				}
+
+			});
+
+		});
+	</script>   
 </head>
 
 <body>
@@ -85,12 +141,12 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="product-status-wrap">
-                            <h4>Products List</h4>  
+                        <div class="product-status-wrap border-pdt-ct">
+                            <h4>재고관리</h4>  
                             <div class="add-product">
                             	<a href="/jewelry/product/stockupload.action?storeNo=${user.storeNo}">재고추가</a>
                             </div>                        
-                            <table>
+                            <table id="stocktable">
                                 <tr>
                                     <th>제품명</th>
                                     <th>형태</th>
@@ -112,10 +168,14 @@
                                       <td>${detail.detailCarat}</td>
                                       <td>${detail.detailSize}</td>
                                       <td>${detail.price}</td>
-                                      <td>${detail.mount}</td>                                                                                                                                    
+                                      <td>
+                                      	<div class="pro-quantity-changer">
+                                      		<input type="text" class="form-control" id="mount${detail.detailNo}" value="${detail.mount}">
+                                      	</div>	
+                                      </td>                                                                                                                                    
                                     <td>                                 
-                                        <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                        <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                        <button data-toggle="tooltip" title="update" class="pd-setting-ed update" data-no="${detail.detailNo}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                        <button data-toggle="tooltip" title="delete" class="pd-setting-ed delete" data-no="${detail.detailNo}"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                     </td>
                                 </tr>
                                 </c:forEach>
@@ -124,11 +184,7 @@
                             <div class="custom-pagination">
                                 <nav aria-label="Page navigation example">
                                     <ul class="pagination">
-                                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                       ${pager }
                                     </ul>
                                 </nav>
                             </div>

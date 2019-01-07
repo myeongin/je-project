@@ -124,7 +124,7 @@
 			}else if(this.value=='24k'){
 				gold=1;
 			}else if(this.value=='재고' || this.value=='주문판매'){
-				var productprice=Math.ceil((newPrice * (gold*harry))*carat + cost);
+				var productprice=(((newPrice*(gold*harry)) * carat) + cost);
 				$('#price').val(productprice);
 			}
 			
@@ -133,12 +133,7 @@
 		$('#carat').on('focusout',function(event){
 			carat=$(this).val();
 		});
-			
-			
-			
-
-						
-		
+					
 	});
 </script>
 </head>

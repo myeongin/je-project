@@ -30,6 +30,20 @@
 		<result column="acno" property="acno" />
 	</resultMap>
 
+	<sql id="account_columns">
+		acno,
+		acstore,
+		acadd,
+		achonumber,
+		acname,
+		acphone,
+		acmaname,
+		acmaphone,
+		acheherry,
+		storeno,
+		acadd2,
+		acadd3
+	</sql>
 
 	<select id="selectAccountCount" parameterType="String" resultType="int">
 		SELECT COUNT(*)
@@ -47,11 +61,7 @@
 			   FROM 
 			   ( 
 			   		SELECT 
-			   		acno, acstore, 
-			   		acadd, achonumber, 
-			   		acname, acphone, 
-			   		acmaname, acmaphone, 
-			   		acheherry, acdel
+			   		*
 				FROM 
 					account 
 				WHERE 
@@ -62,23 +72,10 @@
 		WHERE idx <![CDATA[>=]]> #{ first } AND idx <![CDATA[<]]> #{ last }
 	</select> 
 	
-	<sql id="account_columns">
-		acno,
-		acstore,
-		acadd,
-		achonumber,
-		acname,
-		acphone,
-		acmaname,
-		acmaphone,
-		acheherry,
-		acdel
-	</sql>
-	
 	<insert id="insertAccount" parameterType="account">
 		INSERT INTO account
 		(
-			<include refid="account_columns" />
+			<include refid="account_columns"></include>
 		)
 		VALUES
 		(
@@ -91,8 +88,10 @@
 			#{ acmaname },
 			#{ acmaphone },
 			#{ acheherry },
-			0
-		)
+			#{ storeno },
+			#{ acadd2 },
+			#{ acadd3 }
+		) 
 	</insert>
 	
 	<update id="uploadAccount" parameterType="account">
@@ -106,7 +105,9 @@
 			acphone = #{ acphone },
 			acmaname = #{ acmaname },
 			acmaphone = #{ acmaphone },
-			acheherry = #{ acheherry }
+			acheherry = #{ acheherry },
+			acadd2 = #{ acadd2 },
+			acadd3 = #{ acadd3 }
 		WHERE 
 			acno = #{ acno }
 	</update>
@@ -130,6 +131,14 @@
 	
 	</select>
 	
+	<select id="selectAccountAll" parameterType="int" resultType="account">
+		SELECT 
+			*
+		FROM
+			account
+		WHERE
+			acno = #{ acno }
+	</select>
 	
 	
 	

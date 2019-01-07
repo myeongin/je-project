@@ -40,6 +40,7 @@
     <link rel="stylesheet" href="/jewelry/resources/css/responsive.css">
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+    <script type="text/javascript" src="/Example.Modal.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script type="text/javascript">
     
@@ -90,13 +91,16 @@
     
     $("#myButtons").click(function(){
 		$('#myModal').modal('hide')
-		
 		$('#myModal').modal({backdrop: 'static', keyboard: false}) ;
-		
 		
 		
    	});
     
+   
+    
+    
+    
+
 
     
     
@@ -222,7 +226,7 @@
                         </form>
                         
                         
-                        
+                       
                     </div>
                 </div>
       </div>
@@ -230,16 +234,6 @@
     </div>
     
     
-    
-    
-                 
-    <!-- model rewrite -->      
-    
-        <div id="myModal2" class="modal2" style="width:40%;height:90%;left:30%;">
- 
-      </div>
-      
-      
       
       
       <!-- model end -->                          
@@ -268,8 +262,7 @@
                                         
                                         
 	                                        <c:forEach var="account" items="${ accounts }">
-	                                        
-	                                        <c:if test="${ account.storeno == user.storeNo }">
+												<c:if test="${ account.storeno == user.storeNo }">
 		                                    	<tr>
 	 	                                            <td>${ account.acno }</td>
 		                                            <td>${ account.acstore }</td>
@@ -282,14 +275,22 @@
 		                                           	<td>${ account.acmaphone }</td>
 		                                           	<td>${ account.acheherry }</td>
 		                                            <td><a href="/jewelry/account/rewrite.action?accountNo=${ account.acno }"><div class="buttonA">수정</div></a>
-		                                       		<a id="acdel" href="/jewelry/account/delete.action?accountNo=${ account.acno }"><div class="buttonA">삭제</div></a></td>
+		                                       		<a id="acdel" href="/jewelry/account/delete.action?accountNo=${ account.acno }"><div class=buttonA>삭제</div></a></td>
+		                                       		
+ 
+      												</div>	
 		                                    	</tr>
-		                                    </c:if>
-		                                    
+		                                    	</c:if>
 	                                    	</c:forEach>
 	                                    
                                         </tbody>
                                     </table>
+                                    
+                                    	<!-- Trigger/Open The Modal -->
+                                    	
+    
+    
+
                                     <!-- end account list -->
                                 </div>
                             </div>

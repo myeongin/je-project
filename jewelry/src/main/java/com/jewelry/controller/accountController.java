@@ -48,7 +48,7 @@ public class accountController {
 	
 	// 결제 거래처 리스트
 	@RequestMapping(value="/storesearch.action",method=RequestMethod.GET)
-	public String viewAccountSerach(@RequestParam(value= "pageno", required = false, defaultValue = "1") Integer pageno, Model model) {
+	public String viewAccountSerach(@RequestParam(value= "pageno", required = false, defaultValue = "1") Integer pageno, Model model, account account) {
 			
 		int pageSize = 20;
 		int from = (pageno - 1) * pageSize + 1;
@@ -59,10 +59,11 @@ public class accountController {
 		List<account> accounts = accountservice.findAllAccountByPage(from, to);		
 		int accountCount = accountservice.findAccountCount();
 		
-		//ThePager pager = new ThePager(accountCount, pageno, pageSize, pagerSize, linkUrl);
-			
+		accountservice.accountRewrite(account);
+		
+		
+		model.addAttribute("accountNo", account.getAcno());
 		model.addAttribute("accounts", accounts);
-		//model.addAttribute("pager", pager);
 		model.addAttribute("pageno", pageno);
 		
 		return "account/storesearch";

@@ -10,6 +10,7 @@ public class ProductVo {
 	private int userNo;
 	private Boolean productDel;
 	private int acno;
+	private Double harry;
 	private List<ProductImgVo> imgs;
 	private List<DetailVo> details;
 	
@@ -61,6 +62,13 @@ public class ProductVo {
 	public void setDetails(List<DetailVo> details) {
 		this.details = details;
 	}
+	public Double getHarry() {
+		return harry;
+	}
+	public void setHarry(Double harry) {
+		this.harry = harry;
+	}
+
 	
 	
 	

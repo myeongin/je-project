@@ -103,12 +103,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function(){
-		
-		var gold;		
-		var carat;
-		var newPrice = $('#newPrice').val();
-		var harry =$('#harry').val();
-		var cost =$('#cost').val();
+	
+		var gold=0;		
+		var carat=0;
+		var newPrice =parseInt(${newPrice});
+		var harry =parseFloat(${harry});
+		var cost =parseInt(${product.productCost});
 		
 		$('.submitsales').on("click",function(event){		
 			var no = $(this).attr("data-no");			
@@ -118,20 +118,20 @@
 		$('input').on('ifChecked',function(evnet){
 			
 			if(this.value=='14k'){
-				gold=0.585;
+				gold=parseFloat(0.585);				
 			}else if(this.value=='18k'){
-				gold=0.75;
+				gold=parseFloat(0.75)				
 			}else if(this.value=='24k'){
-				gold=1;
-			}else if(this.value=='재고' || this.value=='주문판매'){
-				var productprice=(((newPrice*(gold*harry)) * carat) + cost);
+				gold=gold=parseFloat(1);			
+			}else if(this.value=='재고' || this.value=='주문판매'){				
+				var productprice=Math.ceil((newPrice*gold*harry*carat)+cost);
 				$('#price').val(productprice);
 			}
 			
 		});
 		
 		$('#carat').on('focusout',function(event){
-			carat=$(this).val();
+			carat=parseInt($(this).val());
 		});
 					
 	});
@@ -197,9 +197,7 @@
 					<form action="detail.action" method="post">
 
 						<input type="hidden" name="storeNo" value="${user.storeNo}">
-
 						<input type="hidden" name="productNo" value="${product.productNo}">
-
 						<input type="hidden" name="userNo" value="${user.userNo}">
 
 						<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
@@ -281,12 +279,16 @@
 
 								<div class="single-pro-size">
 									<h4>중량</h4>
+									<div class="pro-quantity-changer">
 									<input type="text" name="detailCarat" id="carat">
+									</div>
 								</div>
 
 								<div class="single-pro-size">
 									<h4>사이즈</h4>
+									<div class="pro-quantity-changer">
 									<input type="text" name="detailSize">
+									</div>
 								</div>
 
 								<div class="single-pro-size">
@@ -322,9 +324,9 @@
 										</select>									
 									</div>
 																															
-								<input type="hidden" id="harry" value="${harry}">
+
 								<input type="hidden" id="cost" value="${product.productCost}">
-								<input type="hidden" id="newPrice" value="${newPrice}">
+			
 								
 								<input type="hidden" name="storeNo" value="${user.storeNo}">								
 								

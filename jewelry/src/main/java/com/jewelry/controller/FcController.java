@@ -76,6 +76,8 @@ public class FcController {
 
 				return "redirect:/home.action";
 			} else {
+				String loginfail="fail";
+				model.addAttribute("loginfail",loginfail);
 				return "fc/login";
 			}
 		}
@@ -92,20 +94,46 @@ public class FcController {
 	
 	//회원계정관리
 	@RequestMapping(value="/fc/regmanagement.action",method=RequestMethod.GET)
-	public String regManagementView(HttpSession session,Model model) {
+	public String regManagementView(HttpSession session,Model model,@RequestParam(value="pageNo",required = false,defaultValue ="1")int pageNo) {
 		
-		List<FcVo> accounts = fcService.findAccountAll();
-		model.addAttribute("accounts",accounts);
+		FcVo accountVo = (FcVo)session.getAttribute("user");
+		int storeNo = accountVo.getStoreNo();
+		
+		if(accountVo != null && accountVo.getUserType().equals("admin")) {
 			
-		return "fc/regmanagement";
+
+			int pagesize=5;
+			int from=(pageNo-1)*pagesize +1;
+			int to =from+pagesize;
+			int pagersize = 5;
+			String linkUrl = "regmanagement.action";
+			
+			List<FcVo> accounts = fcService.findAccountAll(from,to);
+			int registercount = fcService.findregcount();
+			
+			ThePager pager = new ThePager(registercount, pageNo, pagesize, pagersize, linkUrl,storeNo);
+			
+			model.addAttribute("accounts",accounts);
+			model.addAttribute("pager",pager);
+			model.addAttribute("pageNo",pageNo);
+			
+			return "fc/regmanagement";
+			
+		}else {
+			
+			model.addAttribute("storeNo",storeNo);
+			return "redirect:/home.action";
+			
+		}
+				
 			
 	}	
 	
 	//회원계정상태변경
 	@RequestMapping(value="/fc/regact.action",method=RequestMethod.POST)
-	public String regAct(FcVo accountVo) {
+	public String regAct(int userNo,String del) {
 		
-		fcService.updateAccountTypeByuserNo(accountVo);
+		fcService.updateAccountTypeByuserNo(userNo,del);
 
 		return "redirect:/fc/regmanagement.action";
 	}
@@ -124,7 +152,7 @@ public class FcController {
 		String linkUrl = "employeelist.action";
 		
 		List<FcVo> employees = fcService.findEmployeeAll(userNo,from,to);
-		int employeecount = fcService.findProductcount(userNo);
+		int employeecount = fcService.findempcount(userNo);
 		
 		ThePager pager = new ThePager(employeecount, pageNo, pagesize, pagersize, linkUrl,userNo);
 		

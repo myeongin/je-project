@@ -60,6 +60,11 @@
     <!-- modernizr JS
 		============================================ -->
     <script src="/jewelry/resources/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script type="text/javascript">
+    	<c:if test="${not empty loginfail }">
+			alert("로그인에 실패하였습니다. 아이디나 비밀번호를 확인해 주세요")
+		</c:if>
+    </script>
 </head>
 
 <body>
@@ -67,6 +72,8 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
+	    
+	
     <div class="color-line"></div>
     <div class="container-fluid">
         <div class="row">

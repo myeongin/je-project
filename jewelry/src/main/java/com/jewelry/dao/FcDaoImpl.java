@@ -50,9 +50,13 @@ public class FcDaoImpl implements FcDao{
 	
 	//계정정보
 	@Override
-	public List<FcVo> selectAccountAll() {
-		String user = "fc";
-		List<FcVo> accounts=fcMapper.selectAccountAll(user);
+	public List<FcVo> selectAccountAll(int from,int to) {
+		HashMap<String, Object> reg = new HashMap<>();
+		reg.put("user", "fc");
+		reg.put("from",from);
+		reg.put("to",to);
+		
+		List<FcVo> accounts=fcMapper.selectAccountAll(reg);
 		return accounts;
 	}
 	
@@ -87,7 +91,7 @@ public class FcDaoImpl implements FcDao{
 
 
 	@Override
-	public int findProductcount(int userNo) {
+	public int findempcount(int userNo) {
 		
 		HashMap<String, Object> user = new HashMap<>();
 		user.put("userNo", userNo);
@@ -95,9 +99,30 @@ public class FcDaoImpl implements FcDao{
 		user.put("admin", "admin");
 		user.put("del", "1");
 
-		int count=fcMapper.findProductcount(user);
+		int count=fcMapper.findempcount(user);
 		
 		return count;
+	}
+	
+	//회원수
+	@Override
+	public int findregcount() {
+		
+		String user = "fc";
+		int count = fcMapper.findregcount(user);
+		
+		return count;
+	}
+
+	@Override
+	public void updateAccountTypeByuserNo(int userNo, String del) {
+		
+		HashMap<String, Object> type = new HashMap<>();
+		type.put("type", del);
+		type.put("userNo",userNo);
+		
+		fcMapper.updateAccountTypeByuserNo(type);
+		
 	}
 	
 }

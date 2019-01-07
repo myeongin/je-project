@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.jewelry.vo.Customer;
 import com.jewelry.vo.Home;
+import com.jewelry.vo.SalesVo;
 
 public interface HomeDaoInterface {
 
@@ -15,6 +16,8 @@ public interface HomeDaoInterface {
 	List<Home> selectAc(int storeNo);
 
 	List<Home> selectPrice(int storeNo);
+
+	List<SalesVo> selectSalesByStoreNo(int storeNo);
 
 
 /*	int countMM();

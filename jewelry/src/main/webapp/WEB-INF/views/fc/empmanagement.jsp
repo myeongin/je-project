@@ -116,12 +116,11 @@
 <!-- modernizr JS
 		============================================ -->
 <script src="/jewelry/resources/js/vendor/modernizr-2.8.3.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
     $(function(){
     	
-    	$('#employeeList').on('click','.sub',function(event){
+    	$('#employeeList').on('click','.buttonS',function(event){
     		
     		var no=$(this).attr('data-emno'); 		
     		var name=$('#employee'+no+" #name").text();
@@ -244,7 +243,7 @@
 																</c:when>
 															</c:choose>
 													</select></td>
-													<td><button class="sub" data-emno="${employee.userNo}">수정</button></td>
+													<td><button class="buttonS" data-emno="${employee.userNo}">수정</button></td>
 												</tr>
 											</c:forEach>
 										</tbody>

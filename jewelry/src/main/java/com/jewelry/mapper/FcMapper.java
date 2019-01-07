@@ -11,8 +11,9 @@ public interface FcMapper {
 	void insterEmployee(FcVo fc);
 	FcVo selectEmployeeByIdAndPswd(FcVo fc);
 	List<FcVo> selectEmployeeByStoreNo(HashMap<String, Object> user);
-	List<FcVo> selectAccountAll(String user);
+	List<FcVo> selectAccountAll(HashMap<String, Object> reg);
 	void updateEmployeeByEmpNo(FcVo fc);
 	void updateAccountTypeByuserNo(HashMap<String, Object> type);
-	int findProductcount(HashMap<String, Object> user);
+	int findempcount(HashMap<String, Object> user);
+	int findregcount(String user);
 }

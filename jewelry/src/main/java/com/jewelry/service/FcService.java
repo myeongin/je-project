@@ -12,14 +12,16 @@ public interface FcService {
 
 	void registerEmployee(FcVo fc);
 
-	List<FcVo> findAccountAll();
-
-	void updateAccountTypeByuserNo(FcVo accountVo);
+	List<FcVo> findAccountAll(int from, int to);
 
 	void updateEmployeeByEmpNo(FcVo fc);
 
 	List<FcVo> findEmployeeAll(int storeNo, int from, int to);
 
-	int findProductcount(int userNo);	
+	int findempcount(int userNo);
+
+	int findregcount();
+
+	void updateAccountTypeByuserNo(int userNo, String del);	
 	
 }

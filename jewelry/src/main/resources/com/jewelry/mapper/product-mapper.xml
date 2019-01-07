@@ -14,15 +14,21 @@
 	</insert>
 	
 	<update id="updateProduct" parameterType="Product">
-
+		UPDATE PRODUCT
+		SET PRODUCTNAME=#{productName},PRODUCTCOST=#{productCost},ACNO=#{acno}
+		WHERE PRODUCTNO=#{productNo}
 	</update>
 	
 	<update id="updateProductImg" parameterType="ProductImg">
-
+		UPDATE PRODUCT_IMG
+		SET IMGSAVEDNAME=#{imgSavedName},IMGFILENAME=#{imgFileName}
+		WHERE PRODUCTNO=#{productNo}
 	</update>
 	
-	<update id="deleteProduct" parameterType="int">
-
+	<update id="deleteProduct" parameterType="hashmap">
+		UPDATE PRODUCT 
+		SET PRODUCTDEL =#{del}
+		WHERE PRODUCTNO =#{productNo}
 	</update>
 	
 	<select id="selectAllProduct" parameterType="int" resultType="Product">
@@ -53,11 +59,11 @@
 	</insert>
 	
 	<update id="updateDetail" parameterType="Detail">
-	
+		
 	</update>
 	
 	<update id="updateOrder" parameterType="Order">
-	
+		
 	</update>
 	
 	<update id="orderDel" parameterType="int">
@@ -145,7 +151,7 @@
 	<select id="selectAllProductBypager" parameterType="hashmap" resultType="Product">
 		SELECT * FROM 
 			(SELECT rowNUM NUM , M.* FROM 
-			(SELECT * FROM PRODUCT WHERE STORENO = #{storeNo} ORDER BY PRODUCTNO DESC)M) 
+			(SELECT * FROM PRODUCT WHERE STORENO = #{storeNo} and PRODUCTDEl !=#{del} ORDER BY PRODUCTNO DESC)M) 
 			WHERE NUM <![CDATA[>=]]> #{from} AND NUM <![CDATA[<]]> #{to}
 	</select>
 	
@@ -163,6 +169,74 @@
 	
 	<select id="takNewPrice" parameterType="hashmap" resultType="int">
 		select a.* from(SELECT PRICE FROM PRICE WHERE STORENO= #{storeNo} ORDER BY priceNo DESC)a where rowNum = #{num}				
+	</select>
+	
+	<resultMap type="Product" id="productMap">
+		<id column="productNo" property="productNo" />
+		<result column="productName" property="productName" />
+		<result column="productCost" property="productCost" />
+		<result column="userNo" property="userNo" />
+		<result column="productDel" property="productDel" />
+		<result column="acno" property="acno" />
+		<collection property="details" column="productNo" resultMap="detailMap" />		
+	</resultMap>
+	<resultMap type="Detail" id="detailMap">
+		<id column="detailNo" property="detailNo" />
+		<result column="detailGold" property="detailGold" />
+		<result column="detailColor" property="detailColor" />
+		<result column="detailCarat" property="detailCarat" />
+		<result column="detailSize" property="detailSize" />
+		<result column="detailDiv" property="detailDiv" />
+		<result column="mount" property="mount" />
+		<result column="price" property="price" />
+		<result column="shape" property="shape" />
+		<result column="productNo" property="productNo" />
+	</resultMap>
+	
+	<select id="selectProductandDetail" parameterType="hashmap" resultMap="productMap">
+	SELECT * FROM	
+		(SELECT rowNUM NUM , M.* FROM
+		(SELECT p.PRODUCTNAME,P.PRODUCTCOST,P.PRODUCTDEL,p.STORENO,P.ACNO,d.* FROM PRODUCT P,DETAIL D 
+			WHERE P.PRODUCTNO = D.PRODUCTNO AND STORENO=#{storeNo} AND D.DETAILDIV = #{del})M)			
+			WHERE NUM <![CDATA[>=]]> #{from} AND NUM <![CDATA[<]]> #{to} 				
+	</select>
+	
+	<select id="findStockcount" parameterType="hashmap" resultType="int">	 	
+	 	SELECT COUNT(*) FROM
+	 	(SELECT D.* FROM PRODUCT P,DETAIL D  
+	 	WHERE P.PRODUCTNO = D.PRODUCTNO AND STORENO=#{storeNo} AND D.DETAILDIV = #{del})	 	
+	</select>
+	
+	<update id="updateStock" parameterType="hashmap">
+		UPDATE DETAIL
+		SET MOUNT=#{mount}
+		WHERE DETAILNO = #{detailNo}
+	</update>
+	
+	<update id="deleteStock" parameterType="hashmap">
+	 	UPDATE DETAIL
+	 	SET DETAILDIV =#{del}
+	 	WHERE DETAILNO=#{detailNo}
+	</update>
+	
+	<select id="takeProfit" parameterType="hashmap" resultType="int">
+		SELECT NVL(SUM(PRICE),0) FROM SALESVIEW 
+		WHERE STORENO=#{storeNo} AND SALESDATE BETWEEN TO_DATE(#{start},'MM/dd/yyyy') and To_Date(#{end},'MM/dd/yyyy')+1
+	</select>
+	
+	<select id="takeRevenue" parameterType="hashmap" resultType="int">
+		SELECT NVL(SUM(SALESPRICE),0) FROM SALESVIEW 
+		WHERE STORENO=#{storeNo} AND SALESDATE BETWEEN TO_DATE(#{start},'MM/dd/yyyy') and To_Date(#{end},'MM/dd/yyyy')+1
+	</select>
+	
+	<select id="searchSalesView" parameterType="hashmap" resultType="SalesView">
+		SELECT * FROM 
+			(SELECT rowNUM NUM , M.* FROM 
+			(SELECT * FROM SALESVIEW 
+				WHERE STORENO = #{storeNo} 
+					and SALESDATE BETWEEN TO_DATE(#{start},'MM/dd/yyyy') and To_Date(#{end},'MM/dd/yyyy')+1 
+				ORDER BY SALESNO DESC)M) 
+			WHERE NUM <![CDATA[>=]]> #{from} AND NUM <![CDATA[<]]> #{to}
 	</select>
 </mapper>
 

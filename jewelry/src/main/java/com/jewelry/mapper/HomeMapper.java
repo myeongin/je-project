@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.jewelry.vo.Customer;
 import com.jewelry.vo.Home;
+import com.jewelry.vo.SalesVo;
 
 
 
@@ -19,6 +20,8 @@ public interface HomeMapper {
 	List<Home> selectAcList(HashMap<String, Object> params);
 
 	List<Home> selectPrices(HashMap<String, Object> params);
+	
+	List<SalesVo> selectSalesByStoreNo(int storeNo);
 
 
 

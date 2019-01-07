@@ -61,6 +61,62 @@
     <!-- modernizr JS
 		============================================ -->
     <script src="../resources/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+    $(function(){
+    	
+    	$('#productdiv').on('click','.b',function(event){ // 삭제
+    		
+    		var no=$(this).attr('data-no'); 		    		
+    		
+    		$.ajax({
+				"url" : "productDel.action",
+				"method" : "POST",
+				"data": {
+					"productNo":no,					
+				},
+				"success":function(data,status,xhr){
+					alert("수정되었습니다.");
+					$('#productdiv').load("productlist.action",{"storeNo":${ user.storeNo },"pageNo":${ pageNo }});
+				},
+				"error":function(xhr,status,err){
+					alert("실패");
+				}
+			});	
+    		
+    	});
+    	
+		$('#productdiv').on('click','.c',function(event){ //수정
+    								
+    		var no=$(this).attr('data-no');
+		
+			var d=$('#sub'+no)[0];
+			var data=new FormData(d);
+			
+    		$.ajax({
+				"url" : "productUd.action",  
+				"processData": false,
+                "contentType": false,
+                "data": data,
+				"type" : "POST",				
+				"success":function(data,status,xhr){
+					alert("수정되었습니다.");					
+					$('#productdiv').load("productlist.action",{"storeNo":${ user.storeNo },"pageNo":${ pageNo }});
+				},
+				"error":function(xhr,status,err){
+					alert("실패");
+				}
+			});
+    		
+    		$('#myModal1'+no).modal('hide');
+    		
+    	});
+		
+		
+		
+    	
+    });
+    </script>
 </head>
 
 <body>
@@ -83,11 +139,11 @@
       <jsp:include page="/WEB-INF/views/include/header.jsp" />
         <div class="blog-area mg-tb-15">
       
-            <div class="modal-bootstrap modal-login-form" style="margin: 5px 20px;">
-        		<a class="zoomInDown mg-t" href="/jewelry/product/productupload.action?storeNo=${user.storeNo}" data-target="#zoomInDown1">제품추가</a>
+            <div class="buttonS" style="margin: 5px 20px;">
+        		<a href="/jewelry/product/productupload.action?storeNo=${user.storeNo}" data-target="#zoomInDown1">제품추가</a>
         	</div>
 			<div class="container-fluid">
-				<div class="row">
+				<div class="row" id="productdiv">
 					<c:forEach var="product" items="${products}">
 						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 							<div class="hpanel blog-box mg-t-30">
@@ -105,14 +161,99 @@
 										</a>
 									</div>
 								</div>
-								<div class="panel-footer"></div>
+								<div class="panel-footer">
+									<div class="btn-group btn-custom-groups btn-custom-groups-one">
+										<button type="button" class="btn btn-primary a"
+											data-toggle="modal" data-target="#myModal1${product.productNo }"
+											data-no="${product.productNo}">
+											<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+										</button>
+										<button type="button" class="btn btn-primary b" title="update"
+											data-no="${product.productNo}">
+											<i class="fa fa-times adminpro-danger-error" title="delete"
+												aria-hidden="true"></i>
+										</button>
+
+										<!-- Modal -->
+										<div id="myModal1${product.productNo }" class="modal fade" role="dialog">
+											<div class="modal-dialog">
+
+												<!-- Modal content-->
+											<div class="panel-body">
+											
+												<div class="modal-header">
+													<h4 class="modal-title">재품 정보 수정</h4>													
+												</div>
+												
+													<div id="myTabContent"
+														class="tab-content custom-product-edit">
+														<div class="product-tab-list tab-pane fade active in"
+															id="description">
+														<form id="sub${product.productNo}" action='productUd.action' method="post">
+															<div class="row">
+																<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+																	<div class="review-content-section">
+																		<div class="input-group mg-b-pro-edt">
+																			<span class="input-group-addon"><strong>제품이름</strong></span>
+																			<input type="text" class="form-control" name="productName" value="${product.productName}" placeholder="Name">																				
+																		</div>
+																		
+																		<div class="input-group mg-b-pro-edt">
+																			<span class="input-group-addon"><strong>공인비</strong></span>
+																			<input type="text" class="form-control" name="productCost" placeholder="Cost" value="${product.productCost}">																				
+																		</div>																		
+																		<input type="hidden" class="form-control" name="userNo" value="${user.storeNo}">
+																		<input type="hidden" class="form-control" name="productNo" value="${product.productNo}">
+																	</div>
+																</div>
+																<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+																	<div class="review-content-section">
+																		<div class="input-group mg-b-pro-edt">
+																			<span class="input-group-addon"><i
+																				class="fa fa-download" aria-hidden="true"></i></span> <input
+																				type="file" name="img" class="form-control">
+																		</div>
+
+																		<div class="input-group mg-b-pro-edt">
+																			<span class="input-group-addon">거래처</span> <select
+																				class="form-control" name="acno">
+																				<option selected></option>
+																				<c:forEach var="account" items="${accounts}">
+																					<option value="${account.acno}">${account.acstore}</option>
+																				</c:forEach>
+																			</select>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</form>
+															
+															<div class="row">
+																<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+																	<div class="text-center mg-b-pro-edt custom-pro-edt-ds">
+																		<button class="btn btn-primary waves-effect waves-light m-r-10 c" data-no="${product.productNo}">수정</button>																																																																							
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+
+
+												</div>
+
+											</div>
+										</div>
+
+									</div>
+								</div>
 							</div>
 						</div>
 					</c:forEach>
 				</div>
 				<div class="custom-pagination">
 					<nav aria-label="Page navigation example">
-						<ul class="pagination">${pager}
+						<ul class="pagination">
+						${pager}
 						</ul>
 					</nav>
 				</div>

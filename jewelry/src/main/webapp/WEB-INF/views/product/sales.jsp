@@ -53,6 +53,30 @@
 		============================================ -->
     <link rel="stylesheet" href="../resources/css/calendar/fullcalendar.min.css">
     <link rel="stylesheet" href="../resources/css/calendar/fullcalendar.print.min.css">
+    
+    <!-- forms CSS
+		============================================ -->
+    <link rel="stylesheet" href="../resources/css/form/themesaller-forms.css">
+     <!-- touchspin CSS
+		============================================ -->
+    <link rel="stylesheet" href="../resources/css/touchspin/jquery.bootstrap-touchspin.min.css">
+    <!-- datapicker CSS
+		============================================ -->
+    <link rel="stylesheet" href="../resources/css/datapicker/datepicker3.css">
+    <!-- colorpicker CSS
+		============================================ -->
+    <link rel="stylesheet" href="../resources/css/colorpicker/colorpicker.css">
+    <!-- select2 CSS
+		============================================ -->
+    <link rel="stylesheet" href="../resources/css/select2/select2.min.css">
+    <!-- chosen CSS
+		============================================ -->
+    <link rel="stylesheet" href="../resources/css/chosen/bootstrap-chosen.css">
+    <!-- ionRangeSlider CSS
+		============================================ -->
+    <link rel="stylesheet" href="../resources/css/ionRangeSlider/ion.rangeSlider.css">
+    <link rel="stylesheet" href="../resources/css/ionRangeSlider/ion.rangeSlider.skinFlat.css">
+    
     <!-- style CSS
 		============================================ -->
     <link rel="stylesheet" href="../resources/style.css">
@@ -63,7 +87,7 @@
 		============================================ -->
     <script src="../resources/js/vendor/modernizr-2.8.3.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript">
+<script type="text/javascript">
     	$(function(){
     		
     		$('#sales').on('click','.ps-setting',function(event){
@@ -77,13 +101,39 @@
     				"data":{"salesNo":salesNo,"salesPrice":salesPrice},    				
     				"success":function(data,status,xhr){
     					alert("수정되었습니다.");
+    					$('#sales').load("salesviewlist.action",{"storeNo":${user.storeNo},"pageNo":${pageNo}});
+    				},
+    				"error":function(xhr,status,err){
+    					alert("실패");
+    				}
+    			});	
+    		});	
+    		
+    		
+			/*$('#search').on('click',function(event){
+    			  				
+				var start=$('#start').val();
+				var end=$('#end').val();
+				var storeNo=${user.storeNo};
+				
+    			$.ajax({
+    				"url" : "searchsales.action",
+    				"method" : "POST",
+    				"data":{"storeNo":storeNo,"start":start,"end":end},    				
+    				"success":function(data,status,xhr){
+    					alert("수정되었습니다.");
     					$('#salestable').load("salesviewlist.action",{"storeNo":${user.storeNo},"pageNo":${pageNo}});
     				},
     				"error":function(xhr,status,err){
     					alert("실패");
     				}
     			});	
+    		});*/
+    		
+    		$('#sales').on('click','#search',function(event){
+    			$('#searchform').submit();
     		});
+			
     	});
     </script>
 </head>
@@ -111,8 +161,21 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="product-status-wrap" id="sales">
-                            <h4>Products List</h4>                          
-                            <table id="salestable">
+                            <h4>판매관리</h4> 
+                            			<form id="searchform" action="searchsales.action" method="post">
+                            				<input type="hidden" name="storeNo" value="${user.storeNo }">  
+                                         <div class="form-group data-custon-pick data-custom-mg" id="data_5" style="padding:0px 0px 10px 5px;float:left">                                                             
+                                        <div class="input-daterange input-group" id="datepicker">                                        	                                      	
+                                            	<input type="text" class="form-control" name="start" value="${start}">
+                                            	<span class="input-group-addon">to</span>
+                                            	<input type="text" class="form-control" name="end" value="${end}">                                           
+                                        </div>
+                                    </div>
+                                    </form>  
+                                     <button class="buttonS" id="search" style="height:34px;float:left">검색</button>
+                                    <div style="text-align:right;"><strong  style="padding:20px 40px 20px 20px" >매출:${revenue}</strong><strong  style="padding:20px 40px 20px 20px">순수이익:${profit}</strong></div>
+                                                                                       
+                            <table>
                                 <tr>
                                     <th>제품명</th>
                                     <th>형태</th>
@@ -170,9 +233,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div>         
+        </div> 
        <jsp:include page="/WEB-INF/views/include/footer.jsp"/>
+       
     </div>
 
     <!-- jquery
@@ -216,6 +280,46 @@
     <script src="../resources/js/calendar/moment.min.js"></script>
     <script src="../resources/js/calendar/fullcalendar.min.js"></script>
     <script src="../resources/js/calendar/fullcalendar-active.js"></script>
+    
+    <!-- touchspin JS
+		============================================ -->
+    <script src="../resources/js/touchspin/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="../resources/js/touchspin/touchspin-active.js"></script>
+    <!-- colorpicker JS
+		============================================ -->
+    <script src="../resources/js/colorpicker/jquery.spectrum.min.js"></script>
+    <script src="../resources/js/colorpicker/color-picker-active.js"></script>
+     <!-- datapicker JS
+		============================================ -->
+    <script src="../resources/js/datapicker/bootstrap-datepicker.js"></script>
+    <script src="../resources/js/datapicker/datepicker-active.js"></script>
+    <!-- input-mask JS
+		============================================ -->
+    <script src="../resources/js/input-mask/jasny-bootstrap.min.js"></script>
+    <!-- chosen JS
+		============================================ -->
+    <script src="../resources/js/chosen/chosen.jquery.js"></script>
+    <script src="../resources/js/chosen/chosen-active.js"></script>
+    <!-- select2 JS
+		============================================ -->
+    <script src="../resources/js/select2/select2.full.min.js"></script>
+    <script src="../resources/js/select2/select2-active.js"></script>
+    <!-- ionRangeSlider JS
+		============================================ -->
+    <script src="../resources/js/ionRangeSlider/ion.rangeSlider.min.js"></script>
+    <script src="../resources/js/ionRangeSlider/ion.rangeSlider.active.js"></script>
+    <!-- rangle-slider JS
+		============================================ -->
+    <script src="../resources/js/rangle-slider/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="../resources/js/rangle-slider/jquery-ui-touch-punch.min.js"></script>
+    <script src="../resources/js/rangle-slider/rangle-active.js"></script>
+    <!-- knob JS
+		============================================ -->
+    <script src="../resources/js/knob/jquery.knob.js"></script>
+    <script src="../resources/js/knob/knob-active.js"></script>	
+    <!-- tab JS
+		============================================ -->
+    <script src="../resources/js/tab.js"></script>    
     <!-- plugins JS
 		============================================ -->
     <script src="../resources/js/plugins.js"></script>

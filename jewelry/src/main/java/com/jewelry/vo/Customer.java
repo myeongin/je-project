@@ -26,7 +26,7 @@ public class Customer {
 	@NotEmpty(message="고객의 성별은 반드시 입력해야합니다.")
 	private String cuSex;
 
-	private Date cuDate;
+	private Date regDate;
 	
 	private Boolean deleted;
 	
@@ -88,12 +88,12 @@ public class Customer {
 		this.cuSex = cuSex;
 	}
 
-	public Date getCuDate() {
-		return cuDate;
+	public Date getRegDate() {
+		return regDate;
 	}
 
-	public void setCuDate(Date cuDate) {
-		this.cuDate = cuDate;
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
 	}
 
 	public Boolean getDeleted() {

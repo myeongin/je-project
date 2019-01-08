@@ -37,4 +37,12 @@ public class PriceServiceImpl implements PriceService{
 		priceDao.deletePrice(priceNo);
 	}
 	
+	//시세모두삭제
+	@Override
+	public void deletePriceAll(int userNo) {
+		priceDao.deletePriceAll(userNo);
+	}
+	
+	
+	
 }

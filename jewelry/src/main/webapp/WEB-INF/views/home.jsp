@@ -58,7 +58,8 @@
 		============================================ -->
     <link rel="stylesheet" href="resources/style.css">
     <!-- responsive CSS
-		============================================ -->
+		======================
+		====================== -->
     <link rel="stylesheet" href="resources/css/responsive.css">
     <!-- modernizr JS
 		============================================ -->

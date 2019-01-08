@@ -127,8 +127,8 @@
 		SELECT * FROM ACCOUNT WHERE STORENO = #{storeNo} and ACDEL !=#{del}		
 	</select>
 	
-	<select id="selectAllCustomer" parameterType="int" resultType="com.jewelry.vo.Customer">
-		SELECT * FROM CUSTOMER WHERE STORENO = #{storeNo}
+	<select id="selectAllCustomer" parameterType="hashmap" resultType="com.jewelry.vo.Customer">
+		SELECT * FROM CUSTOMER WHERE STORENO = #{storeNo} and deleted !=#{del}
 	</select>
 	
 	<insert id="insertAllSales" parameterType="Sales">

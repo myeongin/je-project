@@ -249,7 +249,11 @@ public class ProductDaoImpl implements ProductDao{
 	@Override
 	public List<Customer> selectAllCustomer(int storeNo) {
 		
-		List<Customer> customers = productMapper.selectAllCustomer(storeNo);
+		HashMap<String, Object> type=new HashMap<>();
+		type.put("storeNo", storeNo);
+		type.put("del","1");
+		
+		List<Customer> customers = productMapper.selectAllCustomer(type);
 		
 		return customers;
 	}

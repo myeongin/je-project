@@ -40,7 +40,7 @@ public interface ProductMapper {
 	DetailVo findDetailBydetailNo (int detailNo);
 	List<salesViewVo> findSalesView (HashMap<String, Object> sales);
 	void updateSales(HashMap<String, Object> sales);
-	List<Customer> selectAllCustomer(int storeNo);
+	List<Customer> selectAllCustomer(HashMap<String, Object> type);
 	void insertAllSales(SalesVo sales);
 	int findOrdercount(int storeNo);
 	List<ProductVo> selectAllProductBypager(HashMap<String, Object> type);

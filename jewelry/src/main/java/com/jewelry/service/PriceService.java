@@ -14,4 +14,6 @@ public interface PriceService {
 
 	List<PriceVo> takePriceList(int from, int to,int userNo);
 
+	void deletePriceAll(int userNo);
+
 }

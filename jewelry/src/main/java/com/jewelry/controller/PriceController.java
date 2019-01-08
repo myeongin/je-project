@@ -83,6 +83,15 @@ public String listPrice(@RequestParam(value="pageno",required = false,defaultVal
 		return "redirect:/price/price.action";
 	}
 	
+	//시세모두삭제
+	@RequestMapping(value="priceDeleteAll.action",method= {RequestMethod.POST,RequestMethod.GET})
+	public String priceDelAll(Model model, int userNo) {
+		
+		priceService.deletePriceAll(userNo);
+		model.addAttribute("userNo",userNo);
+		
+		return "redirect:/price/price.action";
+	}
 
 	
 	

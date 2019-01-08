@@ -24,6 +24,12 @@
 	UPDATE PRICE SET DELETED = #{deleted} WHERE PRICENO =#{priceNo}
 	</update>
 	
+		<update id="deletePriceAll" parameterType="hashmap">
+	UPDATE PRICE SET DELETED = #{deleted} WHERE STORENO =#{userNo}
+	</update>
+	
+	
+	
 </mapper>
 
 

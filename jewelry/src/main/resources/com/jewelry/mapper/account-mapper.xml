@@ -65,7 +65,7 @@
 				FROM 
 					account 
 				WHERE 
-				   	acdel = '0'
+				   	acdel = '0' AND storeno = #{ storeNo }
 				ORDER BY acno DESC 
 				) s 
 			) 
@@ -140,6 +140,8 @@
 			acno = #{ acno }
 	</select>
 	
+		
+			
 	
 	
 </mapper>

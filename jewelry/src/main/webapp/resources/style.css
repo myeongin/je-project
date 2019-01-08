@@ -3394,3 +3394,15 @@ div#sparklinehome canvas {
 	position:relative;
 	top:1px;
 }
+
+.add-pp {
+    float: right;
+    position: absolute;
+    top: 14px;
+    right: 50px;
+    background: -webkit-linear-gradient(178deg, #e12503 0%, #85060c 100%);
+    background: linear-gradient(178deg, #e12503 0%, #85060c 100%);
+    padding: 6px 20px;
+    color: #fff;
+    border-radius: 4px;
+}

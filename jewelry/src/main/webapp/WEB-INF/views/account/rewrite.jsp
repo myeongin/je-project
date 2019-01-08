@@ -106,7 +106,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="back-link back-backend">
-                    <a href="/jewelry/account/list.action" class="btn btn-primary">거래처 목록</a>
+                    <a href="/jewelry/account/list.action?storeNo=${ user.storeNo }" class="btn btn-primary">거래처 목록</a>
                 </div>
             </div>
         </div>
@@ -142,39 +142,40 @@
     							<button type="button" class="btn btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>                               
 							</div>
 							<div class="form-group">
-    							<input class="form-control" style="top: 5px;" placeholder="도로명 주소" name="acadd2" value=${ accounts.acadd2 } type="text" readonly="readonly" />
+    							<input class="form-control" style="top: 5px;" placeholder="도로명 주소" name="acadd2" value="${ accounts.acadd2 }" type="text" readonly="readonly" />
 							</div>
 							<div class="form-group">
-    							<input class="form-control" placeholder="상세주소" name="acadd3" value=${ accounts.acadd3 } type="text"  />
+    							<input class="form-control" placeholder="상세주소" name="acadd3" value="${ accounts.acadd3 }" type="text"  />
 							</div>
                             
                             <div class="form-group">
                                 <label class="control-label">전화번호</label>
-                                <input type="text" class="form-control" name="achonumber" value=${ accounts.achonumber }>
+                                <input type="text" class="form-control" name="achonumber" value="${ accounts.achonumber }">
                             </div>
                             <div class="form-group">
                                 <label class="control-label">대표자 이름</label>
-                                <input type="text" class="form-control" name="acname" value=${ accounts.acname }>
+                                <input type="text" class="form-control" name="acname" value="${ accounts.acname }">
                             </div>
                             <div class="form-group">
                                 <label class="control-label">대표 번호</label>
-                                <input type="text" class="form-control" name="acphone" value=${ accounts.acphone }>
+                                <input type="text" class="form-control" name="acphone" value="${ accounts.acphone }">
                             </div>
                             <div class="form-group">
                                 <label class="control-label">담당자</label>
-                                <input type="text" class="form-control" name="acmaname" value=${ accounts.acmaname }>
+                                <input type="text" class="form-control" name="acmaname" value="${ accounts.acmaname }">
                             </div>
                             <div class="form-group">
                                 <label class="control-label">담당자 번호</label>
-                                <input type="text" class="form-control" name="acmaphone" value=${ accounts.acmaphone }>
+                                <input type="text" class="form-control" name="acmaphone" value="${ accounts.acmaphone }">
                             </div>
                             <div class="form-group">
                                 <label class="control-label">*거래처 해리</label>
-                                <input type="text" class="form-control" name="acheherry" value=${ accounts.acheherry }>
+                                <input type="text" class="form-control" name="acheherry" value="${ accounts.acheherry }">
                             </div>
                             <input type="hidden" name="acno" value="${ accounts.acno }">
+                            <input type="hidden" name="storeno" value="${ user.storeNo }">
                             <input class="btn btn-success btn-block loginbtn" type="submit" id="rewrite" value="수정">
-                            <a href="/jewelry/account/list.action" class="btn btn-default btn-block">취소</a>
+                            <a href="/jewelry/account/list.action?storeNo=${ user.storeNo }" class="btn btn-default btn-block">취소</a>
                         </form>
                     </div>
                 </div>

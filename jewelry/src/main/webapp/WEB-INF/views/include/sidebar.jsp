@@ -2,17 +2,17 @@
  <div class="left-sidebar-pro">
         <nav id="sidebar" class="">
             <div class="sidebar-header">
-                <a href="/jewelry/home.action?storeNo=${user.storeNo }"><img class="main-logo" src="/jewelry/resources/img/logo/logo.png" alt="" /></a>
+                <a href="/jewelry/home.action?storeNo=${ user.storeNo }"><img class="main-logo" src="/jewelry/resources/img/logo/logo.png" alt="" /></a>
                 <strong><img src="/jewelry/resources/img/logo/logosn.png" alt="" /></strong>
             </div>
             <div class="left-custom-menu-adp-wrap">
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
                         <li>
-                            <a href="/jewelry/fc/empmanagement.action?userNo=${user.userNo}" aria-expanded="false"><i class="fa fa-bullseye sub-icon-mg"></i> <span class="mini-click-non">직원관리</span></a>
+                            <a href="/jewelry/fc/regmanagement.action" aria-expanded="false"><i class="fa fa-television sub-icon-mg"></i> <span class="mini-click-non">계정관리</span></a>
                         </li>
                         <li>
-                            <a href="/jewelry/fc/regmanagement.action" aria-expanded="false"><i class="fa fa-television sub-icon-mg"></i> <span class="mini-click-non">계정관리</span></a>
+                            <a href="/jewelry/fc/empmanagement.action?userNo=${user.userNo}" aria-expanded="false"><i class="fa fa-bullseye sub-icon-mg"></i> <span class="mini-click-non">직원관리</span></a>
                         </li>
                         <li>
                             <a href="/jewelry/price/price.action?userNo=${user.storeNo}" aria-expanded="false"><i class="fa fa-line-chart sub-icon-mg"></i> <span class="mini-click-non">금 시세</span></a>

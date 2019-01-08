@@ -18,9 +18,9 @@ public class accountServiceImpl implements accountService {
 	}
 
 	@Override
-	public List<account> findAllAccountByPage(int from, int to) {
+	public List<account> findAllAccountByPage(int from, int to, int storeNo) {
 		
-		List<account> accounts = accountdao.selectAccountByPage(from, to);
+		List<account> accounts = accountdao.selectAccountByPage(from, to, storeNo);
 		
 		return accounts;
 	}
@@ -73,6 +73,8 @@ public class accountServiceImpl implements accountService {
 		
 		return accounts;
 	}
+
+
 	
 
 }

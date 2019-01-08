@@ -1,7 +1,9 @@
 package com.jewelry.controller;
 
 import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -16,14 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 import com.jewelry.service.HomeService;
-
+import com.jewelry.vo.FcVo;
 import com.jewelry.vo.Home;
-
-/**
- * Handles requests for the application home page.
- */
-
-
+import com.jewelry.vo.ProductVo;
 
 @Controller
 public class HomeController {
@@ -68,19 +65,23 @@ public class HomeController {
 		model.addAttribute("acList", acList );
 		
 	////////////////////////////////////////////////////////////////////////
+		Calendar y = Calendar.getInstance();
+		int year = y.get(Calendar.YEAR);
 		
-		List<Integer> revenue = homeService.takeRevenue(storeNo);
+		HashMap<String, Integer[]> price = homeService.takeRevenue(storeNo);
+		List<ProductVo> pac = homeService.takeProductAndCount(storeNo);
+		List<HashMap<String, Object>> employees = homeService.takeExEmployee(storeNo);
+		List<HashMap<String, Object>> acs = homeService.takeExAc(storeNo);
 		
-		if(revenue.size() != 0) {
-			model.addAttribute("day", revenue.get(0));
-			model.addAttribute("week", revenue.get(1));
-			model.addAttribute("month", revenue.get(2));
-			model.addAttribute("year", revenue.get(3));
-		}
-		
-		
-		
-		
+		model.addAttribute("acs", acs);
+		model.addAttribute("employees",employees);
+		model.addAttribute("year", year);
+		model.addAttribute("pac", pac);
+		model.addAttribute("day", price.get("sum"));
+		model.addAttribute("re", price.get("re"));
+		model.addAttribute("ex", price.get("ex"));
+		model.addAttribute("pr", price.get("pr"));
+													
 		return "home";
 	}
 	

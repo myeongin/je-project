@@ -21,12 +21,53 @@
 		SELECT rowNUM NUM , M.* FROM(SELECT * FROM PRICE WHERE DELETED <![CDATA[!=]]> #{del} AND STORENO = #{storeNo} ORDER BY PRICENO DESC)M
 	</select>
 	
-	<select id="selectSalesByStoreNo" parameterType="int" resultType="Sales">
+	<select id="selectSalesByStoreNo" parameterType="int" resultType="SalesView">
 		
-		SELECT * FROM SALES WHERE USERNO=#{storeNo}
+		SELECT * FROM SALESVIEW WHERE STORENO=#{storeNo}
 
 	</select>
-
+	
+	<select id="selectProductAndCount" parameterType="hashmap" resultType="Product">
+	select * from
+	(select a.*,ROWNUM NUM from
+		(SELECT productName,productNo,COUNT(PRODUCTNO) count  
+			FROM SALESVIEW 
+			WHERE STORENO=#{storeNo} 
+				and SALESDATE BETWEEN TO_DATE(#{ago},'yyyy/MM/dd') and To_Date(#{to},'yyyy/MM/dd')+1 
+			GROUP BY PRODUCTNAME,PRODUCTNO 
+			ORDER BY COUNT(PRODUCTNO) DESC) a)
+	where NUM <![CDATA[<=]]> 4		
+	</select>
+	
+	<select id="selectProductImg" parameterType="int" resultType="ProductImg">
+		SELECT * FROM PRODUCT_IMG WHERE PRODUCTNO = #{productNo}
+	</select>
+	
+	<select id="selectExEmployee" parameterType="hashmap" resultType="hashmap">
+		select * from
+		(select a.*,ROWNUM NUM
+			from
+		    (select USERNAME,sum(SALESPRICE) revenue,sum(SALESPRICE-price) profit 
+		        from salesView 
+		        where STORENO = #{storeNo} 
+		            and SALESDATE BETWEEN TO_DATE(#{first},'yyyy/MM/dd') and To_Date(#{last},'yyyy/MM/dd')+1
+		            and SALESPRICE is not null
+		        group by USERNAME,USERNO
+		        order by sum(SALESPRICE-PRICE) DESC) a)
+		where NUM <![CDATA[<=]]> 4
+	</select>
+	
+	<select id="selectExAc" parameterType="int" resultType="hashmap">
+		select * from    
+			(Select a.*,ROWNUM NUM from    
+				(select acstore,sum(ordercount) mount 
+				from ORDERVIEW
+				where storeno=#{storeNo}
+				Group By ACSTORE
+				ORder BY sum(orderCount))a)
+		where num<![CDATA[<=]]> 4
+	</select>
+	
 </mapper>
 
 

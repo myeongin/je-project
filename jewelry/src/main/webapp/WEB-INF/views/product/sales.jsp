@@ -187,6 +187,7 @@
                                     <th>판매가격</th>
                                     <th>판매수량</th>
                                     <th>판매일</th>
+                                    <th>구매자</th>
                                     <th>판매직원</th>
                                     <th>판매상태</th>                                                                                                           
                                 </tr>
@@ -209,6 +210,7 @@
                                     </c:choose>                                                                  
                                     <td>${view.salesCount}</td>
                                     <td><fmt:formatDate value="${view.salesDate}" pattern="yyyy/MM/dd(E) HH:mm:ss"/></td>
+                                    <td>${view.cuName }</td>
                                     <td>${view.userName}</td>
                                     <td>
                                     	<c:choose>

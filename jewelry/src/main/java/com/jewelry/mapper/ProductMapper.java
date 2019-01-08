@@ -40,7 +40,6 @@ public interface ProductMapper {
 	DetailVo findDetailBydetailNo (int detailNo);
 	List<salesViewVo> findSalesView (HashMap<String, Object> sales);
 	void updateSales(HashMap<String, Object> sales);
-	List<account> findAccountByStoreNo(int storeNo);
 	List<Customer> selectAllCustomer(int storeNo);
 	void insertAllSales(SalesVo sales);
 	int findOrdercount(int storeNo);
@@ -56,4 +55,5 @@ public interface ProductMapper {
 	int takeProfit(HashMap<String, Object> profit);
 	int takeRevenue(HashMap<String, Object> profit);
 	List<salesViewVo> searchSalesView(HashMap<String, Object> sal);
+	List<account> findAccountByStoreNo(HashMap<String, Object> type);
 }

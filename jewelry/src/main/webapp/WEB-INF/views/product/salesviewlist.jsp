@@ -2,13 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
                                           
-                           <div class="product-status-wrap" id="sales">
+                         
                             <h4>판매관리</h4> 
                                          <div class="form-group data-custon-pick data-custom-mg" id="data_5" style="padding:0px 0px 10px 5px;float:left">                    
                                         <div class="input-daterange input-group" id="datepicker">
-                                            <input type="text" class="form-control" name="start" id="start" value="<fmt:formatDate value="${start}" pattern="MM/dd/yyyy"/>"/>
+                                            <input type="text" class="form-control" name="start" id="start" value="${start}"/>
                                             <span class="input-group-addon">to</span>
-                                            <input type="text" class="form-control" name="end"  id="end" value="<fmt:formatDate value="${end}" pattern="MM/dd/yyyy"/>" />
+                                            <input type="text" class="form-control" name="end"  id="end" value="${end}"/>
                                         </div>
                                     </div>  
                                      <button class="buttonS" id="search" style="height:34px;float:left">검색</button>
@@ -26,6 +26,7 @@
                                     <th>판매가격</th>
                                     <th>판매수량</th>
                                     <th>판매일</th>
+                                    <th>구매자</th>
                                     <th>판매직원</th>
                                     <th>판매상태</th>                                                                                                           
                                 </tr>
@@ -48,6 +49,7 @@
                                     </c:choose>                                                                  
                                     <td>${view.salesCount}</td>
                                     <td><fmt:formatDate value="${view.salesDate}" pattern="yyyy/MM/dd(E) HH:mm:ss"/></td>
+                                    <td>${view.cuName }</td>
                                     <td>${view.userName}</td>
                                     <td>
                                     	<c:choose>
@@ -69,6 +71,6 @@
                                     </ul>
                                 </nav>
                             </div>
-                        </div>
+            
                           
                             

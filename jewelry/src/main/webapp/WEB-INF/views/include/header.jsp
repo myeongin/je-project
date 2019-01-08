@@ -14,18 +14,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
-                                        <div class="header-top-menu tabl-d-n">
-                                            <ul class="nav navbar-nav mai-top-nav">
-                                                <li class="nav-item"><a href="#" class="nav-link"><span class="admin-name"></span></a>
-                                                </li>
-                                                <li class="nav-item"><a href=" #" class="nav-link"></a>
-                                                </li>
-                                                <li class="nav-item"><a href="#" class="nav-link"></a>
-                                                </li>
-                                                <li class="nav-item"><a href="#" class="nav-link"></a>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                       
                                     </div>
                                     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                                         <div class="header-right-info">

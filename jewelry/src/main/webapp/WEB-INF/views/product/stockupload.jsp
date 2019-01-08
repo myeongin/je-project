@@ -62,8 +62,24 @@
 		============================================ -->
     <script src="../resources/js/vendor/modernizr-2.8.3.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
+	<script type="text/javascript">
+	
+	function check(regular,id,message){
+		if(regular.test(id.val())){
+			return true;
+		}
+		alert(message);
+		id.val("");
+		id.focus();
+	}
+
 	$(function(){
+		
+		var caratreg = $("#carat");
+		var sizereg = $("#size");
+		var mountreg = $("#mount");
+		var pricereg = $("#price");
+		var regular= /^\d+\.?\d*$/;
 		
 		var gold=0;		
 		var carat=0;		
@@ -96,6 +112,47 @@
 			var productprice=Math.ceil((newPrice*gold*harry*carat)+cost);
 			$('#price').val(productprice);
 		});
+		
+		
+		$('#stockupload').click(function(envet){
+			
+			if(pricereg.val()==""){
+				alert("가격을 확인해 주세요");
+				return;
+			}
+			
+			if(!check(regular,pricereg,"가격에 숫자만 입력해주세요")){
+				return;
+			}
+			
+			if(caratreg.val()==""){
+				alert("중량을 입력해 주세요");
+				return;
+			}
+			
+			if(!check(regular,caratreg,"중량에 숫자만 입력해주세요")){
+				return;
+			}
+			
+			if(sizereg.val()==""){
+				alert("사이즈을 입력해 주세요");
+				return;
+			}
+			if(mountreg.val()==""){
+				alert("수량을 입력해 주세요");
+				return;
+			}
+			
+			if(!check(regular,mountreg,"수량에 숫자만 입력해주세요")){
+				return;
+			}						
+			
+			$('#stockform').submit();
+		});
+		
+		$("#cancel").click(function(evnet){
+			location.href='/jewelry/product/stock.action?storeNo=${user.storeNo}';
+		});
 					
 	});
 </script>
@@ -123,24 +180,23 @@
         <div class="single-product-tab-area mg-tb-15">
             <!-- Single pro tab review Start-->
             <div class="single-pro-review-area">
-                <div class="container-fluid">
-                <form action="/jewelry/product/stockupload.action" method="Post">
-                	<input type="hidden" name="storeNo" value=${ user.storeNo }> 
+                <div class="container-fluid">               
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="review-tab-pro-inner">
                                 <ul id="myTab3" class="tab-review-design">
-                                    <li class="active"><a href="#description"><i class="fa fa-pencil" aria-hidden="true"></i> Product Edit</a></li>  
+                                    <li class="active"><a href="#description"><i class="fa fa-pencil" aria-hidden="true"></i>재고 추가</a></li>  
                                 </ul>
                                 <div id="myTabContent" class="tab-content custom-product-edit">
                                     <div class="product-tab-list tab-pane fade active in" id="description">
+                                    	 <form action="/jewelry/product/stockupload.action" method="Post" id="stockform">
+                                    	  <input type="hidden" name="storeNo" value=${ user.storeNo }> 
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 <div class="review-content-section">
                                                     <div class="input-group mg-b-pro-edt">
                                                         <span class="input-group-addon">제품명</span>                                                        
-                                                        <select class="form-control" name="productNo" id="cost">
-                                                        	<option>----</option>
+                                                        <select class="form-control" name="productNo" id="cost">                                                        
                                                         	<c:forEach var="product" items="${products}">
                                                         		<option value="${product.productNo}" id="${product.productCost}" data-harry="${product.harry}">${product.productName}</option>                                                        		
                                                         	</c:forEach>
@@ -152,8 +208,7 @@
                                                     </div>
                                                     <div class="input-group mg-b-pro-edt">
                                                         <span class="input-group-addon">형태</span>                                                       
-                                                         <select class="form-control" name="shape">
-                                                         	<option selected="selected">----</option>
+                                                         <select class="form-control" name="shape">                                                         	
                                                          	<option value="반지">반지</option>
                                                          	<option value="팔찌">팔찌</option>
                                                          	<option value="목걸이">목걸이</option>
@@ -162,8 +217,7 @@
                                                     </div>
                                                     <div class="input-group mg-b-pro-edt">
                                                         <span class="input-group-addon">색깔</span>                                                                                                                                   
-                                                         <select class="form-control" name="detailColor">
-                                                         	<option selected="selected">----</option>
+                                                         <select class="form-control" name="detailColor">                                                        
                                                          	<option value="화이트">화이트</option>
                                                          	<option value="루비">루비</option>
                                                          	<option value="블랙">블랙</option>                                                         	
@@ -171,8 +225,7 @@
                                                     </div>
                                                     <div class="input-group mg-b-pro-edt">
                                                         <span class="input-group-addon">골드</span>
-                                                        <select class="form-control" name="detailGold" id="detailGold">
-                                                        	<option selected="selected">----</option>
+                                                        <select class="form-control" name="detailGold" id="detailGold">                                                        	
                                                          	<option value="14k">14k</option>
                                                          	<option value="18k">18k</option>
                                                          	<option value="24k">24k</option>                                                                                                                
@@ -188,21 +241,22 @@
                                                     </div>
                                                     <div class="input-group mg-b-pro-edt">
                                                         <span class="input-group-addon">사이즈</span>
-                                                       <input type="text" name="detailSize" class="form-control" placeholder="Size">
+                                                       <input type="text" name="detailSize" class="form-control" placeholder="Size" id="size">
                                                     </div>
                                                     <div class="input-group mg-b-pro-edt">
                                                         <span class="input-group-addon">수량</span>
                                                         <input type="text" name="mount" class="form-control" placeholder="Mount" id="mount">
                                                     </div>                                                    
                                                 </div>
-                                            </div>
-                                        </div>                                      
+                                            </div>                                          
+                                        </div>    
+                                         </form>                                  
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                 <div class="text-center mg-b-pro-edt custom-pro-edt-ds">
-                                                    <button class="btn btn-primary waves-effect waves-light m-r-10">Save
+                                                    <button class="btn btn-primary waves-effect waves-light m-r-10" id="stockupload">추가
 														</button>
-                                                    <button type="button" class="btn btn-warning waves-effect waves-light">Discard
+                                                    <button type="button" class="btn btn-warning waves-effect waves-light" id="cancel">취소
 														</button>
                                                 </div>
                                             </div>
@@ -211,8 +265,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    </form>
+                    </div>                    
                 </div>
             </div>
            </div> 

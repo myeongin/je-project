@@ -163,6 +163,7 @@ public class ProductDaoImpl implements ProductDao{
 		HashMap<String,Object> type = new HashMap<>();
 		type.put("productNo", productNo);
 		type.put("div","1");
+		type.put("mount","0");
 		
 		List<DetailVo> details=productMapper.selectProductDetail(type);
 		
@@ -236,7 +237,11 @@ public class ProductDaoImpl implements ProductDao{
 	@Override
 	public List<account> findAccountByStoreNo(int storeNo) {
 		
-		List<account> accounts = productMapper.findAccountByStoreNo(storeNo);		
+		HashMap<String, Object> type = new HashMap<>();
+		type.put("storeNo", storeNo);
+		type.put("del","1");
+		
+		List<account> accounts = productMapper.findAccountByStoreNo(type);		
 		return accounts;
 	}
 	

@@ -58,18 +58,6 @@
 		VALUES (order_orderno_sequence.nextval,#{detailNo},#{userNo},#{orderCount},#{orderType})
 	</insert>
 	
-	<update id="updateDetail" parameterType="Detail">
-		
-	</update>
-	
-	<update id="updateOrder" parameterType="Order">
-		
-	</update>
-	
-	<update id="orderDel" parameterType="int">
-	
-	</update>
-	
 	<select id="findDetail" parameterType="int" resultType="Detail">
 		Select * FROM DETAIL WHERE PRODUCTNO =#{productNo}
 	</select>
@@ -98,7 +86,7 @@
 	</select>
 	
 	<select id="selectProductDetail" parameterType="hashmap" resultType="Detail">
-		SELECT * FROM DETAIL WHERE PRODUCTNO = #{productNo} and DETAILDIV = #{div}
+		SELECT * FROM DETAIL WHERE PRODUCTNO = #{productNo} and DETAILDIV = #{div} and MOUNT !=#{mount}
 	</select>
 	
 	<update id="updateOrderViewType" parameterType="hashmap">
@@ -135,8 +123,8 @@
 		WHERE SALESNO=#{salesNo}
 	</update>
 	
-	<select id="findAccountByStoreNo" parameterType="int" resultType="account">
-		SELECT * FROM ACCOUNT WHERE STORENO = #{storeNo}		
+	<select id="findAccountByStoreNo" parameterType="hashmap" resultType="account">
+		SELECT * FROM ACCOUNT WHERE STORENO = #{storeNo} and ACDEL !=#{del}		
 	</select>
 	
 	<select id="selectAllCustomer" parameterType="int" resultType="com.jewelry.vo.Customer">

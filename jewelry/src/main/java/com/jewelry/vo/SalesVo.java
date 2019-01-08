@@ -13,7 +13,7 @@ public class SalesVo {
 	private int cuno;
 	private int userNo;
 	private int detailNo;
-	
+
 	public int getSalesNo() {
 		return salesNo;
 	}

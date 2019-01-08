@@ -21,6 +21,7 @@ public class salesViewVo {
 	private String userName;
 	private int productNo;
 	private int price;
+	private String cuName;
 	
 	public int getStoreNo() {
 		return storeNo;
@@ -123,6 +124,12 @@ public class salesViewVo {
 	}
 	public void setPrice(int price) {
 		this.price = price;
+	}
+	public String getCuName() {
+		return cuName;
+	}
+	public void setCuName(String cuName) {
+		this.cuName = cuName;
 	}
 	
 	

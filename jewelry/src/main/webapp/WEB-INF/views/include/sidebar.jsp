@@ -1,4 +1,5 @@
     <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <div class="left-sidebar-pro">
         <nav id="sidebar" class="">
             <div class="sidebar-header">
@@ -8,12 +9,16 @@
             <div class="left-custom-menu-adp-wrap">
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
+                    	<c:if test="${ not empty user and user.userType eq 'fc' or 'manager' }">
                         <li class="active">
                             <a href="/jewelry/fc/empmanagement.action?userNo=${user.userNo}" aria-expanded="false"><i class="fa big-icon fa-home icon-wrap"></i><span class="mini-click-non">직원관리</span></a>
-                        </li>
+                        </li> 
+                        </c:if>
+                        <c:if test="${ not empty user and user.userType eq 'admin' }">                       
                         <li>
                             <a href="/jewelry/fc/regmanagement.action" aria-expanded="false"><i class="fa big-icon fa-envelope icon-wrap"></i> <span class="mini-click-non">계정관리</span></a>
                         </li>
+                        </c:if>
                         <li>
                             <a href="/jewelry/price/price.action?userNo=${user.storeNo}" aria-expanded="false"><i class="fa fa-line-chart sub-icon-mg"></i> <span class="mini-click-non">금 시세</span></a>
                         </li>

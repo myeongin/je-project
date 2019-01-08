@@ -1,5 +1,6 @@
 package com.jewelry.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class accountController {
 	
 	// 거래처 리스트
 	@RequestMapping(value="/list.action",method=RequestMethod.GET)
-	public String viewAccount(@RequestParam(value= "pageno", required = false, defaultValue = "1") Integer pageno, Model model) {
+	public String viewAccount(@RequestParam(value= "pageno", required = false, defaultValue = "1") Integer pageno, Model model, int storeNo) {
 			
 		int pageSize = 20;
 		int from = (pageno - 1) * pageSize + 1;
@@ -33,14 +34,17 @@ public class accountController {
 		int pagerSize = 5;
 		String linkUrl = "list.action";
 			
-		List<account> accounts = accountservice.findAllAccountByPage(from, to);		
+		List<account> accounts = accountservice.findAllAccountByPage(from, to, storeNo);		
 		int accountCount = accountservice.findAccountCount();
 		
 		//ThePager pager = new ThePager(accountCount, pageno, pageSize, pagerSize, linkUrl);
-			
+		
+		
 		model.addAttribute("accounts", accounts);
 		//model.addAttribute("pager", pager);
 		model.addAttribute("pageno", pageno);
+		
+		
 		
 		return "account/list";
 			
@@ -48,7 +52,7 @@ public class accountController {
 	
 	// 결제 거래처 리스트
 	@RequestMapping(value="/storesearch.action",method=RequestMethod.GET)
-	public String viewAccountSerach(@RequestParam(value= "pageno", required = false, defaultValue = "1") Integer pageno, Model model) {
+	public String viewAccountSerach(@RequestParam(value= "pageno", required = false, defaultValue = "1") Integer pageno, Model model, account account, int storeNo) {
 			
 		int pageSize = 20;
 		int from = (pageno - 1) * pageSize + 1;
@@ -56,13 +60,12 @@ public class accountController {
 		int pagerSize = 5;
 		String linkUrl = "list.action";
 			
-		List<account> accounts = accountservice.findAllAccountByPage(from, to);		
+		List<account> accounts = accountservice.findAllAccountByPage(from, to, storeNo);		
 		int accountCount = accountservice.findAccountCount();
 		
-		//ThePager pager = new ThePager(accountCount, pageno, pageSize, pagerSize, linkUrl);
-			
+		
+		model.addAttribute("accountNo", account.getAcno());
 		model.addAttribute("accounts", accounts);
-		//model.addAttribute("pager", pager);
 		model.addAttribute("pageno", pageno);
 		
 		return "account/storesearch";
@@ -77,9 +80,10 @@ public class accountController {
 	}
 	
 	@RequestMapping(value = "/write.action", method = RequestMethod.POST)
-	public String accountWrite(account account) {
+	public String accountWrite(account account, Model model) {
 
 		accountservice.accountWrite(account);
+		model.addAttribute("storeNo", account.getStoreno());
 		
 		return "redirect:/account/list.action";
 		
@@ -105,16 +109,19 @@ public class accountController {
 		accountservice.accountRewrite(account);
 		model.addAttribute("accountNo", account.getAcno());
 		
+		model.addAttribute("storeNo", account.getStoreno());
+		
 		return "redirect:/account/list.action";
 	}
 	
 	// 거래처 삭제
 	@RequestMapping(value = "/delete.action", method = RequestMethod.GET)
 	public String accountDelete(
-			int accountNo, 
+			int accountNo, int storeNo,
 			Model model) {
 		
 		accountservice.accountDelete(accountNo);
+		model.addAttribute("storeNo", storeNo);
 		
 		return "redirect:/account/list.action";
 	}

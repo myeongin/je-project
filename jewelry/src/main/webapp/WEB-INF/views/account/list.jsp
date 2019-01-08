@@ -5,6 +5,7 @@
     	 pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
     	 
 <!DOCTYPE html>
 <head>
@@ -40,6 +41,7 @@
     <link rel="stylesheet" href="/jewelry/resources/css/responsive.css">
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+    <script type="text/javascript" src="/Example.Modal.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script type="text/javascript">
     
@@ -90,13 +92,15 @@
     
     $("#myButtons").click(function(){
 		$('#myModal').modal('hide')
-		
 		$('#myModal').modal({backdrop: 'static', keyboard: false}) ;
-		
 		
 		
    	});
     
+    
+    
+    
+
 
     
     
@@ -135,12 +139,16 @@
                                     <h1>거래처 <span class="table-project-n">정보</span> </h1>
                                 </div>
                             </div>
+                            
+                            
+                            
+                                  
                             <div class="sparkline13-graph">
                                 <div class="datatable-dashv1-list custom-datatable-overright">
                                     <div id="toolbar">
-                                        <select class="form-control">
-											<option value="all">전체</option>
-										</select>
+                                        <button class="buttonS" data-toggle="modal" data-target="#myModal">
+										   등록
+										</button>
                                     </div>
                                     
                                     
@@ -151,9 +159,6 @@
                                     
 							
 
- <button class="buttonS" data-toggle="modal" data-target="#myModal">
-   거래처 등록
-</button>
 
  
     <!-- The Modal write -->
@@ -209,8 +214,8 @@
                                 <input type="text" class="form-control" name="acmaphone">
                             </div>
                             <div class="form-group">
-                                <label class="control-label">* 거래처 해리</label>
-                                <input type="text" class="form-control" name="acheherry">
+                                <label class="control-label">* 거래처 해리 (ex:숫자만 입력 가능합니다)</label>
+                                <input type="text" class="form-control" name="acheherry" value="1.1">
                             </div>
                            <!--  <div class="form-group">
                                 <label class="control-label">* 거래처 해리</label>
@@ -218,11 +223,11 @@
                             </div> -->
                            	<input type="hidden" name="storeno" value="${ user.storeNo }">
                             <button class="btn btn-success btn-block loginbtn" id="submit">등록</button>
-                            <a href="/jewelry/account/list.action" class="btn btn-default btn-block">취소</a>
+                            <a href="/jewelry/account/list.action?storeNo=${ user.storeNo }" class="btn btn-default btn-block">취소</a>
                         </form>
                         
                         
-                        
+                       
                     </div>
                 </div>
       </div>
@@ -230,16 +235,6 @@
     </div>
     
     
-    
-    
-                 
-    <!-- model rewrite -->      
-    
-        <div id="myModal2" class="modal2" style="width:40%;height:90%;left:30%;">
- 
-      </div>
-      
-      
       
       
       <!-- model end -->                          
@@ -266,12 +261,11 @@
                                         
                                         <tbody>
                                         
-                                        
-	                                        <c:forEach var="account" items="${ accounts }">
-	                                        
-	                                        <c:if test="${ account.storeno == user.storeNo }">
+                                        	<c:set var="cnt" value="${ fn:length(accounts) }" />
+	                                        <c:forEach varStatus="s" var="account" items="${ accounts }">
+	                                       
 		                                    	<tr>
-	 	                                            <td>${ account.acno }</td>
+	 	                                            <td>${ cnt - s.index }</td>
 		                                            <td>${ account.acstore }</td>
 		                                            <td>${ account.acadd2 }</td>
 		                                            <td>${ account.acadd3 }</td>
@@ -281,15 +275,27 @@
 		                                            <td>${ account.acmaname }</td>
 		                                           	<td>${ account.acmaphone }</td>
 		                                           	<td>${ account.acheherry }</td>
-		                                            <td><a href="/jewelry/account/rewrite.action?accountNo=${ account.acno }"><div class="buttonA">수정</div></a>
-		                                       		<a id="acdel" href="/jewelry/account/delete.action?accountNo=${ account.acno }"><div class="buttonA">삭제</div></a></td>
+		                                            <td>
+			                                            <a href="/jewelry/account/rewrite.action?storeNo=${ user.storeNo }&accountNo=${ account.acno }">
+			                                            <button data-toggle="tooltip" title class="pd-setting-ed" data-original-title="Edit" aria-describedby="tooltip147223"><i class="fa fa-pencil-square-o"></i></button>
+			                                            </a>
+		                                       			<a id="acdel" href="/jewelry/account/delete.action?storeNo=${ user.storeNo }&accountNo=${ account.acno }">
+		                                       			<button data-toggle="tooltip" title class="pd-setting-ed" data-original-title="Trash"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+		                                       			</a>
+		                                       		</td>
+		                                       		
+ 
 		                                    	</tr>
-		                                    </c:if>
-		                                    
 	                                    	</c:forEach>
 	                                    
                                         </tbody>
                                     </table>
+                                    
+                                    	<!-- Trigger/Open The Modal -->
+                                    	
+    
+    
+
                                     <!-- end account list -->
                                 </div>
                             </div>

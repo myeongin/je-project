@@ -6,7 +6,7 @@ import com.jewelry.vo.account;
 
 public interface accountDao {
 
-	List<account> selectAccountByPage(int first, int last);
+	List<account> selectAccountByPage(int first, int last, int storeNo);
 
 	int selectAccountCount();
 
@@ -18,6 +18,8 @@ public interface accountDao {
 
 	account selectAccountByAccountNo(int acno);
 
-	account selectAccountAll(int storeNo);
+	account selectAccountAll(int accountNo);
+
+
 
 }

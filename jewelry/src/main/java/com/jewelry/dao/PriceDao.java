@@ -14,4 +14,6 @@ public interface PriceDao {
 
 	List<PriceVo> selectPrices(int from, int to,int userNo);
 
+	void deletePriceAll(int userNo);
+
 }

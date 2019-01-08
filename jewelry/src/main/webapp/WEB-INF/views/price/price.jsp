@@ -69,11 +69,11 @@
 	  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 	<script type="text/javascript">
 
-    $(function () { 
+    //$(function () { 
     	
     	/* var no= $('#ul').attr('data-no');
  */
-    	var last = $("#newPrice0").text(); 
+/*     	var last = $("#newPrice0").text(); 
     	var last1 = $("#newPrice0").text();
     	var last2 = $("#newPrice1").text();
     	var last3 = $("#newPrice2").text();
@@ -88,9 +88,9 @@
     	var last12 = $("#newPrice11").text();
     	var last13 = $("#newPrice12").text();
     	var last14 = $("#newPrice13").text();
+    	 */
     	
-    	
-    	$("#sparkline8").sparkline([last1,last2,last3,last4,last5,last6,last7,last8,last9,last10,last11,last12,last13,last14], {
+    	/* $("#sparkline8").sparkline([last1,last2,last3,last4,last5,last6,last7,last8,last9,last10,last11,last12,last13,last14], {
  
         type: 'bar',
         barWidth: 22,
@@ -98,9 +98,73 @@
         barColor: '#03a9f4',
         negBarColor: '#303030'});
 		});
-    
+     */
    
+    
+     $(function () { 
+    	 "use strict";
+    		 /*----------------------------------------*/
+    		/*  1.  Bar Chart
+    		/*----------------------------------------*/
+    	var last = $("#newPrice0").text(); 
+    	var last1 = $("#newPrice0").text();
+    	var last2 = $("#newPrice1").text();
+    	var last3 = $("#newPrice2").text();
+    	var last4 = $("#newPrice3").text();
+    	var last5 = $("#newPrice4").text();
+    	var last6 = $("#newPrice5").text();
 
+    		var ctx = document.getElementById("barchart1");
+    		var barchart1 = new Chart(ctx, {
+    			type: 'bar',
+    			data: {
+    				labels: ["현재시세", "2번째", "3번째", "4번째", "5번째", "6번째"],
+    				datasets: [{
+    					label: '현재시세',
+    					data: [last1, last2,last3,last4,last5,last6],
+    					backgroundColor: [
+    						'rgba(255, 99, 132, 0.2)',
+    						'rgba(54, 162, 235, 0.2)',
+    						'rgba(255, 206, 86, 0.2)',
+    						'rgba(75, 192, 192, 0.2)',
+    						'rgba(153, 102, 255, 0.2)',
+    						'rgba(255, 159, 64, 0.2)'
+    					],
+    					borderColor: [
+    						'rgba(255,99,132,1)',
+    						'rgba(54, 162, 235, 1)',
+    						'rgba(255, 206, 86, 1)',
+    						'rgba(75, 192, 192, 1)',
+    						'rgba(153, 102, 255, 1)',
+    						'rgba(255, 159, 64, 1)'
+    					],
+    					borderWidth: 1
+    				}]
+    			},
+    			options: {
+    				scales: {
+    					xAxes: [{
+    						ticks: {
+    							autoSkip: false,
+    							maxRotation: 0
+    						},
+    						ticks: {
+    						  fontColor: "#fff", // this here
+    						}
+    					}],
+    					yAxes: [{
+    						ticks: {
+    							autoSkip: false,
+    							maxRotation: 0
+    						},
+    						ticks: {
+    						  fontColor: "#fff", // this here
+    						}
+    					}]
+    				}
+    			}
+    		});
+     });
 		
 			
 		
@@ -112,7 +176,7 @@
 	<script type="text/javascript">
 		
 	$(function () { 
-		$('#bigger').on('click', function (event) {
+		$('#del').on('click', function (event) {
 			$('#priceview2').find('.hidePrice').hide();
 			 $('#priceview2').css("font-size", "50px");
 		})
@@ -213,26 +277,41 @@
                                 
                                 
                                   
-                                            
+<%--                                             
 					   <div class="sparkline8-list responsive-mg-b-30">
                             <div class="sparkline8-hd">
                                 <div class="main-sparkline8-hd">
                                     <h1>최근 시세 비교표(최근 14건)</h1>
                                 </div>
                             </div>
-                            <div class="sparkline8-graph">
+<!--                             <div class="sparkline8-graph">
                                 <span id="sparkline8"></span>
+                            </div> -->
+                            <div id="bar1-chart">
+                                <canvas id="barchart1"></canvas>
                             </div>
-                        </div>
-						
+                        </div> --%>
+
+
+                        
+                        <br>
+                            <div class="alert-title">
+                                 <h2>최근 시세 비교표(최근 6건)</h2>
+                            </div>
+                            <br>
+                            <div id="bar1-chart">
+                                <canvas id="barchart1"></canvas>
+                            </div>
+                        	
+                        				
                                 </ul>
                                 <hr>
                                 <ul class="mailbox-list"  id="ul"  data-no="${priceVo.priceNo}">
                                             
-                                            <strong>최근 시세</strong>              
+                                            <img src="/jewelry/resources/img/newlist.png"> <strong>최근 시세</strong>              
                                            <c:set var="no"  value="0"/>
                                             <c:forEach var="priceVo" begin="0" end="13" step="1" items="${prices}">                                            
-                                                <li>< ${priceVo.priceDate} : <span id="newPrice${no}"  class="np">${priceVo.price}</span> ></li>
+                                                <li>< <span id="newDate${no}">${priceVo.priceDate} : </span><span id="newPrice${no}"  class="np">${priceVo.price}</span> ></li>
                                                 <c:set var="no" value="${no+1 }"/>
                                             </c:forEach>
                                             
@@ -257,11 +336,40 @@
                         
                                         <div class="btn-group">
                                         	
-                                            <button class="btn btn-default btn-sm" id=something><i class="fa fa-refresh"></i>  새로고침</button>
-                                            <button class="btn btn-default btn-sm" id=bigger><i class="fa fa-eye"></i> 크게 보기</button>
-                                            <button class="btn btn-default btn-sm" id=smaller><i class="fa fa-exclamation"></i> 표준 크기로 보기</button>
+                                            <button class="btn btn-default btn-sm" id=something><a><i class="fa fa-refresh"></i>  새로고침</a></button>
+                                            <!-- <button class="btn btn-default btn-sm" id=delAll><i class="fa fa-eye"></i> 전체삭제</button> -->
+                                            <button class="btn btn-default" type="button"data-toggle="modal" 
+                                              data-target="#WarningModalalert">
+                                            <a class="Warning Warning-color mg-b-10"> 
+                                            <i class="fa fa-trash-o"></i> 전체삭제</a></button>
 
                                         </div>
+                                        
+                                        
+                                                
+
+
+                                                          <div id="WarningModalalert" class="modal modal-adminpro-general FullColor-popup-DangerModal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-close-area modal-close-df">
+                                        <a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>
+                                    </div>
+                                    <div class="modal-body">
+                                        <span class="adminpro-icon adminpro-warning-danger modal-check-pro information-icon-pro"></span>
+                                        <h2>경고</h2><br>
+                                        <p>전체 삭제 할 경우 복원이 힘들 수 도 있습니다. <br>그래도 지우시겠습니까?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a data-dismiss="modal" href="#"><span style="color: white;">Cancel</span></a>
+                                    
+                                        <a href="/jewelry/price/priceDeleteAll.action?userNo=${user.storeNo}"><span style="color: white;">Process</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                                        
                                     </div>
                                     <div class="col-md-6 col-md-6 col-sm-6 col-xs-12 mailbox-pagination mg-b-15">
                                         <div class="btn-group">
@@ -277,14 +385,18 @@
                                        <c:forEach var="priceVo" items="${prices}">
                                             <tr class="unread">
                                                 <td class="">
-                                         
-                                                </td>
-                                                <td><strong id="priceview">${priceVo.priceDate}</strong></td>
+                                                    <div class="checkbox checkbox-single checkbox-success" style="font-size:30px">
+                                                        <input type="checkbox" checked>
+                                                        <label></label>
+                                                    </div>
+                                                <td><strong style="font-size: 30px "id="priceview">${priceVo.priceDate}</strong></td>
                                                 <td><td>
                                                 
-                                                <td class="hidePrice">현 재  접 속 한  가 맹 점 에 서  ${priceVo.priceDate}  에  등 록 한  금 의  시 세 는</td> 
-                                                <td><td><strong >${priceVo.price}  원</strong></td></td>
-                                                <td class="text-right mail-date">  <button type="button"><a href="/jewelry/price/priceDelete.action?priceNo=${priceVo.priceNo}&userNo=${user.storeNo}">삭제</a></button></td>
+                                                <%-- <td class="hidePrice">현 재  접 속 한  가 맹 점 에 서  ${priceVo.priceDate}  에  등 록 한  금 의  시 세 는</td> --%> 
+                                                <td><img src="/jewelry/resources/img/gold.png"></td>
+                                                <td><strong style="font-size: 30px ">${priceVo.price}  원</strong></td>
+                                                <td></td>
+                                                <td class="text-right mail-date"><button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><a href="/jewelry/price/priceDelete.action?priceNo=${priceVo.priceNo}&userNo=${user.storeNo}"><i class="fa fa-trash-o" aria-hidden="true"></i></a></button></td>
                                             </tr>
                                             </c:forEach>
 
@@ -374,6 +486,15 @@
 		============================================ -->
     <script src="/jewelry/resources/js/sparkline/jquery.sparkline.min.js"></script>
     <script src="/jewelry/resources/js/sparkline/sparkline-active.js"></script>
+    
+               <!-- Charts JS
+		============================================ --> 
+    
+        <script src="/jewelry/resources/js/charts/Chart.js"></script>
+        
+                <!-- modals CSS
+		============================================ -->
+		    <link rel="stylesheet" href="/jewelry/resources/css/modals.css">
     
 
 </body>

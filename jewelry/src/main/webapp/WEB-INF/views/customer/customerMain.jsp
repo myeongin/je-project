@@ -178,14 +178,14 @@
                                         <tbody>
                                             <tr>
                                                 <td>1</td>
-                                                <td><span id="sparkline1"></span>
+                                                <td><img src="/jewelry/resources/img/boy.png">
                                                 </td>
                                                 <td>남성</td>
                                                 <td><i class="fa fa-level-up"></i> ${countMM} <span>명</span></td>
                                             </tr>
                                             <tr>
                                                 <td>2</td>
-                                                <td><span id="sparkline2"></span>
+                                                <td><img src="/jewelry/resources/img/woman.png">
                                                 </td>
                                                 <td>여성</td>
                                                 <td><i class="fa fa-level-down"></i> ${countWW} <span>명</span></td>

@@ -34,12 +34,12 @@ public class receivablesController {
 			int pagerSize = 5;
 			String linkUrl = "paylist.action";
 				
-			List<account> accounts = misuservice.findAllMisuByPage(from, to);		
-			int misuCount = misuservice.findMisuCount();
+			//List<account> accounts = misuservice.findAllMisuByPage(from, to);		
+			//int misuCount = misuservice.findMisuCount();
 			
 			//ThePager pager = new ThePager(misuCount, pageno, pageSize, pagerSize, linkUrl);
 			
-			model.addAttribute("misus", accounts);
+			//model.addAttribute("misus", accounts);
 			//model.addAttribute("pager", pager);
 			model.addAttribute("pageno", pageno);
 			
@@ -82,12 +82,12 @@ public class receivablesController {
 		int pagerSize = 5;
 		String linkUrl = "list.action";
 			
-		List<account> accounts = misuservice.findAllMisuByPage(from, to);		
-		int misuCount = misuservice.findMisuCount();
+		//List<account> accounts = misuservice.findAllMisuByPage(from, to);		
+		//int misuCount = misuservice.findMisuCount();
 		
 		//ThePager pager = new ThePager(misuCount, pageno, pageSize, pagerSize, linkUrl);
 			
-		model.addAttribute("misus", accounts);
+		//model.addAttribute("misus", accounts);
 		//model.addAttribute("pager", pager);
 		model.addAttribute("pageno", pageno);
 		

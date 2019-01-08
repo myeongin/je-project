@@ -12,4 +12,5 @@ public interface PriceMapper {
 
 	List<PriceVo> selectPrices(HashMap<String, Object> params);
 	void deletePrice(HashMap<String, Object> params);
+	void deletePriceAll(HashMap<String, Object> params);
 }

@@ -6,7 +6,7 @@ import com.jewelry.vo.account;
 
 public interface accountService {
 
-	List<account> findAllAccountByPage(int from, int to);
+	List<account> findAllAccountByPage(int from, int to, int storeNo);
 
 	int findAccountCount();
 
@@ -20,6 +20,5 @@ public interface accountService {
 
 	account accountAll(int accountNo);
 
-	
 
 }

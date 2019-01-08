@@ -21,4 +21,5 @@ public interface accountMapper {
 
 	account selectAccountAll(int storeNo);
 
+
 }

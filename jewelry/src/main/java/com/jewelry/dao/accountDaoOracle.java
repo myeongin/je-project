@@ -23,11 +23,12 @@ public class accountDaoOracle implements accountDao {
 	
 	
 	@Override
-	public List<account> selectAccountByPage(int first, int last) {
+	public List<account> selectAccountByPage(int first, int last, int storeNo) {
 		
 		HashMap<String, Object> parmas = new HashMap<>();
 		parmas.put("first", first);
 		parmas.put("last", last);
+		parmas.put("storeNo", storeNo);
 		List<account> accounts = accountmapper.selectAllAccountByPage(parmas);
 		
 		return accounts;

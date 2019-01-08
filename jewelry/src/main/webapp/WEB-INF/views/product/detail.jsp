@@ -123,7 +123,14 @@
 				gold=parseFloat(0.75)				
 			}else if(this.value=='24k'){
 				gold=gold=parseFloat(1);			
-			}else if(this.value=='재고' || this.value=='주문판매'){				
+			}else if(this.value=='재고' || this.value=='주문판매'){
+				
+				if(this.value=='재고'){
+					$('#customer').css('visibility','hidden');
+				}else{
+					$('#customer').css('visibility','visible');
+				}
+				
 				var productprice=Math.ceil((newPrice*gold*harry*carat)+cost);
 				$('#price').val(productprice);
 			}
@@ -314,10 +321,10 @@
 
 								<br>
 
-								<div class="single-pro-size">
+								<div class="single-pro-size" id="customer" style="visibility:hidden">
 									<h4>고객정보</h4>																
 										<select name="cuno" style="width:150px">
-											<option selected="selected" value="0">재고주문</option>
+											<option selected="selected" value="0">-----------</option>
 												<c:forEach var="customer" items="${customers}">
 													<option value="${customer.cuNo}">${customer.cuName}</option>
 												</c:forEach>
@@ -331,8 +338,8 @@
 								<input type="hidden" name="storeNo" value="${user.storeNo}">								
 								
 								<div class="single-pro-button">
-									<div>
-										<input type="submit" value="ADD">
+									<div class="buttonS">
+										<input type="submit" value="주문" style="border:none; background: transparent;">
 									</div>
 								</div>
 
@@ -429,7 +436,7 @@
 											</div>
 											
 											<div class="modal-footer">
-												<a data-dismiss="modal" href="#">Cancel</a> <a class="submitsales" href="javascript:" data-no="${stock.detailNo}">Process</a>
+												<a data-dismiss="modal" href="#">취소</a> <a class="submitsales" href="javascript:" data-no="${stock.detailNo}">구입</a>
 											</div>
 										</div>
 									</div>

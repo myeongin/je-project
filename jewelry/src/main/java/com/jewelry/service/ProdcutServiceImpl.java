@@ -1,7 +1,6 @@
 package com.jewelry.service;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,7 +8,6 @@ import com.jewelry.dao.ProductDao;
 import com.jewelry.vo.Customer;
 import com.jewelry.vo.DetailVo;
 import com.jewelry.vo.OrderVo;
-import com.jewelry.vo.PriceVo;
 import com.jewelry.vo.ProductImgVo;
 import com.jewelry.vo.ProductVo;
 import com.jewelry.vo.SalesVo;

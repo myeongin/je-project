@@ -180,9 +180,9 @@ public class FcController {
 	@RequestMapping(value="/fc/employee.action",method=RequestMethod.POST)
 	public String employee(@Valid FcVo fc,BindingResult br,Model model) {
 			
-		/*	if(br.hasErrors()) {
-			return "account/employee";
-			}*/
+//		if(br.hasErrors()) {
+//			return "account/employee";
+//		}
 			
 		fcService.registerEmployee(fc);
 		model.addAttribute("userNo", fc.getStoreNo());
@@ -193,7 +193,6 @@ public class FcController {
 	//직원리스트
 	@RequestMapping(value="/fc/employeelist.action",method=RequestMethod.GET)
 	public String employeelist(int userNo,Model model,int pageNo) {
-
 		
 		int pagesize=5;
 		int from=(pageNo-1)*pagesize +1;

@@ -3,11 +3,15 @@ package com.jewelry.service;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 import com.jewelry.dao.HomeDaoInterface;
+import com.jewelry.vo.FcVo;
 import com.jewelry.vo.Home;
+import com.jewelry.vo.ProductVo;
 import com.jewelry.vo.SalesVo;
+import com.jewelry.vo.salesViewVo;
 
 
 
@@ -20,7 +24,7 @@ public class HomeService implements HomeServiceInterface{
 		this.homeDao = HomeDao;
 	}
 
-	
+	SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 	
 	@Override
 	public List<Home> takeCuList(int storeNo) {
@@ -32,120 +36,143 @@ public class HomeService implements HomeServiceInterface{
 	}
 
 
-
+	@Override
 	public List<Home> takeProductList(int storeNo) {
 		List<Home> products = homeDao.selectProduct(storeNo);
 		return products;
 	}
 
 
-
+	@Override
 	public List<Home> takeAcList(int storeNo) {
 		List<Home> acList = homeDao.selectAc(storeNo);
 		return acList;
 	}
 	
+	@Override
 	public List<Home> takePriceList(int storeNo) {
 		List<Home> prices = homeDao.selectPrice(storeNo);
 		return prices;
 	}
 
-
-
 	@Override
-	public List<Integer> takeRevenue(int storeNo) {
-		
-		SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
-		
-		int sum1 = 0;
-		int sum2 = 0;
-		int sum3 = 0;
-		int sum4 = 0;
+	public HashMap<String, Integer[]> takeRevenue(int storeNo) {
+				
+		Integer[] sum = {0,0,0,0};
+		Integer[] re = {0,0,0,0,0};
+		Integer[] ex = {0,0,0,0,0};
+		Integer[] pr= {0,0,0,0,0};
  		
-		List<Integer> revenue = new ArrayList<>();
-		
-		Calendar to =Calendar.getInstance();
-		Calendar wfirst=Calendar.getInstance();
-		Calendar wlast=Calendar.getInstance();
-		Calendar first=Calendar.getInstance();
-		Calendar last=Calendar.getInstance();
-		Calendar yfirst=Calendar.getInstance();
-		Calendar ylast=Calendar.getInstance();
-		
-		wfirst.add(Calendar.DATE,1-wfirst.get(Calendar.DAY_OF_WEEK)); 
-		wlast.add(Calendar.DATE,7-wlast.get(Calendar.DAY_OF_WEEK));		
-		first.set(Calendar.DATE,first.getActualMinimum(Calendar.DATE));
-		last.set(Calendar.DATE, last.getActualMaximum(Calendar.DATE));
-		yfirst.set(Calendar.MONTH, 0);
-		yfirst.set(Calendar.DATE,yfirst.getActualMinimum(Calendar.DATE));
-		ylast.set(Calendar.MONTH, 11);
-		ylast.set(Calendar.DATE, ylast.getActualMaximum(Calendar.DATE));		
-		
-		String today = date.format(to.getTime());
-		String wfirstday = date.format(wfirst.getTime());
-		String wlastday = date.format(wlast.getTime());
-		String firstday = date.format(first.getTime());
-		String lastday = date.format(last.getTime());
-		String yfirstday = date.format(yfirst.getTime());
-		String ylastday = date.format(ylast.getTime());
+		HashMap<String, Integer[]> profit = new HashMap<>();		
+		List<salesViewVo> sales = homeDao.selectSalesByStoreNo(storeNo);
 				
-		List<SalesVo> sales = homeDao.selectSalesByStoreNo(storeNo);
-				
-		for (SalesVo sale : sales) {
-
+		for (salesViewVo sale : sales) {
 			if (sale.getSalesDate() != null) {
-
+				
 				String salesday = date.format(sale.getSalesDate());
-
-				if (salesday.compareTo(today) == 0) {
-					sum1 += sale.getSalesPrice();
+				Calendar a = Calendar.getInstance();
+				Calendar b = Calendar.getInstance();
+				
+				if (salesday.compareTo(date.format(a.getTime())) == 0) {					
+					sum[0] += sale.getSalesPrice();					
 				}
 				
-				if (salesday.compareTo(wfirstday)>=0&&salesday.compareTo(wlastday)<=0) {
-					sum2 +=sale.getSalesPrice();
+				a.add(Calendar.DATE,1-a.get(Calendar.DAY_OF_WEEK)); 
+				b.add(Calendar.DATE,7-b.get(Calendar.DAY_OF_WEEK));				
+				
+				if (salesday.compareTo(date.format(a.getTime()))>=0&&salesday.compareTo(date.format(b.getTime()))<=0) {
+					sum[1] +=sale.getSalesPrice();
 				}
 				
-				if(salesday.compareTo(firstday)>=0&&salesday.compareTo(lastday)<=0) {
-					sum3 +=sale.getSalesPrice();
+				a=Calendar.getInstance();
+				b=Calendar.getInstance();				
+				a.set(Calendar.DATE, a.getActualMinimum(Calendar.DATE));
+				b.set(Calendar.DATE, b.getActualMaximum(Calendar.DATE));
+				
+				if(salesday.compareTo(date.format(a.getTime()))>=0&&salesday.compareTo(date.format(b.getTime()))<=0) {
+					sum[2] +=sale.getSalesPrice();										
 				}
 				
-				if(salesday.compareTo(yfirstday)>=0&&salesday.compareTo(ylastday)<=0) {
-					sum4 +=sale.getSalesPrice();
+				a=Calendar.getInstance();
+				b=Calendar.getInstance();
+				a.set(Calendar.MONTH, 0);
+				a.set(Calendar.DATE,a.getActualMinimum(Calendar.DATE));
+				b.set(Calendar.MONTH, 11);
+				b.set(Calendar.DATE, b.getActualMaximum(Calendar.DATE));
+				
+				if(salesday.compareTo(date.format(a.getTime()))>=0&&salesday.compareTo(date.format(b.getTime()))<=0) {
+					sum[3] +=sale.getSalesPrice();
 				}
-
-			}
-			
+				
+				for(int i=0; i<5 ; i++) {
+				
+					a=Calendar.getInstance();				
+					a.set(Calendar.YEAR,a.get(Calendar.YEAR)-i);
+					a.set(Calendar.MONTH,0);
+					a.set(Calendar.DATE,1);
+					
+					b=Calendar.getInstance();
+					b.set(Calendar.YEAR,a.get(Calendar.YEAR)-i);
+					b.set(Calendar.MONTH,11);
+					b.set(Calendar.DATE,31);
+					
+					if(salesday.compareTo(date.format(a.getTime()))>=0&&salesday.compareTo(date.format(b.getTime()))<=0) {
+						re[i]+=sale.getSalesPrice();
+						ex[i]+=sale.getPrice();
+						pr[i]+=(sale.getSalesPrice()-sale.getPrice());
+					}
+					
+				}
+				
+			}			
 		}
 		
-		revenue.add(sum1);
-		revenue.add(sum2);
-		revenue.add(sum3);
-		revenue.add(sum4);
+		profit.put("sum",sum);
+		profit.put("re",re);
+		profit.put("ex",ex);
+		profit.put("pr",pr);
+				
+		return profit;
+	}
+	@Override
+	public List<ProductVo> takeProductAndCount(int storeNo) {
 		
-		return revenue;
+		Calendar a = Calendar.getInstance();
+		Calendar b = Calendar.getInstance();
+		a.set(Calendar.MONTH,a.get(Calendar.MONTH)-2);
+		
+		String today=date.format(b.getTime());
+		String ageday=date.format(a.getTime());
+		
+		List<ProductVo> products = homeDao.selectProductAndCount(storeNo,today,ageday);
+		
+		for(ProductVo product:products) {
+			product.setImgs(homeDao.selectProductImg(product.getProductNo()));
+		}
+		
+		return products;
 	}
+	@Override
+	public List<HashMap<String, Object>> takeExEmployee(int storeNo) {
+		
+		Calendar a = Calendar.getInstance();
+		Calendar b = Calendar.getInstance();		
+		a.set(Calendar.DATE, a.getActualMinimum(Calendar.DATE));
+		b.set(Calendar.DATE, b.getActualMaximum(Calendar.DATE));
+		String first=date.format(a.getTime());
+		String last=date.format(b.getTime());
 
-
-
-	
-
-
-	
-
-	 
-/*	public int countMM() {
-		int countMM = customerDao.countMM();
-
-		return countMM;
+		
+		List<HashMap<String, Object>> employees = homeDao.selectExEmployee(storeNo,first,last);
+		
+		return employees;
 	}
-	
-	public int countWW() {
-		int countWW = customerDao.countWW();
-
-		return countWW;
-	}*/
-
-
-
+	@Override
+	public List<HashMap<String, Object>> takeExAc(int storeNo) {
+		
+		List<HashMap<String,Object>> acs =homeDao.selectExAc(storeNo);
+		
+		return acs;
+	}
 	
 }

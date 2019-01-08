@@ -67,13 +67,7 @@
     </script>
 </head>
 
-<body>
-    <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-
-	    
-	
+<body>  
     <div class="color-line"></div>
     <div class="container-fluid">
         <div class="row">
@@ -88,29 +82,27 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"></div>
             <div class="col-md-4 col-md-4 col-sm-4 col-xs-12">
                 <div class="text-center m-b-md custom-login">
-                    <h3>PLEASE LOGIN TO APP</h3>
-                    <p>This is the best app ever!</p>
+                    <h3>JEWELRY</h3>
+                    <p>환영합니다.</p>
                 </div>
                 <div class="hpanel">
                     <div class="panel-body">
                         <form action="/jewelry/fc/login.action" method="post" id="loginForm">
                             <div class="form-group">
                                 <label class="control-label" for="username">아이디</label>
-                                <input type="text" placeholder="example@gmail.com" title="Please enter you username" required="" value="" name="userId" id="username" class="form-control">
-                                <span class="help-block small">Your unique username to app</span>
+                                <input type="text" placeholder="ID" title="Please enter you ID" required="" value="" name="userId" id="username" class="form-control">                                
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="password">비밀번호</label>
-                                <input type="password" title="Please enter your password" placeholder="******" required="" value="" name="userPswd" id="password" class="form-control">
-                                <span class="help-block small">Yur strong password</span>
+                                <input type="password" title="Please enter your password" placeholder="******" required="" value="" name="userPswd" id="password" class="form-control">                                
                             </div>
                             <div class="checkbox login-checkbox">                       
-                                <p class="help-block small">(if this is a private computer)</p>
+                                <p class="help-block small">(가입후 관리자의 승인이 필요합니다)</p>
                             </div>
-                            <button class="btn btn-success btn-block loginbtn">Login</button>
+                            <button class="btn btn-success btn-block loginbtn">로그인</button>
                             </form>
 
-                          	<a class="btn btn-default btn-block" href="/jewelry/fc/register.action">Register</a>
+                          	<a class="btn btn-default btn-block" href="/jewelry/fc/register.action">회원가입</a>
                     </div>
                 </div>
             </div>

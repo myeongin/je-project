@@ -104,7 +104,7 @@
 					$('#productdiv').load("productlist.action",{"storeNo":${ user.storeNo },"pageNo":${ pageNo }});
 				},
 				"error":function(xhr,status,err){
-					alert("실패");
+					alert("수정에 실패하였습니다.");
 				}
 			});
     		

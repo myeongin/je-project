@@ -2,6 +2,7 @@ package com.jewelry.vo;
 
 import java.util.Date;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
@@ -16,6 +17,7 @@ public class FcVo {
 	@NotEmpty
 	private String userName;
 	@NotEmpty
+	@Email
 	private String userEmail;
 	private String userPhone;
 	private String userStore;
@@ -104,6 +106,5 @@ public class FcVo {
 	public void setLastDate(String lastDate) {
 		this.lastDate = lastDate;
 	}
-
 	
 }

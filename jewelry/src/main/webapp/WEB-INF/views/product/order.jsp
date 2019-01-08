@@ -66,27 +66,6 @@
     <script type="text/javascript">
     	$(function(){
     		
-    		$('#order').on('click','.ps-setting',function(event){
-    			
-    			var orderNo=$(this).attr('data-orderno');
-				var type="주문중";	
-    			
-    			$.ajax({
-    				"url" : "ordertype.action",
-    				"method" : "POST",
-    				"data":{"orderNo":orderNo,"type":type},    				
-    				"success":function(data,status,xhr){
-    					alert("수정되었습니다.");
-    					$('#ordertable').load("orderVIewList.action",{"storeNo":${user.storeNo},"pageNo":${pageNo}});
-    				},
-    				"error":function(xhr,status,err){
-    					alert("실패");
-    				}
-    			});	
-    		});
-    		
-    		
-    		
 			$('#order').on('click','.ds-setting',function(event){
     			
     			var orderNo=$(this).attr('data-orderno');
@@ -187,10 +166,7 @@
 									<td id="detailNo" style="display:none">${view.detailNo}</td>
 									<td id="userNo" style="display:none">${view.userNo}</td>                                     
                                     <td>
-                                    	<c:choose>
-                                    		<c:when test="${view.orderCk eq '주문대기' }">
-                                   				<button class="ps-setting" data-orderno="${view.orderNo}">${view.orderCk}</button>
-                                   			</c:when>
+                                    	<c:choose>       
                                    			<c:when test="${view.orderCk eq '주문중' }">
                                    				<button class="ds-setting" data-orderno="${view.orderNo}">${view.orderCk}</button>
                                    			</c:when>

@@ -61,6 +61,51 @@
     <!-- modernizr JS
 		============================================ -->
     <script src="../resources/js/vendor/modernizr-2.8.3.min.js"></script>
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	
+		function check(regular,id,message){
+			if(regular.test(id.val())){
+				return true;
+			}
+			alert(message);
+			id.val("");
+			id.focus();
+		}
+		
+		$(function(){
+			
+			var name = $("#productName");
+			var cost = $("#productCost");
+			
+			var regular= /^\d+\.?\d*$/;
+			
+			$("#input").click(function(evnet){
+
+				if(name.val()==""){
+					alert("제품 이름을 입력해 주세요");
+					return;
+				}
+				
+				if(cost.val()==""){
+					alert("공인비를 입력해 주세요");
+					return;
+				}
+				
+				if(!check(regular,cost,"숫자만 입력해주세요")){
+					return;
+				}
+				
+				$('#productform').submit();
+				
+			});
+			
+			$("#cancel").click(function(evnet){
+				location.href='/jewelry/product/product.action?storeNo=${user.storeNo}';
+			});
+			
+		});
+	</script>
 </head>
 
 <body>
@@ -86,7 +131,7 @@
             <!-- Single pro tab review Start-->
             <div class="single-pro-review-area">
                 <div class="container-fluid">
-                <form action="/jewelry/product/productupload.action" method="Post" enctype="multipart/form-data">
+                
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="review-tab-pro-inner">
@@ -96,15 +141,16 @@
                                 <div id="myTabContent" class="tab-content custom-product-edit">
                                     <div class="product-tab-list tab-pane fade active in" id="description">
                                         <div class="row">
+                                        <form action="/jewelry/product/productupload.action" method="Post" enctype="multipart/form-data" id="productform">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 <div class="review-content-section">
                                                     <div class="input-group mg-b-pro-edt">
                                                         <span class="input-group-addon"><strong>제품이름</strong></span>
-                                                        <input type="text" class="form-control" name="productName" placeholder="Name">
+                                                        <input type="text" class="form-control" name="productName" placeholder="Name" id="productName">
                                                     </div>
                                                     <div class="input-group mg-b-pro-edt">
                                                         <span class="input-group-addon"><strong>공인비</strong></span>
-                                                        <input type="text" class="form-control" name="productCost" placeholder="Cost">
+                                                        <input type="text" class="form-control" name="productCost" placeholder="Cost" id="productCost">
                                                     </div>                                                                     
                                                         <input type="hidden" class="form-control" name="userNo" value="${user.storeNo}">                                                                                                     
                                                 </div>
@@ -118,24 +164,22 @@
                                                     
                                                     <div class="input-group mg-b-pro-edt">
                                                         <span class="input-group-addon">거래처</span>
-                                                        <select class="form-control" name="acno"> 
-                                                        	<option selected></option>                                                     
+                                                        <select class="form-control" name="acno">                                                     
                                                         	<c:forEach var="account" items="${accounts}">
                                                         		<option value="${account.acno}">${account.acstore}</option>
                                                        	 	</c:forEach>
                                                         </select>                                                       
                                                     </div>                                                                            
                                                 </div>
-                                            </div> 
+                                            </div>
+                                               </form> 
                                         </div>
                                         
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                 <div class="text-center mg-b-pro-edt custom-pro-edt-ds">
-                                                    <button class="btn btn-primary waves-effect waves-light m-r-10">Save
-														</button>
-                                                    <button type="button" class="btn btn-warning waves-effect waves-light">Discard
-														</button>
+                                                    <button class="btn btn-primary waves-effect waves-light m-r-10" id="input">등록</button>
+                                                    <button type="button" class="btn btn-warning waves-effect waves-light" id="cancel">취소</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -144,7 +188,7 @@
                             </div>
                         </div>
                     </div>
-                    </form>
+                 
                 </div>
             </div>
            </div> 

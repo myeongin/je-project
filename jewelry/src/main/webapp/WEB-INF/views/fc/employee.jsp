@@ -74,13 +74,14 @@
 		$(function(){
 			
 			var regular = /^[a-zA-Z0-9]{6,18}$/;
-			//var regular2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+			var regular2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
 			
 			var id = $("#userId");
 			var pswd = $("#userPswd");
 			var name = $("#userName");
 			var phone = $("#userPhone");
+			var email = $("#userEmail");
 			
 			$("#register").click(function(evnet){
 				
@@ -101,7 +102,14 @@
 					return;
 				}
 				
-				//if(!check(regular2,email,"적합하지 않은 이메일 형식 입니다."))
+				if(email.val()==""){
+					alert("이메일을 입력해 주세요");
+					return;
+				}
+				
+				if(!check(regular2,email,"적합하지 않은 이메일 형식 입니다.")){
+					return;
+				}
 				
 				$('#loginForm').submit();
 				
@@ -130,9 +138,8 @@
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12"></div>
 			<div class="col-md-6 col-md-6 col-sm-6 col-xs-12">
 				<div class="text-center custom-login">
-					<h3>Registration</h3>
-					<p>Admin template with very clean and aesthetic style prepared
-						for your next app.</p>
+					<h3>직원 등록</h3>
+					<p></p>
 				</div>
 				<div class="hpanel">
 					<div class="panel-body">
@@ -169,14 +176,15 @@
 
 								<div class="form-group col-lg-12">
 									<label>이메일</label> <input id="userEmail" name="userEmail"
-										class="form-control">
+										class="form-control"><span
+										class="help-block small">이메일 형식을 지켜주세요 ex)aaa123@naver.com</span>
 								</div>
 							</div>
 						</form>
 						<div class="text-center">
-							<button id="register" class="btn btn-success btn-block loginbtn">Register</button>
-							<a href="/jewelry/fc/login.action"
-								class="btn btn-default btn-block">Cancel</a>
+							<button id="register" class="btn btn-success btn-block loginbtn">등록</button>
+							<a href="/jewelry/fc/employeeList.action?userNo=${user.userNo }"
+								class="btn btn-default btn-block">취소</a>
 						</div>
 					</div>
 				</div>

@@ -2,15 +2,20 @@
 
 import java.util.List;
 
+import javax.validation.constraints.NotEmpty;
+
+
 public class ProductVo {
 	
 	private int productNo;
+	@NotEmpty
 	private String productName;
 	private int productCost;
 	private int userNo;
 	private Boolean productDel;
 	private int acno;
 	private Double harry;
+	private int count;
 	private List<ProductImgVo> imgs;
 	private List<DetailVo> details;
 	
@@ -67,6 +72,12 @@ public class ProductVo {
 	}
 	public void setHarry(Double harry) {
 		this.harry = harry;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
 	}
 
 	

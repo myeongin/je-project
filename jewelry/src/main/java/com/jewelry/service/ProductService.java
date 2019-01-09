@@ -1,12 +1,10 @@
 package com.jewelry.service;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 import com.jewelry.vo.Customer;
 import com.jewelry.vo.DetailVo;
-import com.jewelry.vo.PriceVo;
 import com.jewelry.vo.ProductVo;
 import com.jewelry.vo.SalesVo;
 import com.jewelry.vo.account;
@@ -45,6 +43,7 @@ public interface ProductService {
 	void deleteStock(int detailNo);
 	List<Integer> takeProfit(int storeNo,String start, String end );
 	HashMap<String, Object> searchSalesView(int storeNo, int from, int to, String start, String end);
+	int findSalescountByDate(int storeNo, String start, String end);
 	
 	
 }

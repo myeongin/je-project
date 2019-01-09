@@ -1,6 +1,8 @@
 package com.jewelry.controller;
 
 import java.io.File;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,6 +16,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -446,9 +449,10 @@ public class ProductController {
 	}
 	
 	//판매서치
-	@RequestMapping(value="searchsales.action",method=RequestMethod.POST)
-	public String searchsales(int storeNo, String start, String end,@RequestParam(value="pageNo",required = false,defaultValue ="1")int pageNo,Model model) {
+	@RequestMapping(value="searchsales.action",method=RequestMethod.GET)
+	public String searchsales(int storeNo,String start,String end,@RequestParam(value="pageNo",required = false,defaultValue ="1")int pageNo,Model model) throws ParseException {
 		
+	
 		int pagesize=10;
 		int from=(pageNo-1)*pagesize +1;
 		int to =from+pagesize;
@@ -456,16 +460,18 @@ public class ProductController {
 		String linkUrl = "searchsales.action";	
 			
 		HashMap<String, Object> sales =  productService.searchSalesView(storeNo,from,to,start,end);
-		int salescount = productService.findSalescount(storeNo);
-
-		ThePager pager = new ThePager(salescount, pageNo, pagesize, pagersize, linkUrl,storeNo);
+		//start end
+		int salescount = productService.findSalescountByDate(storeNo,start,end);
+		
+		
+		ThePager pager = new ThePager(salescount, pageNo, pagesize, pagersize, linkUrl,storeNo,start,end);
 		
 		model.addAttribute("profit",sales.get("profit"));
 		model.addAttribute("revenue",sales.get("revenue"));
 		model.addAttribute("start",start);
 		model.addAttribute("end",end);
 		model.addAttribute("views",sales.get("sales"));
-		model.addAttribute("pager",pager);
+		model.addAttribute("pager",pager.toDate());
 		model.addAttribute("pageNo",pageNo);
 		
 		return "/product/sales";

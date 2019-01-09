@@ -392,6 +392,15 @@ public class ProdcutServiceImpl implements ProductService{
 	
 		return salesView;
 	}
+	
+	//판매 수 날짜
+	@Override
+	public int findSalescountByDate(int storeNo, String start, String end) {
+		
+		int count = productDao.findSalescountByDate(storeNo,start,end);
+		
+		return count;
+	}
 
 
 	

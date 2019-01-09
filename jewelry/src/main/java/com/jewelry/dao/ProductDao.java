@@ -93,4 +93,6 @@ public interface ProductDao {
 	List<Integer> takeProfit(int storeNo, String start, String end);
 
 	List<salesViewVo> searchSalesView(int storeNo, int from, int to, String start, String end);
+
+	int findSalescountByDate(int storeNo, String start, String end);
 }

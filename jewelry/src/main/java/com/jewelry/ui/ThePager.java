@@ -1,5 +1,7 @@
 package com.jewelry.ui;
 
+import java.util.Date;
+
 public class ThePager {
 	
 	private int pageSize;//한 페이지당 데이터 개수
@@ -8,6 +10,9 @@ public class ThePager {
 	private int storeNo;
 	private int currentPage;//현재 페이지 번호
 	private int pageCount;//총 페이지 수
+	
+	private String startday;
+	private String endday;
 	
 	private String linkUrl;//페이저가 포함되는 페이지의 주소
 	
@@ -23,6 +28,22 @@ public class ThePager {
 		pageCount = 
 			(dataCount / pageSize) + ((dataCount % pageSize) > 0 ? 1 : 0); 
 	}
+	
+	public ThePager(int dataCount, int currentPage, 
+			int pageSize, int pagerSize, String linkUrl,int storeNo,String startday,String endday) {
+			
+			this.storeNo = storeNo;
+			this.linkUrl = linkUrl;		
+			this.dataCount = dataCount;
+			this.pageSize = pageSize;
+			this.pagerSize = pagerSize;
+			this.currentPage = currentPage;	
+			this.startday = startday;
+			this.endday=endday;
+			
+			pageCount = 
+				(dataCount / pageSize) + ((dataCount % pageSize) > 0 ? 1 : 0); 
+		}
 	
 	public String toString(){
 		StringBuffer linkString = new StringBuffer();
@@ -55,7 +76,41 @@ public class ThePager {
 		return linkString.toString();
 	}
 
+	
+	
+public String toDate(){
+	StringBuffer linkString = new StringBuffer();
+	
+	if (currentPage > 1) {
+		linkString.append(String.format(
+				"<li class=\"page-item\"><a class=\"page-link\" href=\"%s?pageNo=%d&storeNo=%d&start=%s&end=%s\">Previous</a></li>", linkUrl, currentPage - 1,storeNo,startday,endday));
+	}			
+	
+	//2. 페이지 번호 Link 만들기
+	int pagerBlock = (currentPage - 1) / pagerSize;
+	int start = (pagerBlock * pagerSize) + 1;
+	int end = start + pagerSize;
+	for (int i = start; i < end; i++) {
+		if (i > pageCount) break;
+		if(i == currentPage) {
+			linkString.append(String.format("<li class=\"page-item\"><span style=\"background:rgba(0,0,0,0.1)\" class=\"page-link\">%d</span></li>", i));
+		} else { 
+			linkString.append(String.format(					
+			"<li class=\"page-item\"><a class=\"page-link\" href=\"%s?pageNo=%d&storeNo=%d&start=%s&end=%s\">%d</a></li>" , linkUrl,i,storeNo,startday,endday,i));
+		}
+		linkString.append("&nbsp;");
+	}
+	
+	if (currentPage < pageCount) {
+		linkString.append(String.format(
+				"<li class=\"page-item\"><a class=\"page-link\" href=\"%s?pageNo=%d&storeNo=%d&start=%s&end=%s\">Next</a></li>",linkUrl, currentPage + 1,storeNo,startday,endday));
+	}
+	
+	return linkString.toString();
 }
+
+}
+
 
 
 

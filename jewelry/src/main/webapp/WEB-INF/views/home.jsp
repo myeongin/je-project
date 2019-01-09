@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
@@ -144,7 +145,7 @@
                                         <label class="label bg-green"><i class="fa fa-level-up" aria-hidden="true"></i></label>
                                     </div>
                                     <div class="col-xs-9 cus-gh-hd-pro">
-                                        <h2 class="text-right no-margin">${day[0]}<span>원</span></h2>
+                                        <h2 class="text-right no-margin"><fmt:formatNumber value="${day[0]}" pattern="#,###"/><span>원</span></h2>
                                     </div>
                                 </div>
                                 <div class="progress progress-mini">
@@ -160,7 +161,7 @@
                                         <label class="label bg-red"><i class="fa fa-level-up" aria-hidden="true"></i></label>
                                     </div>
                                     <div class="col-xs-9 cus-gh-hd-pro">
-                                        <h2 class="text-right no-margin">${day[1]}<span>원</span></h2>
+                                        <h2 class="text-right no-margin"><fmt:formatNumber value="${day[1]}" pattern="#,###"/><span>원</span></h2>
                                     </div>
                                 </div>
                                 <div class="progress progress-mini">
@@ -176,7 +177,7 @@
                                         <label class="label bg-blue"><i class="fa fa-level-up" aria-hidden="true"></i></label>
                                     </div>
                                     <div class="col-xs-9 cus-gh-hd-pro">
-                                        <h2 class="text-right no-margin">${day[2]}<span>원</span></h2>
+                                        <h2 class="text-right no-margin"><fmt:formatNumber value="${day[2]}" pattern="#,###"/><span>원</span></h2>
                                     </div>
                                 </div>
                                 <div class="progress progress-mini">
@@ -192,7 +193,7 @@
                                         <label class="label bg-purple"> <i class="fa fa-level-up" aria-hidden="true"></i></label>
                                     </div>
                                     <div class="col-xs-9 cus-gh-hd-pro">
-                                        <h2 class="text-right no-margin">${day[3]}<span>원</span></h2>
+                                        <h2 class="text-right no-margin"><fmt:formatNumber value="${day[3]}" pattern="#,###"/><span>원</span></h2>
                                     </div>
                                 </div> 
                                 <div class="progress progress-mini">
@@ -244,7 +245,7 @@
                     <div class="white-box tranffic-als-inner">
                     			<div class="content-error">
                     			<h1>현재 금 시세</h1>
-									<br><h1> <span class="counter">${newprice}</span>원</h1>
+									<br><h1> <span class="counter"><fmt:formatNumber value="${newprice}" pattern="#,###"/></span>원</h1>
 								</div>
 								</div>
 							
@@ -293,8 +294,8 @@
 									<tr>
 										<td>${i.count}</td>
 										<td>${employee.get("USERNAME")}</td>
-										<td>${employee.get("REVENUE")}</td>
-										<td>${employee.get("PROFIT")}</td>
+										<td><fmt:formatNumber value='${employee.get("REVENUE")}' pattern="#,###"/>원</td>
+										<td><fmt:formatNumber value='${employee.get("PROFIT")}' pattern="#,###"/>원</td>
 									</tr>
 									</c:forEach>
 								</tbody>

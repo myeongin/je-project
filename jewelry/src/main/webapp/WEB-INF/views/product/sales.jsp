@@ -100,7 +100,7 @@
     				"method" : "POST",
     				"data":{"salesNo":salesNo,"salesPrice":salesPrice},    				
     				"success":function(data,status,xhr){
-    					alert("수정되었습니다.");
+    					alert("판매되었습니다.");
     					$('#sales').load("salesviewlist.action",{"storeNo":${user.storeNo},"pageNo":${pageNo}});
     				},
     				"error":function(xhr,status,err){
@@ -162,7 +162,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="product-status-wrap" id="sales">
                             <h4>판매관리</h4> 
-                            			<form id="searchform" action="searchsales.action" method="post">
+                            			<form id="searchform" action="searchsales.action" method="get">
                             				<input type="hidden" name="storeNo" value="${user.storeNo }">  
                                          <div class="form-group data-custon-pick data-custom-mg" id="data_5" style="padding:0px 0px 10px 5px;float:left">                                                             
                                         <div class="input-daterange input-group" id="datepicker">                                        	                                      	
@@ -173,7 +173,7 @@
                                     </div>
                                     </form>  
                                      <button class="buttonS" id="search" style="height:34px;float:left">검색</button>
-                                    <div style="text-align:right;"><strong  style="padding:20px 40px 20px 20px" >매출:${revenue}</strong><strong  style="padding:20px 40px 20px 20px">순수이익:${profit}</strong></div>
+                                    <div style="text-align:right;"><strong  style="padding:20px 40px 20px 20px" >매출:<fmt:formatNumber value="${revenue}" pattern="#,###"/></strong><strong  style="padding:20px 40px 20px 20px">순수이익:<fmt:formatNumber value="${profit}" pattern="#,###"/></strong></div>
                                                                                        
                             <table>
                                 <tr>

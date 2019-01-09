@@ -56,4 +56,5 @@ public interface ProductMapper {
 	int takeRevenue(HashMap<String, Object> profit);
 	List<salesViewVo> searchSalesView(HashMap<String, Object> sal);
 	List<account> findAccountByStoreNo(HashMap<String, Object> type);
+	int findSalescountByDate(HashMap<String, Object> sal);
 }

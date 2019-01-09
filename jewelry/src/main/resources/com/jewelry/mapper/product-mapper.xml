@@ -226,6 +226,11 @@
 				ORDER BY SALESNO DESC)M) 
 			WHERE NUM <![CDATA[>=]]> #{from} AND NUM <![CDATA[<]]> #{to}
 	</select>
+	
+	<select id="findSalescountByDate" parameterType="hashmap" resultType="int">
+		SELECT count(*) FROM SALESVIEW WHERE STORENO =#{storeNo} and SALESDATE BETWEEN TO_DATE(#{start},'MM/dd/yyyy') and To_Date(#{end},'MM/dd/yyyy')+1
+	</select>
+	
 </mapper>
 
 

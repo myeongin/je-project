@@ -76,7 +76,7 @@
     			var div=$("#tr"+orderNo+" #orType").text();
     			var userNo=$("#tr"+orderNo+" #userNo").text();
 				var type="재품수령";												
-    			
+				
     			$.ajax({
     				"url" : "ordertype.action",
     				"method" : "POST",

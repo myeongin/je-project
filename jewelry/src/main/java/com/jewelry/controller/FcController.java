@@ -192,7 +192,9 @@ public class FcController {
 	
 	//직원리스트
 	@RequestMapping(value="/fc/employeelist.action",method=RequestMethod.GET)
-	public String employeelist(int userNo,Model model,int pageNo) {
+	public String employeelist(Integer userNo,Model model,int pageNo) {
+		
+		System.out.println(userNo);
 		
 		int pagesize=5;
 		int from=(pageNo-1)*pagesize +1;

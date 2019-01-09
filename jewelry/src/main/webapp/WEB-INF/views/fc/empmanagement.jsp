@@ -145,7 +145,7 @@
 				},
 				"success":function(data,status,xhr){
 					alert("수정되었습니다.");
-					//$('#employeeList').load("employeelist.action",{"userNo":${user.userNo}});
+					//$('#employeeList').load("employeelist.action",{"userNo":${user.userNo},"pageNo":${pageNo}});
 				},
 				"error":function(xhr,status,err){
 					alert("실패");

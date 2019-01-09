@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
      <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
          <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+         <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -222,7 +223,7 @@
 									  <br>
 							<!-- ================================================== -->		
 								
-                 			   <h1> <span class="counter">${newprice}</span>원</h1>
+                 			    <span class="counter" style=" font-size: xx-large;"><fmt:formatNumber value="${newprice}" pattern="#,###"/></span>
                  			 
 							   <br><br>
 							<!-- ================================================== -->		
@@ -242,7 +243,7 @@
 							<div class="panel-body">
 							<div class="text-center custom-login">
 							<h3>오늘 시세</h3>
-							<p>숫자만 입력해주세요 (ex 75000) </p>
+							<p>숫자만 입력해주세요 (ex 75,000) </p>
 							</div>
                     
 							<form action="/jewelry/price/price.action?userNo=${user.storeNo}" id="loginForm" method="post">
@@ -311,7 +312,7 @@
                                             <img src="/jewelry/resources/img/newlist.png"> <strong>최근 시세</strong>              
                                            <c:set var="no"  value="0"/>
                                             <c:forEach var="priceVo" begin="0" end="13" step="1" items="${prices}">                                            
-                                                <li>< <span id="newDate${no}">${priceVo.priceDate} : </span><span id="newPrice${no}"  class="np">${priceVo.price}</span> ></li>
+                                                <li><<span id="newDate${no}">${priceVo.priceDate} : </span><span id="newPrice${no}"  class="np">${priceVo.price}</span>></li>
                                                 <c:set var="no" value="${no+1 }"/>
                                             </c:forEach>
                                             
@@ -394,7 +395,7 @@
                                                 
                                                 <%-- <td class="hidePrice">현 재  접 속 한  가 맹 점 에 서  ${priceVo.priceDate}  에  등 록 한  금 의  시 세 는</td> --%> 
                                                 <td><img src="/jewelry/resources/img/gold.png"></td>
-                                                <td><strong style="font-size: 30px ">${priceVo.price}  원</strong></td>
+                                                <td><strong style="font-size: 30px "><fmt:formatNumber value="${priceVo.price}" pattern="#,###"/>원</strong></td>
                                                 <td></td>
                                                 <td class="text-right mail-date"><button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><a href="/jewelry/price/priceDelete.action?priceNo=${priceVo.priceNo}&userNo=${user.storeNo}"><i class="fa fa-trash-o" aria-hidden="true"></i></a></button></td>
                                             </tr>

@@ -13,19 +13,17 @@
 												</button>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
-                                       
+                                    <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">                                      
                                     </div>
                                     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                                         <div class="header-right-info">
                                             <ul class="nav navbar-nav mai-top-nav header-right-menu">                                           
-                                                               
+                                                <li class="nav-item"><span class="admin-name">매장명 : ${user.userStore}</span>	</li>             
                                                 <li class="nav-item">
                                                     <a href="#" class="nav-link">
 															<i class="fa fa-user adminpro-user-rounded header-riht-inf" aria-hidden="true"></i>
 															<span class="admin-name">${user.userId}</span>	
-														</a>
-                                                   
+														</a>                                                   
                                                 </li>
                                                 <li class="nav-item"><a href="/jewelry/fc/logout.action"><i class="fa fa-lock author-log-ic"></i><span class="admin-name">logout</span></a>
                                                 </li>

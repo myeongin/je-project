@@ -403,6 +403,20 @@ public class ProductDaoImpl implements ProductDao{
 		List<salesViewVo> salesViewVos = productMapper.searchSalesView(sal);
 		return salesViewVos;
 	}
+	
+	//판매수 + 날짜
+	@Override
+	public int findSalescountByDate(int storeNo, String start, String end) {
+		
+		HashMap<String, Object> sal = new HashMap<>();
+		sal.put("storeNo", storeNo);
+		sal.put("start",start);
+		sal.put("end",end);
+		
+		int count = productMapper.findSalescountByDate(sal);
+		
+		return count;
+	}
 
 	
 	

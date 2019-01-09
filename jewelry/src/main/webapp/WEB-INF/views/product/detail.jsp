@@ -436,7 +436,7 @@
 											</div>
 											
 											<div class="modal-footer">
-												<a data-dismiss="modal" href="#">취소</a> <a class="submitsales" href="javascript:" data-no="${stock.detailNo}">구입</a>
+												<a data-dismiss="modal" href="#">Cancel</a> <a class="submitsales" href="javascript:" data-no="${stock.detailNo}">Process</a>
 											</div>
 										</div>
 									</div>
